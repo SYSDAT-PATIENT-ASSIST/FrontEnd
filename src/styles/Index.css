@@ -1,0 +1,13 @@
+html {
+    display: flex;
+    justify-content: center;
+    background-color: white;
+}
+
+.logo {
+    display: flex;
+    justify-content: center;
+    img {
+        width: 100px;
+    }
+}
