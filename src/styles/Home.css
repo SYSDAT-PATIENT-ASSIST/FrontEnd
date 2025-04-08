@@ -1,0 +1,14 @@
+.home-container {
+    display: flex;
+    background-color: white;
+    flex: 1;
+    border-radius: 10px;
+}
+
+.links {
+}
+
+a {
+    color: blue;
+    text-decoration: underline;
+}
