@@ -1,11 +1,11 @@
 html {
     display: flex;
     justify-content: center;
-    background-color: rgba(0,0,255,.37);
+    background-color: #0079bf;
     background-blend-mode: multiply;
     background-image: url("/Bornholms_Hospital.jpg");
-    background-size:     cover;                      /* <------ */
-    background-repeat:   no-repeat;
+    background-size: cover; 
+    background-repeat: no-repeat;
     background-position: center center;
 }
 
@@ -22,5 +22,6 @@ html {
 .index-content {
     display: flex;
     flex-direction: column;
+    justify-content: flex-start;
     flex: 1;
 }

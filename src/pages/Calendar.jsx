@@ -10,10 +10,9 @@ function Calendar()
       <div className="calendar__container">
       
           <CalendarHeader />
-      
+
           <div className="calendar__content">
-              <h1>ACTUAL CALENDAR</h1>
-              <h1>STUFF GOES HERE</h1>
+              <Outlet />
           </div>
 
       </div>
