@@ -1,6 +1,5 @@
 import { useState } from 'react'
 import { NavLink, Link, Outlet } from "react-router"
-import Logo from '../assets/HospitalLogo.jpg'
 import '../styles/Calendar.css'
 import Header from '../components/Header.jsx'
 
@@ -10,8 +9,7 @@ function Calendar()
     <>
       <div className="calendar-container">
 
-      <h1>CALENDAR</h1>
-      <h1>CALENDAR</h1>
+      {/* <img src={MockImg3} /> */}
       
       </div>
     </>

@@ -4,5 +4,10 @@
     background-color: white;
     border-radius: 10px;
     color: black;
-    min-height: 75vh;
+    height: fit-content;
+    /* min-height: 75vh; */
+
+    img {
+        width: 100%;
+    }
 }
