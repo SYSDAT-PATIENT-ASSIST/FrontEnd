@@ -8,13 +8,16 @@ function Home()
 {
   return (
     <>
-      <div className="home-container">
+      <div className="home__container">
 
-      <h1>Home</h1>
+      <div className="home__links">
       
-      <div className="links">
-      
-        <Link to="calendar">Calendar</Link>
+        <Link to="/calendar"> <img src={Logo} /> <h1>Mad bestilling</h1> </Link>
+        <Link to="/calendar"> <img src={Logo} /> <h1>Øvelser</h1> </Link>
+        <Link to="/calendar"> <img src={Logo} /> <h1>Kontakt</h1> </Link>
+        <Link to="/calendar"> <img src={Logo} /> <h1>Hospital info</h1> </Link>
+        <Link to="/calendar"> <img src={Logo} /> <h1>Underholdning</h1> </Link>
+        <Link to="/calendar"> <img src={Logo} /> <h1>Min SP</h1> </Link>
       
       </div>
         
