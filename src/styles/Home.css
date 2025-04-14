@@ -24,8 +24,19 @@
         padding: 8px;
         text-decoration: none;
         img {
-            width: 10vw;
+            width: 8vw;
         }
+        -webkit-animation-duration: 0.4s;
+        animation-duration: 0.4s;
+        -webkit-animation-fill-mode: both;
+        animation-fill-mode: both;
+        -webkit-animation-timing-function: ease-in-out;
+        animation-timing-function: ease-in-out;
+        animation-iteration-count: 1;
+        -webkit-animation-iteration-count: 1;
+    }
+    a:hover {
+        animation-name: bounce;
     }
     h1 {
         padding: 0;
@@ -34,3 +45,10 @@
     }
 }
 
+@keyframes bounce {
+    50% {
+        -webkit-transform: translateY(-3px);
+        -ms-transform:     translateY(-3px);
+        transform:         translateY(-3px)
+    }
+}
