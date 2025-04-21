@@ -1,0 +1,111 @@
+{"orders": [
+  {
+    "id": "1",
+    "bedNumber": "202-1",
+    "dishes": [
+      {
+        "id": 101,
+        "name": "Hakkebøf",
+        "allergens": ["Gluten", "Dairy"]
+      }
+    ],
+    "dietaryComments": "Gluten‑free",
+    "status": "received",
+    "deliveryDelay": 0,
+    "allergy": {
+      "id": 1,
+      "name": "Celiac Disease"
+    }
+  },
+  {
+    "id": "2",
+    "bedNumber": "203-2",
+    "dishes": [
+      {
+        "id": 102,
+        "name": "Kyllingesuppe",
+        "allergens": ["Celery"]
+      }
+    ],
+    "dietaryComments": "No shellfish",
+    "status": "accepted",
+    "deliveryDelay": 0,
+    "allergy": {
+      "id": 2,
+      "name": "Shellfish Allergy"
+    }
+  },
+  {
+    "id": "3",
+    "bedNumber": "204-3",
+    "dishes": [
+      {
+        "id": 103,
+        "name": "Grøntsagslasagne",
+        "allergens": ["Gluten", "Dairy"]
+      }
+    ],
+    "dietaryComments": "Vegetarian",
+    "status": "in_preparation",
+    "deliveryDelay": 0,
+    "allergy": {
+      "id": 3,
+      "name": "Lactose Intolerance"
+    }
+  },
+  {
+    "id": "4",
+    "bedNumber": "205-1",
+    "dishes": [
+      {
+        "id": 104,
+        "name": "Fiskefilet med kartofler",
+        "allergens": ["Fish"]
+      }
+    ],
+    "dietaryComments": "Low‑sodium",
+    "status": "ready_for_delivery",
+    "deliveryDelay": 0,
+    "allergy": {
+      "id": 4,
+      "name": "Hypertension Diet"
+    }
+  },
+  {
+    "id": "5",
+    "bedNumber": "206-2",
+    "dishes": [
+      {
+        "id": 105,
+        "name": "Diabetesvenlig æggekage",
+        "allergens": ["Egg"]
+      }
+    ],
+    "dietaryComments": "Diabetic‑friendly",
+    "status": "delivered",
+    "deliveryDelay": 0,
+    "allergy": {
+      "id": 5,
+      "name": "Type 2 Diabetes"
+    }
+  },
+  {
+    "id": "6",
+    "bedNumber": "207-3",
+    "dishes": [
+      {
+        "id": 106,
+        "name": "Peanut Butter Sandwich",
+        "allergens": ["Peanuts", "Gluten"]
+      }
+    ],
+    "dietaryComments": "Peanut allergy",
+    "status": "delayed",
+    "deliveryDelay": 20,
+    "allergy": {
+      "id": 6,
+      "name": "Peanut Allergy"
+    }
+  }
+]
+}
