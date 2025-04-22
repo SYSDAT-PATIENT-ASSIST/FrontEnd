@@ -1,4 +1,3 @@
-// src/components/menu/MenuModal.jsx
 import React, { useEffect, useRef } from 'react';
 import { X } from 'lucide-react';
 import DishForm from './DishForm';
@@ -47,14 +46,14 @@ const MenuModal = ({
     >
       {/* Modal header */}
       <div className='flex justify-between items-center p-4 border-b'>
-        <h3 className='text-xl font-bold text-gray-800'>
+        <h3 className='text-2xl font-bold text-gray-800'>
           {type === 'add' && 'Tilføj ny ret'}
           {type === 'edit' && 'Rediger ret'}
           {type === 'delete' && 'Er du sikker på, at du vil fjerne denne ret?'}
           {type === 'view' && item?.title}
         </h3>
         <button onClick={onClose} className='text-gray-500 hover:text-gray-700'>
-          <X className='h-6 w-6' />
+          <X className='h-7 w-7' />
         </button>
       </div>
 

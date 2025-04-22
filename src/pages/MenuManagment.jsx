@@ -1,4 +1,3 @@
-// src/pages/MenuManagement.jsx
 import React, { useState, useEffect } from 'react';
 import { Plus, Calendar as CalendarIcon } from 'lucide-react';
 import { Link } from 'react-router';
@@ -6,7 +5,6 @@ import MenuItem from '../components/menu/MenuItem';
 import MenuModal from '../components/menu/MenuModal';
 import { initialMenuItems } from '../data/menuItems';
 import '../styles/dialog.css';
-import '../styles/tailwind.css';
 
 function MenuManagement() {
   const [menuItems, setMenuItems] = useState([]);
@@ -156,20 +154,20 @@ function MenuManagement() {
     <div className='container mx-auto p-4'>
       <div className='bg-white rounded-lg shadow p-6'>
         <div className='flex justify-between items-center mb-6'>
-          <h1 className='text-2xl font-bold text-gray-800'>Menustyring</h1>
+          <h1 className='text-3xl font-bold text-gray-800'>Menustyring</h1>
           <div className='flex gap-3'>
             <Link
               to='/calendar'
-              className='bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded flex items-center no-underline'
+              className='bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded flex items-center text-lg'
             >
-              <CalendarIcon className='w-5 h-5 mr-2' />
+              <CalendarIcon className='w-6 h-6 mr-2' />
               Kalender
             </Link>
             <button
               onClick={handleAddClick}
-              className='bg-green-600 hover:bg-green-700 text-white py-2 px-4 rounded flex items-center'
+              className='bg-green-600 hover:bg-green-700 text-white py-2 px-4 rounded flex items-center text-lg'
             >
-              <Plus className='w-5 h-5 mr-2' />
+              <Plus className='w-6 h-6 mr-2' />
               Tilføj ny ret
             </button>
           </div>
@@ -179,13 +177,13 @@ function MenuManagement() {
           <table className='min-w-full divide-y divide-gray-200'>
             <thead className='bg-gray-50'>
               <tr>
-                <th className='px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider'>
+                <th className='px-6 py-3 text-left text-sm font-medium text-gray-500 uppercase tracking-wider'>
                   Titel
                 </th>
-                <th className='px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider'>
+                <th className='px-6 py-3 text-left text-sm font-medium text-gray-500 uppercase tracking-wider'>
                   Beskrivelse
                 </th>
-                <th className='px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider'>
+                <th className='px-6 py-3 text-right text-sm font-medium text-gray-500 uppercase tracking-wider'>
                   Handlinger
                 </th>
               </tr>
@@ -205,7 +203,7 @@ function MenuManagement() {
                 <tr>
                   <td
                     colSpan='3'
-                    className='px-6 py-4 text-center text-gray-500'
+                    className='px-6 py-4 text-center text-base text-gray-500'
                   >
                     Ingen retter tilføjet endnu
                   </td>
