@@ -1,10 +1,12 @@
 // src/pages/MenuManagement.jsx
 import React, { useState, useEffect } from 'react';
-import { Plus } from 'lucide-react';
+import { Plus, Calendar as CalendarIcon } from 'lucide-react';
+import { Link } from 'react-router';
 import MenuItem from '../components/menu/MenuItem';
 import MenuModal from '../components/menu/MenuModal';
 import { initialMenuItems } from '../data/menuItems';
-import '../styles/dialog.css'; // Import dialog styles
+import '../styles/dialog.css';
+import '../styles/tailwind.css';
 
 function MenuManagement() {
   const [menuItems, setMenuItems] = useState([]);
@@ -26,7 +28,6 @@ function MenuManagement() {
   useEffect(() => {
     // Load menu items from data file or localStorage if available
     setMenuItems(initialMenuItems);
-    console.log('Loaded menu items:', initialMenuItems); // Debug log
   }, []);
 
   const handleAddClick = () => {
@@ -156,13 +157,22 @@ function MenuManagement() {
       <div className='bg-white rounded-lg shadow p-6'>
         <div className='flex justify-between items-center mb-6'>
           <h1 className='text-2xl font-bold text-gray-800'>Menustyring</h1>
-          <button
-            onClick={handleAddClick}
-            className='bg-green-600 hover:bg-green-700 text-white py-2 px-4 rounded flex items-center'
-          >
-            <Plus className='w-5 h-5 mr-2' />
-            Tilføj ny ret
-          </button>
+          <div className='flex gap-3'>
+            <Link
+              to='/calendar'
+              className='bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded flex items-center no-underline'
+            >
+              <CalendarIcon className='w-5 h-5 mr-2' />
+              Kalender
+            </Link>
+            <button
+              onClick={handleAddClick}
+              className='bg-green-600 hover:bg-green-700 text-white py-2 px-4 rounded flex items-center'
+            >
+              <Plus className='w-5 h-5 mr-2' />
+              Tilføj ny ret
+            </button>
+          </div>
         </div>
 
         <div className='overflow-x-auto'>
