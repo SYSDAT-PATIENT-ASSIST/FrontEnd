@@ -3,8 +3,8 @@ import React from 'react';
 
 const DeleteConfirmation = ({ item, onCancel, onConfirm }) => {
   return (
-    <div>
-      <p className='mb-4'>
+    <div className='text-gray-800'>
+      <p className='mb-4 text-gray-700'>
         Du er ved at fjerne {item?.title} fra menuen. Denne handling kan ikke
         fortrydes.
       </p>

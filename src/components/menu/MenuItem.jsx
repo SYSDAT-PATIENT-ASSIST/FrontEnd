@@ -1,13 +1,11 @@
-// src/components/menu/MenuItem.jsx
 import React from 'react';
 import { Eye, Edit, Trash2 } from 'lucide-react';
 
 const MenuItem = ({ item, onView, onEdit, onDelete }) => {
   return (
     <tr className='border-b hover:bg-gray-50'>
-      <td className='px-6 py-4'>{item.title}</td>
-      <td className='px-6 py-4'>{item.description}</td>
-      <td className='px-6 py-4'>{item.lastUsed}</td>
+      <td className='px-6 py-4 text-gray-800'>{item.title}</td>
+      <td className='px-6 py-4 text-gray-700'>{item.description}</td>
       <td className='px-6 py-4 flex space-x-4 justify-end'>
         <button
           onClick={() => onView(item)}

@@ -4,7 +4,7 @@ import { Check } from 'lucide-react';
 
 const DishForm = ({ formData, errors, onChange, onSave, onCancel }) => {
   return (
-    <form>
+    <form className='text-gray-800'>
       <div className='mb-4'>
         <label
           className='block text-gray-700 text-sm font-bold mb-2'
@@ -18,7 +18,7 @@ const DishForm = ({ formData, errors, onChange, onSave, onCancel }) => {
           name='title'
           value={formData.title}
           onChange={onChange}
-          className={`border rounded w-full py-2 px-3 ${
+          className={`border rounded w-full py-2 px-3 text-gray-800 ${
             errors.title ? 'border-red-500' : 'border-gray-300'
           }`}
           placeholder='F.eks. Kylling med kartofler'
@@ -43,7 +43,7 @@ const DishForm = ({ formData, errors, onChange, onSave, onCancel }) => {
           name='description'
           value={formData.description}
           onChange={onChange}
-          className='border rounded w-full py-2 px-3 border-gray-300'
+          className='border rounded w-full py-2 px-3 border-gray-300 text-gray-800'
           rows='4'
           placeholder='Beskriv retten...'
         ></textarea>
@@ -53,7 +53,9 @@ const DishForm = ({ formData, errors, onChange, onSave, onCancel }) => {
       </div>
 
       <div className='mb-4'>
-        <h4 className='text-lg font-semibold mb-2'>Ernæringsinfo</h4>
+        <h4 className='text-lg font-semibold mb-2 text-gray-800'>
+          Ernæringsinfo
+        </h4>
         <div className='grid grid-cols-1 md:grid-cols-2 gap-4'>
           <div>
             <label
@@ -68,7 +70,7 @@ const DishForm = ({ formData, errors, onChange, onSave, onCancel }) => {
               name='calories'
               value={formData.calories}
               onChange={onChange}
-              className='border rounded w-full py-2 px-3 border-gray-300'
+              className='border rounded w-full py-2 px-3 border-gray-300 text-gray-800'
               placeholder='F.eks. 350'
             />
           </div>
@@ -85,7 +87,7 @@ const DishForm = ({ formData, errors, onChange, onSave, onCancel }) => {
               name='protein'
               value={formData.protein}
               onChange={onChange}
-              className='border rounded w-full py-2 px-3 border-gray-300'
+              className='border rounded w-full py-2 px-3 border-gray-300 text-gray-800'
               placeholder='F.eks. 25'
             />
           </div>
@@ -102,7 +104,7 @@ const DishForm = ({ formData, errors, onChange, onSave, onCancel }) => {
               name='carbs'
               value={formData.carbs}
               onChange={onChange}
-              className='border rounded w-full py-2 px-3 border-gray-300'
+              className='border rounded w-full py-2 px-3 border-gray-300 text-gray-800'
               placeholder='F.eks. 40'
             />
           </div>
@@ -119,7 +121,7 @@ const DishForm = ({ formData, errors, onChange, onSave, onCancel }) => {
               name='fat'
               value={formData.fat}
               onChange={onChange}
-              className='border rounded w-full py-2 px-3 border-gray-300'
+              className='border rounded w-full py-2 px-3 border-gray-300 text-gray-800'
               placeholder='F.eks. 12'
             />
           </div>
@@ -139,9 +141,30 @@ const DishForm = ({ formData, errors, onChange, onSave, onCancel }) => {
           name='allergens'
           value={formData.allergens}
           onChange={onChange}
-          className='border rounded w-full py-2 px-3 border-gray-300'
+          className='border rounded w-full py-2 px-3 border-gray-300 text-gray-800'
           placeholder='F.eks.: Gluten, Mælk, Nødder'
         />
+      </div>
+
+      <div className='mb-4'>
+        <label
+          className='block text-gray-700 text-sm font-bold mb-2'
+          htmlFor='ingredients'
+        >
+          Ingredienser
+        </label>
+        <textarea
+          id='ingredients'
+          name='ingredients'
+          value={formData.ingredients}
+          onChange={onChange}
+          className='border rounded w-full py-2 px-3 border-gray-300 text-gray-800'
+          rows='4'
+          placeholder='Skriv hver ingrediens på en ny linje'
+        ></textarea>
+        <p className='text-xs text-gray-500 mt-1'>
+          Skriv hver ingrediens på en ny linje
+        </p>
       </div>
 
       <div className='mb-4'>
@@ -156,9 +179,9 @@ const DishForm = ({ formData, errors, onChange, onSave, onCancel }) => {
           name='recipe'
           value={formData.recipe}
           onChange={onChange}
-          className='border rounded w-full py-2 px-3 border-gray-300'
+          className='border rounded w-full py-2 px-3 border-gray-300 text-gray-800'
           rows='6'
-          placeholder='Beskriv tilberedning, portionsstørrelse og ingredienser...'
+          placeholder='Skriv hvert trin på en ny linje'
         ></textarea>
         <p className='text-xs text-gray-500 mt-1'>
           Skriv hvert trin på en ny linje

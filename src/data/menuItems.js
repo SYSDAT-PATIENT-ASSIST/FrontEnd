@@ -3,7 +3,6 @@ export const initialMenuItems = [
         id: 1,
         title: 'Kylling med kartofler og grøntsager',
         description: 'Saftig kyllingefilet serveret med kartofler og sæsonens grøntsager',
-        lastUsed: '15.04.2025',
         nutrition: {
             calories: 380,
             protein: 25,
@@ -11,6 +10,7 @@ export const initialMenuItems = [
             fat: 12
         },
         allergens: ['Gluten'],
+        ingredients: ['Kyllingefilet', 'Kartofler', 'Sæsonens grøntsager', 'Smør', 'Salt', 'Peber'],
         recipe: [
             'Steg kyllingen ved medium varme i 6-8 minutter på hver side',
             'Kog kartoflerne i letsaltet vand i 15-20 minutter',
@@ -22,7 +22,6 @@ export const initialMenuItems = [
         id: 2,
         title: 'Laksefrikadeller med dildkartofler',
         description: 'Hjemmelavede laksefrikadeller serveret med dildkartofler og citron',
-        lastUsed: '20.04.2025',
         nutrition: {
             calories: 420,
             protein: 28,
@@ -30,6 +29,7 @@ export const initialMenuItems = [
             fat: 18
         },
         allergens: ['Fisk', 'Æg'],
+        ingredients: ['Hakket laks', 'Løg', 'Æg', 'Rasp', 'Kartofler', 'Frisk dild', 'Citron'],
         recipe: [
             'Bland hakket laks med løg, æg og rasp',
             'Form frikadeller og steg dem på panden',
@@ -41,7 +41,6 @@ export const initialMenuItems = [
         id: 3,
         title: 'Vegetarisk pasta med tomatsauce',
         description: 'Frisk pasta med hjemmelavet tomatsauce og sæsonens grøntsager',
-        lastUsed: '12.04.2025',
         nutrition: {
             calories: 350,
             protein: 12,
@@ -49,6 +48,7 @@ export const initialMenuItems = [
             fat: 8
         },
         allergens: ['Gluten'],
+        ingredients: ['Pasta', 'Løg', 'Hvidløg', 'Hakkede tomater', 'Olivenolie', 'Salt', 'Peber', 'Krydderier', 'Sæsonens grøntsager'],
         recipe: [
             'Kog pastaen i letsaltet vand',
             'Steg løg og hvidløg i olivenolie',
