@@ -1,128 +1,137 @@
 .header-container {
-    display: flex;
-    align-items: space-between;
-    justify-content: space-between;
-    gap: 10px;
-    height: 75px;
-    a {
-        text-decoration: none;
-        h1 {
-            padding: 0;
-            margin: 0;
-        }
+  display: flex;
+  align-items: space-between;
+  justify-content: space-between;
+  gap: 10px;
+  height: 75px;
+}
 
-        h2 {
-            padding: 0;
-            margin: 0;
-        }
-    }
+.header-container a {
+  text-decoration: none;
+}
+
+.header-container a h1 {
+  padding: 0;
+  margin: 0;
+}
+
+.header-container a h2 {
+  padding: 0;
+  margin: 0;
 }
 
 .header-container-left {
-    display: flex;
-    align-items: space-between;
-    justify-content: space-between;
-    gap: 10px;
-    height: 75px;
+  display: flex;
+  align-items: space-between;
+  justify-content: space-between;
+  gap: 10px;
+  height: 75px;
 }
 
 .header-container-right {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-    height: 75px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  height: 75px;
 }
 
 .header-container-left-actions {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 5px;
-    > * {
-        width: 33px;
-        > * {
-            width: 100%;
-        }
-    }
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+.header-container-left-actions > div {
+  height: 100%;
 }
 
 .header-quit {
-    border-radius: 5px;
-    background-color: red;
+  border-radius: 5px;
+  background-color: red;
+  width: 33px;
+  height: 33px;
 }
 
 .header-settings {
-    border-radius: 5px;
-    background-color: lightblue;
+  border-radius: 5px;
+  background-color: lightblue;
+  width: 33px;
+  height: 33px;
+}
+
+.header-quit img,
+.header-settings img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .header-logo {
-    padding-left: 10px;
-    padding-right: 10px;
-    border-radius: 10px;
-    background-color: white;
-    display: flex;
-    align-items: center;
-    gap: 10px;
+  padding-left: 10px;
+  padding-right: 10px;
+  border-radius: 10px;
+  background-color: white;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
 
-    > * {
-        max-height: 75%;
-    }
+.header-logo > * {
+  max-height: 75%;
+}
 
-    img {
-    }
-    
-    h1 {
-        color: black;
-        font-size: 1.1rem;
-    }
+.header-logo h1 {
+  color: black;
+  font-size: 1.1rem;
 }
 
 .header-section-info {
-    padding-left: 8px;
-    padding-right: 8px;
-    padding-top: 2px;
-    padding-bottom: 2px;
-    border-radius: 5px;
-    background-color: white;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: flex-start;
-    gap: 0px;
-    height: fit-content;
-    
-    h1 {
-        color: black;
-        font-size: 1rem;
-    }
-    h2 {
-        color: gray;
-        font-size: 0.5rem;
-    }
+  padding-left: 8px;
+  padding-right: 8px;
+  padding-top: 2px;
+  padding-bottom: 2px;
+  border-radius: 5px;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 0px;
+  height: fit-content;
+}
+
+.header-section-info h1 {
+  color: black;
+  font-size: 1rem;
+}
+
+.header-section-info h2 {
+  color: gray;
+  font-size: 0.5rem;
 }
 
 .header-date-time {
-    padding-left: 8px;
-    padding-right: 8px;
-    padding-top: 2px;
-    padding-bottom: 2px;
-    border-radius: 5px;
-    background-color: white;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 0px;
-    
-    h1 {
-        color: gray;
-        font-size: 1rem;
-    }
-    h2 {
-        color: black;
-        font-size: 1.5rem;
-    }
+  padding-left: 8px;
+  padding-right: 8px;
+  padding-top: 2px;
+  padding-bottom: 2px;
+  border-radius: 5px;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0px;
+}
+
+.header-date-time h1 {
+  color: gray;
+  font-size: 1rem;
+}
+
+.header-date-time h2 {
+  color: black;
+  font-size: 1.5rem;
 }
