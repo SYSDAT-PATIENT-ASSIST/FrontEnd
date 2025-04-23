@@ -1,8 +1,10 @@
+// src/pages/MenuManagment.jsx
 import React, { useState, useEffect } from 'react';
 import { Plus, Calendar as CalendarIcon } from 'lucide-react';
 import { Link } from 'react-router';
 import MenuItem from '../components/menu/MenuItem';
 import MenuModal from '../components/menu/MenuModal';
+import Toast from '../components/ui/Toast'; // Import the new Toast component
 import { initialMenuItems } from '../data/menuItems';
 import '../styles/dialog.css';
 
@@ -23,10 +25,32 @@ function MenuManagement() {
   });
   const [errors, setErrors] = useState({});
 
+  const [toast, setToast] = useState({
+    visible: false,
+    message: '',
+    type: 'success', // can be 'success', 'error', etc.
+  });
+
+  // Function to show toast notification
+  const showToast = (message, type = 'success') => {
+    setToast({
+      visible: true,
+      message,
+      type,
+    });
+  };
+
+  // Function to hide toast notification
+  const hideToast = () => {
+    setToast((prev) => ({
+      ...prev,
+      visible: false,
+    }));
+  };
+
   useEffect(() => {
     // Load menu items from data file or localStorage if available
     setMenuItems(initialMenuItems);
-    console.log('Loaded menu items:', initialMenuItems); // Debug log
   }, []);
 
   const handleAddClick = () => {
@@ -171,10 +195,14 @@ function MenuManagement() {
 
     if (modalType === 'add') {
       setMenuItems([...menuItems, newItem]);
+      // Show success toast for adding a dish
+      showToast(`${newItem.title} er blevet tilføjet til menuen`);
     } else if (modalType === 'edit') {
       setMenuItems(
         menuItems.map((item) => (item.id === currentItem.id ? newItem : item))
       );
+      // Show success toast for updating a dish
+      showToast(`${newItem.title} er blevet opdateret`);
     }
 
     handleCloseModal();
@@ -182,13 +210,27 @@ function MenuManagement() {
 
   const handleDelete = () => {
     if (currentItem) {
+      // Store the title before deleting
+      const deletedItemTitle = currentItem.title;
+
       setMenuItems(menuItems.filter((item) => item.id !== currentItem.id));
       handleCloseModal();
+
+      // Show success toast for deleting a dish
+      showToast(`${deletedItemTitle} er blevet fjernet fra menuen`);
     }
   };
 
   return (
     <div className='container mx-auto p-4'>
+      {/* Toast notification */}
+      <Toast
+        message={toast.message}
+        type={toast.type}
+        visible={toast.visible}
+        onClose={hideToast}
+      />
+
       <div className='bg-white rounded-lg shadow p-6'>
         <div className='flex justify-between items-center mb-6'>
           <h1 className='text-3xl font-bold text-gray-800'>Menustyring</h1>
