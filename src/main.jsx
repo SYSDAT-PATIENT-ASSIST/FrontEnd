@@ -1,29 +1,35 @@
-import { StrictMode } from 'react'
-import { createRoot } from 'react-dom/client'
-import { BrowserRouter, Routes, Route } from "react-router"
+import { StrictMode } from "react";
+import { createRoot } from "react-dom/client";
+import { BrowserRouter, Routes, Route } from "react-router";
 
-import Index from './pages/Index.jsx'
-import Home from './pages/Home.jsx'
-import Settings from './pages/Settings.jsx'
+import Index from "./pages/Index.jsx";
+import Home from "./pages/Home.jsx";
+import Settings from "./pages/Settings.jsx";
 
-import Calendar from './pages/Calendar.jsx'
-import CalendarLanding from './components/CalendarLanding.jsx'
-import CalendarView from './components/CalendarView.jsx'
+import Calendar from "./pages/Calendar.jsx";
+import CalendarLanding from "./components/CalendarLanding.jsx";
+import CalendarView from "./components/CalendarView.jsx";
+import { SettingsProvider } from "./components/SettingsContext";
 
-createRoot(document.getElementById('root')).render(
-  <StrictMode>
-    <BrowserRouter>
+
+
+createRoot(document.getElementById("root")).render(
+  <SettingsProvider>
+    <StrictMode>
+      <BrowserRouter>
         <Routes>
           <Route path="/" element={<Index />}>
             <Route index element={<Home />} />
             <Route path="home" element={<Home />} />
-            <Route path="settings" element={<Settings />} />
+            <Route path="settings" element={<Settings/>} />
           </Route>
           <Route path="/calendar" element={<Calendar />}>
             <Route index element={<CalendarLanding />} />
             <Route path="view" index element={<CalendarView />} />
           </Route>
         </Routes>
-    </BrowserRouter>
-  </StrictMode>,
-)
+      </BrowserRouter>
+    </StrictMode>
+    ,
+  </SettingsProvider>
+);

@@ -1,22 +1,9 @@
-import { useState } from 'react'
-import { NavLink, Link, Outlet } from "react-router"
-import Logo from '../assets/HospitalLogo.jpg'
-import '../styles/Index.css'
-import Header from '../components/Header.jsx'
+import AccessibilitySettings from "../components/AccessibilitySettings";
 
-function Settings() 
-{
+export default function SettingsWithLivePreview() {
   return (
     <>
-      <div className="settings-container">
-
-      <h1>Settings</h1>
-      
-      </div>
+      <AccessibilitySettings />
     </>
-  )
+  );
 }
-
-export default Settings
-
-
