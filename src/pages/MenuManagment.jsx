@@ -26,6 +26,7 @@ function MenuManagement() {
   useEffect(() => {
     // Load menu items from data file or localStorage if available
     setMenuItems(initialMenuItems);
+    console.log('Loaded menu items:', initialMenuItems); // Debug log
   }, []);
 
   const handleAddClick = () => {
@@ -91,14 +92,50 @@ function MenuManagement() {
   const validateForm = () => {
     const newErrors = {};
 
+    // Validér titel
     if (!formData.title.trim()) {
       newErrors.title = 'Titel er påkrævet';
     } else if (formData.title.length > 50) {
       newErrors.title = 'Titel må maksimalt være 50 tegn';
     }
 
-    if (formData.description.length > 500) {
+    // Validér beskrivelse
+    if (!formData.description.trim()) {
+      newErrors.description = 'Beskrivelse er påkrævet';
+    } else if (formData.description.length > 500) {
       newErrors.description = 'Beskrivelse må maksimalt være 500 tegn';
+    }
+
+    // Validér ernæringsinfo
+    if (!formData.calories || formData.calories <= 0) {
+      newErrors.calories = 'Kalorier er påkrævet og skal være positivt';
+    }
+
+    if (!formData.protein || formData.protein <= 0) {
+      newErrors.protein = 'Protein er påkrævet og skal være positivt';
+    }
+
+    if (!formData.carbs || formData.carbs <= 0) {
+      newErrors.carbs = 'Kulhydrater er påkrævet og skal være positivt';
+    }
+
+    if (!formData.fat || formData.fat <= 0) {
+      newErrors.fat = 'Fedt er påkrævet og skal være positivt';
+    }
+
+    // Validér allergener
+    if (!formData.allergens.trim()) {
+      newErrors.allergens = 'Allergener er påkrævet';
+    }
+
+    // Validér ingredienser
+    if (!formData.ingredients.trim()) {
+      newErrors.ingredients = 'Ingredienser er påkrævet';
+    }
+
+    // Validér opskrift
+    if (!formData.recipe.trim()) {
+      newErrors.recipe = 'Opskrift er påkrævet';
     }
 
     setErrors(newErrors);

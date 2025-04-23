@@ -35,17 +35,22 @@ const DishForm = ({ formData, errors, onChange, onSave, onCancel }) => {
           className='block text-gray-700 text-base font-bold mb-2'
           htmlFor='description'
         >
-          Beskrivelse
+          Beskrivelse <span className='text-red-500'>*</span>
         </label>
         <textarea
           id='description'
           name='description'
           value={formData.description}
           onChange={onChange}
-          className='border rounded w-full py-2 px-3 border-gray-300 text-gray-800 text-base'
+          className={`border rounded w-full py-2 px-3 text-gray-800 text-base ${
+            errors.description ? 'border-red-500' : 'border-gray-300'
+          }`}
           rows='4'
           placeholder='Beskriv retten...'
         ></textarea>
+        {errors.description && (
+          <p className='text-red-500 text-sm mt-1'>{errors.description}</p>
+        )}
         <div className='text-sm text-gray-500 mt-1'>
           {formData.description.length}/500 tegn
         </div>
@@ -61,7 +66,7 @@ const DishForm = ({ formData, errors, onChange, onSave, onCancel }) => {
               className='block text-gray-700 text-base font-bold mb-2'
               htmlFor='calories'
             >
-              Kalorier (kcal)
+              Kalorier (kcal) <span className='text-red-500'>*</span>
             </label>
             <input
               type='number'
@@ -69,16 +74,21 @@ const DishForm = ({ formData, errors, onChange, onSave, onCancel }) => {
               name='calories'
               value={formData.calories}
               onChange={onChange}
-              className='border rounded w-full py-2 px-3 border-gray-300 text-gray-800 text-base'
+              className={`border rounded w-full py-2 px-3 text-gray-800 text-base ${
+                errors.calories ? 'border-red-500' : 'border-gray-300'
+              }`}
               placeholder='F.eks. 350'
             />
+            {errors.calories && (
+              <p className='text-red-500 text-sm mt-1'>{errors.calories}</p>
+            )}
           </div>
           <div>
             <label
               className='block text-gray-700 text-base font-bold mb-2'
               htmlFor='protein'
             >
-              Protein (g)
+              Protein (g) <span className='text-red-500'>*</span>
             </label>
             <input
               type='number'
@@ -86,16 +96,21 @@ const DishForm = ({ formData, errors, onChange, onSave, onCancel }) => {
               name='protein'
               value={formData.protein}
               onChange={onChange}
-              className='border rounded w-full py-2 px-3 border-gray-300 text-gray-800 text-base'
+              className={`border rounded w-full py-2 px-3 text-gray-800 text-base ${
+                errors.protein ? 'border-red-500' : 'border-gray-300'
+              }`}
               placeholder='F.eks. 25'
             />
+            {errors.protein && (
+              <p className='text-red-500 text-sm mt-1'>{errors.protein}</p>
+            )}
           </div>
           <div>
             <label
               className='block text-gray-700 text-base font-bold mb-2'
               htmlFor='carbs'
             >
-              Kulhydrater (g)
+              Kulhydrater (g) <span className='text-red-500'>*</span>
             </label>
             <input
               type='number'
@@ -103,16 +118,21 @@ const DishForm = ({ formData, errors, onChange, onSave, onCancel }) => {
               name='carbs'
               value={formData.carbs}
               onChange={onChange}
-              className='border rounded w-full py-2 px-3 border-gray-300 text-gray-800 text-base'
+              className={`border rounded w-full py-2 px-3 text-gray-800 text-base ${
+                errors.carbs ? 'border-red-500' : 'border-gray-300'
+              }`}
               placeholder='F.eks. 40'
             />
+            {errors.carbs && (
+              <p className='text-red-500 text-sm mt-1'>{errors.carbs}</p>
+            )}
           </div>
           <div>
             <label
               className='block text-gray-700 text-base font-bold mb-2'
               htmlFor='fat'
             >
-              Fedt (g)
+              Fedt (g) <span className='text-red-500'>*</span>
             </label>
             <input
               type='number'
@@ -120,9 +140,14 @@ const DishForm = ({ formData, errors, onChange, onSave, onCancel }) => {
               name='fat'
               value={formData.fat}
               onChange={onChange}
-              className='border rounded w-full py-2 px-3 border-gray-300 text-gray-800 text-base'
+              className={`border rounded w-full py-2 px-3 text-gray-800 text-base ${
+                errors.fat ? 'border-red-500' : 'border-gray-300'
+              }`}
               placeholder='F.eks. 12'
             />
+            {errors.fat && (
+              <p className='text-red-500 text-sm mt-1'>{errors.fat}</p>
+            )}
           </div>
         </div>
       </div>
@@ -132,7 +157,7 @@ const DishForm = ({ formData, errors, onChange, onSave, onCancel }) => {
           className='block text-gray-700 text-base font-bold mb-2'
           htmlFor='allergens'
         >
-          Allergener (adskilt med komma)
+          Allergener (adskilt med komma) <span className='text-red-500'>*</span>
         </label>
         <input
           type='text'
@@ -140,9 +165,14 @@ const DishForm = ({ formData, errors, onChange, onSave, onCancel }) => {
           name='allergens'
           value={formData.allergens}
           onChange={onChange}
-          className='border rounded w-full py-2 px-3 border-gray-300 text-gray-800 text-base'
+          className={`border rounded w-full py-2 px-3 text-gray-800 text-base ${
+            errors.allergens ? 'border-red-500' : 'border-gray-300'
+          }`}
           placeholder='F.eks.: Gluten, Mælk, Nødder'
         />
+        {errors.allergens && (
+          <p className='text-red-500 text-sm mt-1'>{errors.allergens}</p>
+        )}
       </div>
 
       <div className='mb-4'>
@@ -150,17 +180,22 @@ const DishForm = ({ formData, errors, onChange, onSave, onCancel }) => {
           className='block text-gray-700 text-base font-bold mb-2'
           htmlFor='ingredients'
         >
-          Ingredienser
+          Ingredienser <span className='text-red-500'>*</span>
         </label>
         <textarea
           id='ingredients'
           name='ingredients'
           value={formData.ingredients}
           onChange={onChange}
-          className='border rounded w-full py-2 px-3 border-gray-300 text-gray-800 text-base'
+          className={`border rounded w-full py-2 px-3 text-gray-800 text-base ${
+            errors.ingredients ? 'border-red-500' : 'border-gray-300'
+          }`}
           rows='4'
           placeholder='Skriv hver ingrediens på en ny linje'
         ></textarea>
+        {errors.ingredients && (
+          <p className='text-red-500 text-sm mt-1'>{errors.ingredients}</p>
+        )}
         <p className='text-sm text-gray-500 mt-1'>
           Skriv hver ingrediens på en ny linje
         </p>
@@ -171,17 +206,22 @@ const DishForm = ({ formData, errors, onChange, onSave, onCancel }) => {
           className='block text-gray-700 text-base font-bold mb-2'
           htmlFor='recipe'
         >
-          Opskrift
+          Opskrift <span className='text-red-500'>*</span>
         </label>
         <textarea
           id='recipe'
           name='recipe'
           value={formData.recipe}
           onChange={onChange}
-          className='border rounded w-full py-2 px-3 border-gray-300 text-gray-800 text-base'
+          className={`border rounded w-full py-2 px-3 text-gray-800 text-base ${
+            errors.recipe ? 'border-red-500' : 'border-gray-300'
+          }`}
           rows='6'
           placeholder='Skriv hvert trin på en ny linje'
         ></textarea>
+        {errors.recipe && (
+          <p className='text-red-500 text-sm mt-1'>{errors.recipe}</p>
+        )}
         <p className='text-sm text-gray-500 mt-1'>
           Skriv hvert trin på en ny linje
         </p>
@@ -203,6 +243,10 @@ const DishForm = ({ formData, errors, onChange, onSave, onCancel }) => {
           <Check className='w-6 h-6 mr-2' />
           Gem
         </button>
+      </div>
+
+      <div className='mt-4 text-sm text-gray-600'>
+        <span className='text-red-500'>*</span> Alle felter er påkrævede
       </div>
     </form>
   );
