@@ -9,6 +9,7 @@ import Settings from './pages/Settings.jsx'
 import Calendar from './pages/Calendar.jsx'
 import CalendarLanding from './components/CalendarLanding.jsx'
 import CalendarView from './components/CalendarView.jsx'
+import DishCalendarPage from './pages/DishCalenderPage.jsx'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
@@ -18,8 +19,11 @@ createRoot(document.getElementById('root')).render(
             <Route index element={<Home />} />
             <Route path="home" element={<Home />} />
             <Route path="settings" element={<Settings />} />
+            <Route path="MadkalenderAdministrator" element={<DishCalendarPage />} />
           </Route>
           <Route path="/calendar" element={<Calendar />}>
+          <Route path="view" element={<DishCalendarPage />} />
+        
             <Route index element={<CalendarLanding />} />
             <Route path="view" index element={<CalendarView />} />
           </Route>
