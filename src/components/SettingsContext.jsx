@@ -1,11 +1,12 @@
 // src/components/SettingsContext.js
 import React, { createContext, useContext, useState, useEffect } from "react";
+import i18n from "../i18n";
 
 const STORAGE_KEY = "accessibilitySettings";
 const defaultSettings = {
   fontType: "Arial",
   fontSize: "Medium",
-  language: "English",
+  language: "en",
   contrast: "Normal",
 };
 
@@ -53,6 +54,16 @@ export const SettingsProvider = ({ children }) => {
     // background color on <body>—the html’s bg-image stays in index.css
     document.body.style.backgroundColor = contrastStyles[settings.contrast].bg;
   }, [settings]);
+
+  useEffect(() => {
+    // Sync i18n language with stored setting
+    const supportedLangs = ["en", "da", "de"];
+    if (!supportedLangs.includes(settings.language)) {
+      i18n.changeLanguage("en");
+    } else {
+      i18n.changeLanguage(settings.language);
+    }
+  }, [settings.language]);
 
   const updateSettings = (newVals) =>
     setSettings((prev) => ({ ...prev, ...newVals }));
