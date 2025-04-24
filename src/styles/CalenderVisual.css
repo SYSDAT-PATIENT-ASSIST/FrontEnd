@@ -1,0 +1,63 @@
+.calendar-container {
+    display: flex;
+    flex-direction: column;
+    width: 320px;
+    background-color: white;
+    border-radius: 12px;
+    overflow: hidden;
+    font-family: sans-serif;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+  
+  .day-labels-row {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    background-color: rgba(22, 120, 185, 1);
+    color: white;
+    font-weight: bold;
+    text-align: center;
+    padding: 10px 0;
+  }
+  
+  .calendar-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 4px;
+    padding: 10px;
+  }
+  
+  .day-label {
+    text-align: center;
+  }
+  
+  .day-cell {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    text-align: center;
+    line-height: 40px;
+    border-radius: 6px;
+    cursor: pointer;
+    color: black;
+  }
+  
+  .day-cell.other-month {
+    color: #ccc;
+    cursor: default;
+  }
+  
+  .day-cell:hover:not(.other-month) {
+    background-color: #f0f8ff;
+  }
+  
+  .day-cell.current {
+    background-color: #e0f0ff;
+    color: #007bff;
+    font-weight: bold;
+  }
+  
+  .day-cell.selected {
+    background-color: #d0e8ff;
+    color: #007bff;
+    font-weight: bold;
+  }
+  
