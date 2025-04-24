@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import '../Styles/CalenderVisual.css';
+import '../styles/CalenderVisual.css';
 
 const days = ['Ma', 'Ti', 'On', 'To', 'Fr', 'Lø', 'Sø'];
 
@@ -63,7 +63,7 @@ const CalenderVisual = () => {
           const { day, monthOffset } = dateObj;
 
           const isCurrentMonth = monthOffset === 0;
-          
+
           const isToday =
             day === today.getDate() &&
             currentMonth === today.getMonth() &&
