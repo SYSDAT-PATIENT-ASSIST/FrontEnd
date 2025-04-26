@@ -4,21 +4,20 @@ import Logo from '../assets/HospitalLogo.jpg'
 import '../styles/Index.css'
 import Header from '../components/Header.jsx'
 
-function Index() 
-{
+function Index() {
   return (
     <>
       <div className="index-container">
-      
-      <Header />
-      
-      <div className="index-content">
 
-        <Outlet />
-      
-      </div>
-      
-      
+        <Header />
+
+        <div className="index-content">
+
+          <Outlet />
+
+        </div>
+
+
       </div>
     </>
   )

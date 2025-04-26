@@ -133,14 +133,14 @@ const CalenderVisual = () => {
       <div className={`event-panel ${isExpanded ? "expanded" : ""}`}>
         {events.length > 0
           ? events.map((event, idx) => (
-              <div className="event-item" key={idx}>
-                <span className="event-time">{event.time}</span>
-                <span className="event-title">{event.title}</span>
-              </div>
-            ))
+            <div className="event-item" key={idx}>
+              <span className="event-time">{event.time}</span>
+              <span className="event-title">{event.title}</span>
+            </div>
+          ))
           : isExpanded && (
-              <div className="event-item no-events">No events for this day</div>
-            )}
+            <div className="event-item no-events">No events for this day</div>
+          )}
       </div>
     </div>
   );
