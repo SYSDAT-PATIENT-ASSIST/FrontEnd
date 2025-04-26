@@ -132,15 +132,15 @@ function MenuManagement() {
 
     // Validér ernæringsinfo
     if (!formData.calories || formData.calories <= 0) {
-      newErrors.calories = 'Kalorier er påkrævet og skal være positivt';
+      newErrors.calories = 'Kalorier er påkrævet';
     }
 
     if (!formData.protein || formData.protein <= 0) {
-      newErrors.protein = 'Protein er påkrævet og skal være positivt';
+      newErrors.protein = 'Protein er påkrævet';
     }
 
     if (!formData.carbs || formData.carbs <= 0) {
-      newErrors.carbs = 'Kulhydrater er påkrævet og skal være positivt';
+      newErrors.carbs = 'Kulhydrater er påkrævet';
     }
 
     if (!formData.fat || formData.fat <= 0) {
