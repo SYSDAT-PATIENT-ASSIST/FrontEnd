@@ -1,11 +1,11 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router';
-import { ChefHat, Mail, Lock, LogIn } from 'lucide-react';
+import { ChefHat, User, Lock, LogIn } from 'lucide-react';
 
 const LoginForm = () => {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
-    email: '',
+    username: '',
     password: '',
   });
   const [error, setError] = useState('');
@@ -59,22 +59,22 @@ const LoginForm = () => {
         <div>
           <label
             className='block text-gray-700 text-sm font-bold mb-2'
-            htmlFor='email'
+            htmlFor='username'
           >
-            Email
+            Brugernavn
           </label>
           <div className='relative'>
             <div className='absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none'>
-              <Mail className='h-5 w-5 text-gray-400' />
+              <User className='h-5 w-5 text-gray-400' />
             </div>
             <input
-              type='email'
-              id='email'
-              name='email'
-              value={formData.email}
+              type='text'
+              id='username'
+              name='username'
+              value={formData.username}
               onChange={handleChange}
               className='block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md leading-5 bg-white text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500'
-              placeholder='Indtast din email'
+              placeholder='Indtast dit brugernavn'
               required
             />
           </div>
