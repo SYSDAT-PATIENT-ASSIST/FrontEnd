@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { format } from "date-fns";
 
-export default function DishSelector({ selectedDate, activeDishes, onDishSelection }) {
+export default function DishSelector({ selectedDate }) {
   const [dishes, setDishes] = useState([]);
+  const [activeDishes, setActiveDishes] = useState({});
 
   useEffect(() => {
-    // Simulate fetching dishes from back end
     setDishes([
       { id: 1, name: "Grilled Salmon" },
       { id: 2, name: "Pumpkin Soup" },
@@ -13,30 +13,37 @@ export default function DishSelector({ selectedDate, activeDishes, onDishSelecti
     ]);
   }, []);
 
-  console.log("DishSelector - selectedDate:", selectedDate);
-  console.log("DishSelector - activeDishes:", activeDishes);
-
   const toggleDish = (dishId) => {
     const dateKey = format(selectedDate, "yyyy-MM-dd");
-    const isActive = !activeDishes[dateKey]?.[dishId]?.active;
-    onDishSelection(dishId, dateKey, isActive);
+    setActiveDishes((prev) => {
+      const currentStatus = prev[dateKey]?.[dishId]?.active || false;
+      return {
+        ...prev,
+        [dateKey]: {
+          ...prev[dateKey],
+          [dishId]: {
+            active: !currentStatus,
+          },
+        },
+      };
+    });
   };
 
   const dateKey = format(selectedDate, "yyyy-MM-dd");
 
   return (
-    <div>
-      <h2 className="text-xl font-semibold mb-2">Dishes for {dateKey}</h2>
+    <div className="dish-selector">
+      <h2 className="subtitle">Dishes for {dateKey}</h2>
       {dishes.map((dish) => {
-        const isActive = activeDishes[dateKey]?.[dish.id]?.active || false;
+        const isActive = activeDishes[dateKey]?.[dish.id]?.active;
         return (
-          <div key={dish.id} className="flex justify-between items-center mb-2 p-2 border rounded">
+          <div key={dish.id} className="dish">
             <span>{dish.name}</span>
             <button
-              className={`px-4 py-1 rounded text-white ${isActive ? "bg-red-500" : "bg-green-500"}`}
+              className={`toggle-button ${isActive ? "active" : "inactive"}`}
               onClick={() => toggleDish(dish.id)}
             >
-              {isActive ? "Deaktivér" : "Aktivér"}
+              {isActive ? "Deactivate" : "Activate"}
             </button>
           </div>
         );

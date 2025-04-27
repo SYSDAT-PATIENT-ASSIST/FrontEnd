@@ -19,7 +19,8 @@ createRoot(document.getElementById('root')).render(
             <Route index element={<Home />} />
             <Route path="home" element={<Home />} />
             <Route path="settings" element={<Settings />} />
-            <Route path="MadkalenderAdministrator" element={<DishCalendarPage />} />
+            {/* midlertidig stig til at teste vores page */}
+            <Route path="/DishCalenderPage" element={<DishCalendarPage />} />
           </Route>
           <Route path="/calendar" element={<Calendar />}>
           <Route path="view" element={<DishCalendarPage />} />
