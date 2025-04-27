@@ -5,6 +5,7 @@ import { BrowserRouter, Routes, Route } from "react-router"
 import Index from './pages/Index.jsx'
 import Home from './pages/Home.jsx'
 import Settings from './pages/Settings.jsx'
+import OrderFood from './pages/OrderFood.jsx'
 
 import Calendar from './pages/Calendar.jsx'
 import CalendarLanding from './components/CalendarLanding.jsx'
@@ -18,6 +19,7 @@ createRoot(document.getElementById('root')).render(
             <Route index element={<Home />} />
             <Route path="home" element={<Home />} />
             <Route path="settings" element={<Settings />} />
+            <Route path="orderfood" element={<OrderFood />} />
           </Route>
           <Route path="/calendar" element={<Calendar />}>
             <Route index element={<CalendarLanding />} />

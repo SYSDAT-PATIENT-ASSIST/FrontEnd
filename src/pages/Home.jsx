@@ -11,7 +11,7 @@ function Home() {
 
         <div className="home__links">
 
-          <Link to="/calendar"> <img src={Logo} /> <h1>Mad bestilling</h1> </Link>
+          <Link to="/orderfood"> <img src={Logo} /> <h1>Mad bestilling</h1> </Link>
           <Link to="/calendar"> <img src={Logo} /> <h1>Øvelser</h1> </Link>
           <Link to="/calendar"> <img src={Logo} /> <h1>Kontakt</h1> </Link>
           <Link to="/calendar"> <img src={Logo} /> <h1>Hospital info</h1> </Link>
