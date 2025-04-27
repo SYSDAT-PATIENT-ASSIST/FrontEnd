@@ -10,8 +10,8 @@ export default function DishCalendarPage() {
     <div className="dish-calendar-page">
       <h1 className="title">Dish Calendar Manager</h1>
       <div className="calendar-grid">
-        <CalendarView selectedDate={selectedDate} setSelectedDate={setSelectedDate} />
         <DishSelector selectedDate={selectedDate} />
+        <CalendarView selectedDate={selectedDate} setSelectedDate={setSelectedDate} />
       </div>
     </div>
   );
