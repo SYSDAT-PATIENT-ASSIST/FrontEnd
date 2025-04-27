@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useSettings } from "../components/SettingsContext";
+import { useTranslation } from "react-i18next";
 
 export default function AccessibilitySettings() {
   const { settings, updateSettings } = useSettings();
@@ -47,6 +48,8 @@ export default function AccessibilitySettings() {
     updateSettings(settings);
   };
 
+  const { t, i18n } = useTranslation();
+
   const previewStyle = {
     fontFamily: fontFamilies[tempSettings.fontType],
     fontSize: fontSizes[tempSettings.fontSize],
@@ -71,10 +74,10 @@ export default function AccessibilitySettings() {
     >
       {/* Left Panel */}
       <div style={{ flex: 1 }}>
-        <h2>Accessibility Settings</h2>
+        <h2>{t("accessibilitySettings")}</h2>
 
         <div style={{ marginBottom: "1rem" }}>
-          <label>Font Size:</label>
+          <label>{t("fontSize")}</label>
           <div>
             <button onClick={() => updateTempSetting("fontSize", "Small")}>
               S
@@ -89,7 +92,7 @@ export default function AccessibilitySettings() {
         </div>
 
         <div style={{ marginBottom: "1rem" }}>
-          <label>Font Type:</label>
+          <label>{t("fontType")}</label>
           <select
             value={tempSettings.fontType}
             onChange={(e) => updateTempSetting("fontType", e.target.value)}
@@ -103,19 +106,24 @@ export default function AccessibilitySettings() {
         </div>
 
         <div style={{ marginBottom: "1rem" }}>
-          <label>Language:</label>
+          <label>{t("language")}</label>
           <select
             value={tempSettings.language}
-            onChange={(e) => updateTempSetting("language", e.target.value)}
+            onChange={(e) => {
+              const lang = e.target.value;
+              updateTempSetting("language", lang);
+              i18n.changeLanguage(lang);
+            }}
           >
-            <option>English</option>
+            <option value="en">English</option>
+            <option value="da">Danish</option>
             <option>French</option>
             <option>Spanish</option>
           </select>
         </div>
 
         <div style={{ marginBottom: "1rem" }}>
-          <label>Color Contrast:</label>
+          <label>{t("contrast")}</label>
           <select
             value={tempSettings.contrast}
             onChange={(e) => updateTempSetting("contrast", e.target.value)}
@@ -144,8 +152,8 @@ export default function AccessibilitySettings() {
 
         {/* Action Buttons */}
         <div style={{ marginTop: "1rem", display: "flex", gap: "1rem" }}>
-          <button onClick={revertChanges}>Revert Changes</button>
-          <button onClick={applyChanges}>Apply</button>
+          <button onClick={revertChanges}>{t("revert")}</button>
+          <button onClick={applyChanges}>{t("apply")}</button>
         </div>
       </div>
 
@@ -153,17 +161,14 @@ export default function AccessibilitySettings() {
       <div style={{ flex: 2 }}>
         <h2>Preview</h2>
         <div style={previewStyle}>
-          <h3>Meal 10 - Chicken Biryani</h3>
+          <h3>{t("mealTitle")}</h3>
           <img
             src="\public\PreviewImage.png"
             alt="Chicken Biryani"
             style={{ width: "200px", borderRadius: "8px" }}
           />
           <p>
-            Lorem Ipsum is simply dummy text of the printing and typesetting
-            industry. Lorem Ipsum has been the industry's standard dummy text
-            ever since the 1500s, when an unknown printer took a galley of type
-            and scrambled it to make a type specimen book.
+            {t("mealDescription")}
           </p>
         </div>
       </div>
