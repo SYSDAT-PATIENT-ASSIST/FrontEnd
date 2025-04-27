@@ -71,7 +71,32 @@
     justify-content: space-between;
     align-items: center;
     margin-bottom: 8px;
+    color: black;
+    padding: 0.5rem;
+    border-radius: 5px;
+    background-color: white;
   }
+
+  .search-dishes {
+    margin-bottom: 8px;
+    color: black;
+    padding: 0.5rem;
+    
+    border-radius: 5px;
+    background-color: white;
+    outline: none;
+  }
+
+  .search-input {
+    width: 100%;
+    padding: 0.5px;
+    border: 0px;
+  }
+
+  .search-input:focus {
+    outline: none;
+  }
+
   
   .toggle-button {
     padding: 6px 12px;
