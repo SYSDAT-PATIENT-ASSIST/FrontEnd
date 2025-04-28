@@ -7,46 +7,54 @@ import '../styles/Header.css';
 
 function Header() {
   return (
-    <div className='header-container'>
-      <div className='header-container-left'>
-        <Link to='/' className='header-logo'>
-          <img src={Logo} className='logo' alt='Logo' />
-          <h1>
-            Bornholms
-            <br />
-            Hospital
-          </h1>
-        </Link>
+    <>
+      <div className="header__panel">
 
-        <Link to='/' className='header-section-info'>
-          <h1>202-1</h1>
-          <h2>Kirurgisk afdeling</h2>
-        </Link>
-      </div>
+        <div className="header__panel-left">
 
-      <div className='header-container-left'>
-        <div className='header-container-left-actions'>
-          <div className='flex gap-2 h-full'>
-            <AdminButton />
+          <Link to="/" className="header__panel-left-logo">
+            <img src={Logo} className="logo" alt="Logo" />
+            <h1>Bornholms<br />Hospital</h1>
+          </Link>
 
-            <div className='flex flex-col gap-1'>
-              <Link to='/' className='header-settings'>
-                <img src={SettingsIcon} className='logo' alt='Settings' />
-              </Link>
+          <Link to="/" className="header__panel-left-location">
+            <h1>202-1</h1>
+            <h2>Kirurgisk afdeling</h2>
+          </Link>
 
-              <Link to='/' className='header-quit'>
-                <img src={QuitIcon} className='logo' alt='Log ud' />
-              </Link>
-            </div>
-          </div>
         </div>
 
-        <Link to='/' className='header-date-time'>
-          <h1>Mandag 10-03</h1>
-          <h2>15:00</h2>
-        </Link>
+        <div className="header__panel-right">
+
+          <div className="header__panel-right-actions">
+
+            <div className='flex gap-2 h-full'>
+              <AdminButton />
+
+              <div className='header__panel-right-actions'>
+
+                <Link to="/" className="header__panel-right-actions-quit">
+                  <img src={QuitIcon} className="logo" alt="Quit" />
+                </Link>
+
+                <Link to="/" className="header__panel-right-actions-settings">
+                  <img src={SettingsIcon} className="logo" alt="Settings" />
+                </Link>
+
+              </div>
+            </div>
+
+          </div>
+
+          <Link to="/calendar" className="header__panel-right-date_time">
+            <h1>Mandag 10-03</h1>
+            <h2>15:00</h2>
+          </Link>
+
+        </div>
+
       </div>
-    </div>
-  );
+    </>
+  )
 }
 export default Header;

@@ -1,18 +1,19 @@
 import { useState } from 'react'
 import { NavLink, Link, Outlet } from "react-router"
-import Logo from '../assets/HospitalLogo.jpg'
 import '../styles/Calendar.css'
-import Header from '../components/Header.jsx'
+import CalendarHeader from '../components/CalendarHeader.jsx'
 
-function Calendar() 
-{
+function Calendar() {
   return (
     <>
-      <div className="calendar-container">
+      <div className="calendar__container">
 
-      <h1>CALENDAR</h1>
-      <h1>CALENDAR</h1>
-      
+        <CalendarHeader />
+
+        <div className="calendar__content">
+          <Outlet />
+        </div>
+
       </div>
     </>
   )

@@ -1,8 +1,30 @@
-.calendar-container {
+html {
     display: flex;
-    gap: 10px;
-    background-color: white;
-    border-radius: 10px;
-    color: black;
-    min-height: 75vh;
+    justify-content: center;
+    background-color: #0079bf;
+    background-blend-mode: multiply;
+    background-image: url("/Bornholms_Hospital.jpg");
+    background-size: cover;    
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+.calendar__container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 2vh;
+    color: white;
+    height: 95vh;
+    width: 90vw;
+    flex: 1;
+}
+
+.calendar__content {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-direction: column;
+    flex: 1;
 }
