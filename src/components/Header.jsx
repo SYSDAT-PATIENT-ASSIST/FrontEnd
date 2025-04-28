@@ -1,9 +1,9 @@
-import { useState } from 'react'
-import { NavLink, Link } from "react-router"
-import Logo from '../assets/hospital-region-logo.jpeg'
-import QuitIcon from '../assets/exit-icon.webp'
-import SettingsIcon from '../assets/settings-icon-2.png'
-import '../styles/Header.css'
+import { Link } from 'react-router';
+import Logo from '../assets/hospital-region-logo.jpeg';
+import QuitIcon from '../assets/exit-icon.webp';
+import SettingsIcon from '../assets/settings-icon-2.png';
+import AdminButton from './auth/AdminButton';
+import '../styles/Header.css';
 
 function Header() {
   return (
@@ -28,13 +28,21 @@ function Header() {
 
           <div className="header__panel-right-actions">
 
-            <Link to="/" className="header__panel-right-actions-quit">
-              <img src={QuitIcon} className="logo" alt="Quit" />
-            </Link>
+            <div className='flex gap-2 h-full'>
+              <AdminButton />
 
-            <Link to="/" className="header__panel-right-actions-settings">
-              <img src={SettingsIcon} className="logo" alt="Settings" />
-            </Link>
+              <div className='header__panel-right-actions'>
+
+                <Link to="/" className="header__panel-right-actions-quit">
+                  <img src={QuitIcon} className="logo" alt="Quit" />
+                </Link>
+
+                <Link to="/" className="header__panel-right-actions-settings">
+                  <img src={SettingsIcon} className="logo" alt="Settings" />
+                </Link>
+
+              </div>
+            </div>
 
           </div>
 
@@ -49,6 +57,4 @@ function Header() {
     </>
   )
 }
-
-export default Header
-
+export default Header;
