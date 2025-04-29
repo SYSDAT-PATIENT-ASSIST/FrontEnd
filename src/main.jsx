@@ -11,8 +11,8 @@ import KitchenDashboard from './pages/KitchenDashboard.jsx';
 import LoginPage from './pages/LoginPage.jsx';
 
 import Calendar from './pages/Calendar.jsx'
-import CalendarLanding from './components/CalendarLanding.jsx'
-import CalendarView from './components/CalendarView.jsx'
+import CalendarLanding from './components/calendar/CalendarLanding.jsx'
+import CalendarView from './components/calendar/CalendarView.jsx'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
