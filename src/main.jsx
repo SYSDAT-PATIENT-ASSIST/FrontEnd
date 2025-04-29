@@ -13,15 +13,19 @@ import LoginPage from './pages/LoginPage.jsx';
 import Calendar from './pages/Calendar.jsx'
 import CalendarLanding from './components/CalendarLanding.jsx'
 import CalendarView from './components/CalendarView.jsx'
+import DishCalendarPage from './pages/DishCalenderPage.jsx'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <BrowserRouter>
+
       <Routes>
         <Route path="/" element={<Index />}>
           <Route index element={<Home />} />
           <Route path="home" element={<Home />} />
           <Route path="settings" element={<Settings />} />
+             {/* midlertidig stig til at teste vores page */}
+            <Route path="/DishCalenderPage" element={<DishCalendarPage />} />
           <Route path='menu' element={<MenuManagement />} />
           <Route path='kitchen' element={<KitchenDashboard />} />
           <Route path='auth/login' element={<LoginPage />} />
@@ -31,6 +35,7 @@ createRoot(document.getElementById('root')).render(
           <Route path="view" index element={<CalendarView />} />
         </Route>
       </Routes>
+
     </BrowserRouter>
   </StrictMode>
 );
