@@ -11,6 +11,7 @@ import KitchenDashboard from './pages/KitchenDashboard.jsx';
 import LoginPage from './pages/LoginPage.jsx';
 
 import Calendar from './pages/Calendar.jsx'
+import DishCalendarPage from './pages/DishCalenderPage.jsx'
 import CalendarLanding from './components/calendar/CalendarLanding.jsx'
 import CalendarView from './components/calendar/CalendarView.jsx'
 
@@ -25,6 +26,7 @@ createRoot(document.getElementById('root')).render(
           <Route path='menu' element={<MenuManagement />} />
           <Route path='kitchen' element={<KitchenDashboard />} />
           <Route path='auth/login' element={<LoginPage />} />
+          <Route path="/DishCalenderPage" element={<DishCalendarPage />} />
         </Route>
         <Route path="/calendar" element={<Calendar />}>
           <Route index element={<CalendarLanding />} />
