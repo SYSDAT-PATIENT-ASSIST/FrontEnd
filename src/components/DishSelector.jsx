@@ -4,7 +4,7 @@ import { format } from "date-fns";
 export default function DishSelector({ selectedDate }) {
   const [dishes, setDishes] = useState([]);
   const [activeDishes, setActiveDishes] = useState({});
-  const [searchTerm, setSearchTerm] = useState(""); // Add search state
+  const [searchTerm, setSearchTerm] = useState("");
 
   useEffect(() => {
     setDishes([
