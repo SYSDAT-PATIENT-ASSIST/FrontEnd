@@ -4,14 +4,13 @@ import Logo from '../assets/HospitalLogo.jpg'
 import '../styles/Index.css'
 import Header from '../components/Header.jsx'
 
-function Settings() 
-{
+function Settings() {
   return (
     <>
       <div className="settings-container">
 
-      <h1>Settings</h1>
-      
+        <h1>Settings</h1>
+
       </div>
     </>
   )

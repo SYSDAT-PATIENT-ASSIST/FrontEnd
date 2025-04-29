@@ -4,8 +4,7 @@ import Logo from '../assets/HospitalLogo.jpg'
 import '../styles/Home.css'
 import Header from '../components/Header.jsx'
 
-function Home() 
-{
+function Home() {
   return (
     <>
       <div className="home__container">
@@ -22,6 +21,7 @@ function Home()
       </div>
         
       
+
       </div>
     </>
   )
