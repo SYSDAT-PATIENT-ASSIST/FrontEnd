@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import "../styles/CalenderVisual.css";
+import "../../styles/calendar/CalenderVisual.css";
 
 const days = ["Ma", "Ti", "On", "To", "Fr", "Lø", "Sø"];
 

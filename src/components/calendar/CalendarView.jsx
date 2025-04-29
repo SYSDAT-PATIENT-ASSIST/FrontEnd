@@ -1,8 +1,8 @@
 import { useState } from 'react'
 import { NavLink, Link } from "react-router"
-import Logo from '../assets/CapitalHTransBG.png'
-import Arrow from '../assets/left_arrow.png'
-import '../styles/CalendarView.css'
+import Logo from '../../assets/CapitalHTransBG.png'
+import Arrow from '../../assets/left_arrow.png'
+import '../../styles/calendar/CalendarView.css'
 import CalenderVisual from './CalenderVisual.jsx'
 
 function CalendarView() {
