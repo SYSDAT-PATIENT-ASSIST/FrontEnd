@@ -43,14 +43,14 @@ export default function DishSelector({ selectedDate }) {
   );
 
   return (
-    <div className="dish-selector">
-      <h2 className="subtitle">Dishes for {dateKey}</h2>
+    <div className="team-e__dish-selector">
+      <h2 className="team-e__subtitle">Dishes for {dateKey}</h2>
 
-      <div className="search-dishes">
+      <div className="team-e__search-dishes">
         <input
           type="text"
           placeholder="Search for a dish..."
-          className="search-input"
+          className="team-e__search-input"
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)} // Handle input change
         />
@@ -59,10 +59,10 @@ export default function DishSelector({ selectedDate }) {
       {filteredDishes.map((dish) => {
         const isActive = activeDishes[dateKey]?.[dish.id]?.active;
         return (
-          <div key={dish.id} className="dish">
+          <div key={dish.id} className="team-e__dish">
             <span>{dish.name}</span>
             <button
-              className={`toggle-button ${isActive ? "active" : "inactive"}`}
+              className={`team-e__toggle-button ${isActive ? "active" : "inactive"}`}
               onClick={() => toggleDish(dish.id)}
             >
               {isActive ? "Deactivate" : "Activate"}

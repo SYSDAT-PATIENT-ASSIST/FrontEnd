@@ -11,22 +11,22 @@ export default function CalendarView({ selectedDate, setSelectedDate }) {
   const startDay = getDay(startOfMonth(today));
 
   return (
-    <div className="calendar">
-      <h2 className="subtitle">Select a Date</h2>
-      <div className="calendar-weekdays">
+    <div className="team-e__calendar">
+      <h2 className="team-e__subtitle">Select a Date</h2>
+      <div className="team-e__calendar-weekdays">
         {weekdays.map((weekday) => (
-          <div key={weekday} className="weekday">{weekday}</div>
+          <div key={weekday} className="team-e__weekday">{weekday}</div>
         ))}
       </div>
-      <div className="calendar-days">
+      <div className="team-e__calendar-days">
         {Array.from({ length: startDay }).map((_, idx) => (
-          <div key={`empty-${idx}`} className="day empty"></div>
+          <div key={`empty-${idx}`} className="team-e__day empty"></div>
         ))}
         {days.map((day) => (
           <button
             key={day.toISOString()}
             onClick={() => setSelectedDate(day)}
-            className={`day ${isSameDay(day, selectedDate) ? "selected" : ""}`}
+            className={`team-e__day ${isSameDay(day, selectedDate) ? "selected" : ""}`}
           >
             {format(day, "d")}
           </button>
