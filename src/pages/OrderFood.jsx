@@ -1,9 +1,14 @@
+import '../styles/OrderFood.css'
+
 function OrderFood() {
     return (
-        <div>
-        <h1>Mad Bestilling</h1>
-        <p>Husk at lægge din bestilling inden kl 14</p>
-        </div>
+        <>
+            <div class="orderfood_container">
+                <h1 class="h1_orderfood_custom">Mad Bestilling</h1>
+                <h2 class="h2_orderfood_custom">Husk at lægge din bestilling inden kl. 14</h2>
+                <p></p>
+            </div>
+        </>
     );
 }
 
