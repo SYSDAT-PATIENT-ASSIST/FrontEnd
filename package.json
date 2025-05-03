@@ -11,10 +11,10 @@
     "jsonserver": "jsonserver --path data/database.json --port 3000 --host 127.0.0.1"
   },
   "dependencies": {
-    "jsonserver": "^0.1.6",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
-    "react-router": "^7.4.1"
+    "react-router": "^7.4.1",
+    "styled-components": "^6.1.17"
   },
   "devDependencies": {
     "@eslint/js": "^9.21.0",
@@ -25,6 +25,7 @@
     "eslint-plugin-react-hooks": "^5.1.0",
     "eslint-plugin-react-refresh": "^0.4.19",
     "globals": "^15.15.0",
+    "jsonserver": "^0.1.6",
     "vite": "^6.2.0"
   }
 }
