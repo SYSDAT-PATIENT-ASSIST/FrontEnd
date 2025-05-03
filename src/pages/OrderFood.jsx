@@ -14,7 +14,7 @@ const GridOrderFoodContainer = styled.div`
 const Box = styled.div`
   border-radius: 8px;
   height: 100px;
-  width: 230px;
+  width: 250px;
   background-color: #65a233; /* green color */
   display: flex;
   justify-content: center;
@@ -35,6 +35,66 @@ const Box = styled.div`
     opacity: 1;
   }
 `;
+
+
+const StyledInfoDialog = styled.dialog`
+  border: none;
+  padding: 2rem;
+  border-radius: 6px;
+  margin: 10px; 
+  background-color: #65a233;
+  position: fixed; /* stays in the same spot on the screen */
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); /* centers the dialog */
+  justify-items: center;
+  height: 350px;
+  width: 550px; 
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  font-size: 19px;
+
+  & h3 {
+    margin-bottom: 1rem; 
+  }
+
+  & p {
+    margin-bottom: 1rem; 
+    line-height: 1.6; /* space between text lines */
+  }
+`;
+
+
+const CloseButton = styled.button`
+  position: absolute; /*position to the right corner*/
+  top: 15px;
+  right: 25px;
+  background: none;
+  border: none;
+  color: black;
+  font-size: 20px;
+  cursor: pointer;
+`;
+
+
+const Commentfield = styled.div`
+  border-radius: 8px;
+  height: 100px;
+  width: 250px;
+  background-color: white; /* green color */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  color: black;
+  font-size: 25px;
+  font-weight: bold;
+  box-shadow: 0 6px 10px rgba(116, 173, 68, 0.2);
+  padding: 8px;
+`;
+
+
 
 
 function OrderFood() {
@@ -74,6 +134,20 @@ function OrderFood() {
 
     return (
         <>
+
+            <StyledInfoDialog ref={infoDialogRef}>
+            {/*  && checks if selectedDish exists, if true, the following will render*/}
+              {selectedDish && (
+                  <>
+                   <CloseButton onClick={() => infoDialogRef.current.close()}>x</CloseButton>
+                    <h3>{selectedDish.name}</h3>
+                    <p><strong>Description:</strong> {selectedDish.description || "Ingen beskrivelse tilgængelig"}</p>
+                    <Commentfield></Commentfield>
+                    <button className="button_orderfood_custom">Bestil</button>
+                  </>  
+                )}
+            </StyledInfoDialog>
+
             <div className="orderfood_container">
                 <h1 className="h1_orderfood_custom">Mad Bestilling</h1>
                 <h2 className="h2_orderfood_custom">Husk at lægge din bestilling inden kl. 14</h2>
