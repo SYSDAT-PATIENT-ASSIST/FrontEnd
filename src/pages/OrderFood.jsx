@@ -16,6 +16,9 @@ const Box = styled.div`
   height: 100px;
   width: 230px;
   background-color: #65a233; /* green color */
+  display: flex;
+  justify-content: center;
+  align-items: center;
   text-align: center;
   color: black;
   font-size: 25px;
@@ -77,7 +80,7 @@ function OrderFood() {
                 <GridOrderFoodContainer>
                     {availableDishes.length > 0 ? (
                         availableDishes.map((dish) => (
-                            <Box key={dish.id}>
+                            <Box key={dish.id}  onClick={() => openInfoDialog(dish)}>
                                 <div onClick={() => openInfoDialog(dish)} >
                                     <div>{dish.name}</div>
                                 </div>                        
