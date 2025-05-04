@@ -15,8 +15,9 @@ const Box = styled.div`
   border-radius: 8px;
   height: 90px;
   width: 250px;
-  background-color: #65a233; /* green color */
+  background-color: ${(props) => props.$isOrdered ? '#f37b31' : '#65a233'}; // background color changes when the dish is ordered
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   text-align: center;
@@ -31,7 +32,7 @@ const Box = styled.div`
   &:hover {
     transform: translateY(-10px); /* moves the element upwards by 10px when hovered */
     box-shadow: 0 12px 20px rgba(116, 173, 68, 0.6);
-    background-color: #84d045;
+    background-color:${(props) => props.$isOrdered ? '#f37b31' : '#84d045'}; // background color changes when the dish is ordered
     opacity: 1;
   }
 `;
@@ -97,7 +98,44 @@ const ConfirmationOrderDialog = styled.dialog`
   font-size: 19px;
 
   & h3 {
-    margin-top: 0rem;;
+    margin-top: 0rem;
+    margin-bottom: 3rem; 
+  }
+
+  & p {
+    margin-bottom: 3rem; 
+    line-height: 1.6; /* space between text lines */
+  }
+`;
+
+const CancelOrderButton = styled.button`
+  background-color: #f37b31;
+  padding: 6px 12px;
+  border-radius: 5px;
+  font-weight: bold;
+  margin-top: 10px;
+`;
+
+const CancelOrderDialog = styled.dialog`
+  border: none;
+  padding: 2rem;
+  border-radius: 6px;
+  margin: 10px; 
+  background-color: #65a233;
+  position: fixed; /* stays in the same spot on the screen */
+  top: 55%;
+  left: 50%;
+  transform: translate(-50%, -50%); /* centers the dialog */
+  justify-items: center;
+  height: 250px;
+  width: 350px; 
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  font-size: 19px;
+
+  & h3 {
+    margin-top: 3rem;
     margin-bottom: 3rem; 
   }
 
@@ -113,14 +151,17 @@ function OrderFood() {
 
     const [availableDishes, setAvailableDishes] = useState([]);
     const [selectedDish, setSelectedDish] = useState(null); 
-    const [order, setOrder] = useState(null); //for use when we want to fetch data from our own API (backend)
+    // const [order, setOrder] = useState(null); //for use when we want to fetch data from our own API (backend)
+    const [orderId, setOrderId] = useState(null);
+    const [orderedDishId, setOrderedDishId] = useState(null);
 
     //bedId placeholder, to be replaced with the actual bedId when we got it from the login-team.
-    // const bedId = "Tilføjes_senere"; 
+    const bedId = "Tilføjes_senere"; 
 
     //reference to dialog-element. useRef is used here to interact with DOM elements without causing a re-render.
     const infoDialogRef = useRef(null);
     const confirmationDialogRef = useRef(null);
+    const cancelDialogRef = useRef(null);
 
 
     //for use when we want to fetch data from our own API (backend)
@@ -140,53 +181,60 @@ function OrderFood() {
       }, []);
 
 
-     //for use when we want to use our own API (backend)  
+    //  for use when we want to use our own API (backend)  
     // const createOrder = (selectedDish) => {
     //     const newOrder = {
     //         bed_id: bedId,
-    //         note: document.querySelector('.commentfield_orderfood').value,
+    //         note: document.querySelector('.commentfield_orderfood')?.value || '',
     //         status: "PENDING",
-    //         dish: selectedDish
+    //         dish: { id: selectedDish.id }
     //     };
 
-    //     fetchData(
-    //         `https://.dk/api/orders/${bedId}/createOrder`,
-    //         () => setOrder(newOrder),
-    //         'POST',
-    //         newOrder
-    //     );
+    //     fetch(`https://.dk/api/orders/${bedId}/createOrder`, {
+    //         method: 'POST',
+    //         headers: { 'Content-Type': 'application/json' },
+    //         body: JSON.stringify(newOrder)
+    //     })
+    //     .then(res => res.json())
+    //     .then(data => {
+    //       setOrderId(data.id); // set the orderId to the response from the backend
+    //       setOrderedDishId(data.dish.id); // set the orderedDishId to the response from the backend
+    //     })
+    //     .catch(err => console.error('Fejl ved bestilling:', err));     
     // };
 
   
-    //for use when we want to use our own API (backend)  
-    const cancelOrder = (orderId) => {
-      fetchData(
-        `https://.dk/api/orders/${bedId}/cancelOrder/${orderId}`,
-        () => {
-          setOrderStatus('CANCELLED');
-        },
-        'DELETE'
-      );
-    };
+    // for use when we want to use our own API (backend)  
+    // const cancelOrder = (orderId) => {
+    //   fetchData(`https://.dk/api/orders/${bedId}/cancelOrder/${orderId}`, {
+    //     method: 'PUT',
+    //     headers: {'Content-Type': 'application/json'},
+    //   })
+    //   .then(() =>{
+    //     setOrderId(null);
+    //     setOrderedDishId(null);
+    //   })
+    //   .catch(err => console.error('Fejl ved afbestilling:', err));  
+    // };
 
+    //dummy cancelOrder function for testing without backend
+    const cancelOrder = (orderId) => {
+      console.log(`Afbestilling af ordre med ID: ${orderId}`);
+      // Simulerer afbestilling uden backend
+      setOrderedDishId(null);
+      setOrderId(null);
+    };
+    
 
     // storing the selected dish and opens infodialogbox
     const openInfoDialog = (dish) => {
         setSelectedDish(dish); 
         infoDialogRef.current.showModal();
-      };
+    };
   
 
     return (
         <>
-            <ConfirmationOrderDialog ref={confirmationDialogRef}>
-              <CloseButton onClick={() => confirmationDialogRef.current.close()}>x</CloseButton>
-              <h3>Tak for din bestilling</h3>
-              <h3>{selectedDish?.name}</h3>
-              <button className="button_orderfood_custom" onClick={() => confirmationDialogRef.current.close()}>Luk vindue</button>        
-            </ConfirmationOrderDialog>
-
-
             <StyledInfoDialog ref={infoDialogRef}>
             {/*  && checks if selectedDish exists, if true, the following will render*/}
               {selectedDish && (
@@ -199,23 +247,57 @@ function OrderFood() {
                     <button className="button_orderfood_custom" onClick={() => {
                       infoDialogRef.current.close();        
                       confirmationDialogRef.current.showModal();
+                      setOrderedDishId(selectedDish.id); // Temporary: used only for frontend testing without backend. with backend: setOrderedDishId(response.dish.id);
+                      setOrderId(1); // Temporary dummy ID: should be removed when backend returns a real orderId. with backend: setOrderId(response.id);
                       }}>Bestil
                     </button>
                   </>  
                 )}
             </StyledInfoDialog>
 
+            <ConfirmationOrderDialog ref={confirmationDialogRef}>
+              <CloseButton onClick={() => confirmationDialogRef.current.close()}>x</CloseButton>
+              <h3>Tak for din bestilling</h3>
+              <h3>{selectedDish?.name}</h3>
+              <button className="button_orderfood_custom" onClick={() => confirmationDialogRef.current.close()}>Luk vindue</button>        
+            </ConfirmationOrderDialog>
+
+            <CancelOrderDialog ref={cancelDialogRef}>
+              <CloseButton onClick={() => cancelDialogRef.current.close()}>x</CloseButton>
+              <h3>Er du sikker på at du vil afbestille?</h3>
+              <button className="button_orderfood_custom" onClick={() => {
+                cancelOrder(orderId);
+                setTimeout(() => {
+                setOrderedDishId(null);
+                setOrderId(null);
+                setSelectedDish(null);
+                cancelDialogRef.current.close();
+                }, 0);
+                }}>Bekræft afbestilling
+              </button>      
+            </CancelOrderDialog>
+          
             <div className="orderfood_container">
                 <h1 className="h1_orderfood_custom">Mad Bestilling</h1>
                 <h2 className="h2_orderfood_custom">Husk at lægge din bestilling inden kl. 14</h2>
                 <GridOrderFoodContainer>
                     {availableDishes.length > 0 ? (
                         availableDishes.map((dish) => (
-                            <Box key={dish.id}  onClick={() => openInfoDialog(dish)}>
-                                <div onClick={() => openInfoDialog(dish)} >
-                                    <div>{dish.name}</div>
-                                </div>                        
-                            </Box>      
+                          <div key={dish.id}>
+                            <Box 
+                                $isOrdered={dish.id == orderedDishId}
+                                onClick={() => openInfoDialog(dish)}
+                                >
+                                <div>{dish.name}</div>       
+                                {dish.id == orderedDishId && (
+                                <CancelOrderButton onClick={(e) => {
+                                  e.stopPropagation (); // prevents the click event from bubbling up to the Box component
+                                  cancelDialogRef.current.showModal();
+                                  }}>Afbestil
+                                </CancelOrderButton>
+                              )}           
+                            </Box> 
+                          </div>
                         ))
                         ) : (
                         <p className="p_orderfood_custom">Ingen retter er tilgængelige</p>
