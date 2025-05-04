@@ -1,20 +1,22 @@
 import React, { useState, useEffect } from "react";
 import { useSettings } from "../components/SettingsContext";
 import { useTranslation } from "react-i18next";
+import "../styles/Settings.css";
 
 export default function AccessibilitySettings() {
   const { settings, updateSettings } = useSettings();
-
+  const { t, i18n } = useTranslation();
   const [tempSettings, setTempSettings] = useState(settings);
+  const [message, setMessage] = useState("");
 
   useEffect(() => {
     setTempSettings(settings);
   }, [settings]);
 
   const fontSizes = {
-    Small: "14px",
-    Medium: "16px",
-    Large: "20px",
+    Small: "12px",
+    Medium: "20px",
+    Large: "30px",
   };
 
   const fontFamilies = {
@@ -40,7 +42,9 @@ export default function AccessibilitySettings() {
     setTempSettings((prev) => ({ ...prev, [name]: value }));
 
   const applyChanges = () => {
-    updateSettings(tempSettings); // Redundant now, but keeps the button meaningful
+    updateSettings(tempSettings);
+    setMessage("Dine indstillinger er gemt!");
+    setTimeout(() => setMessage(""), 3000);
   };
 
   const revertChanges = () => {
@@ -48,66 +52,59 @@ export default function AccessibilitySettings() {
     updateSettings(settings);
   };
 
-  const { t, i18n } = useTranslation();
-
   const previewStyle = {
     fontFamily: fontFamilies[tempSettings.fontType],
     fontSize: fontSizes[tempSettings.fontSize],
-    padding: "1.5rem",
-    borderRadius: "12px",
-    border: "1px solid #ccc",
     ...contrastStyles[tempSettings.contrast],
-    minHeight: "300px",
-    display: "flex",
-    flexDirection: "column",
-    gap: "1rem",
   };
 
   return (
-    <div
-      style={{
-        display: "flex",
-        padding: "2rem",
-        gap: "2rem",
-        fontFamily: "sans-serif",
-      }}
-    >
+    <div className="accessibility__wrapper">
       {/* Left Panel */}
-      <div style={{ flex: 1 }}>
+      <div className="accessibility__container">
         <h2>{t("accessibilitySettings")}</h2>
 
-        <div style={{ marginBottom: "1rem" }}>
-          <label>{t("fontSize")}</label>
-          <div>
-            <button onClick={() => updateTempSetting("fontSize", "Small")}>
-              S
-            </button>
-            <button onClick={() => updateTempSetting("fontSize", "Medium")}>
-              M
-            </button>
-            <button onClick={() => updateTempSetting("fontSize", "Large")}>
-              L
-            </button>
+
+        {/* Confirmation Message */}
+        {message && <div className="accessibility__message">{message}</div>}
+
+        {/* Font Size */}
+        <div className="accessibility__section">
+          <label className="accessibility__label">{t("fontSize")}</label>
+          <div className="accessibility__button-group">
+            {["Small", "Medium", "Large"].map((size) => (
+              <button
+                key={size}
+                className="accessibility__button"
+                onClick={() => updateTempSetting("fontSize", size)}
+              >
+                {size[0]}
+              </button>
+            ))}
           </div>
         </div>
 
-        <div style={{ marginBottom: "1rem" }}>
-          <label>{t("fontType")}</label>
+        {/* Font Type */}
+        <div className="accessibility__section">
+          <label className="accessibility__label">{t("fontType")}</label>
           <select
+            className="accessibility__select"
             value={tempSettings.fontType}
             onChange={(e) => updateTempSetting("fontType", e.target.value)}
           >
-            <option>Arial</option>
-            <option>Roboto</option>
-            <option>Georgia</option>
-            <option>Times</option>
-            <option>Lilita One</option>
+            {Object.keys(fontFamilies).map((font) => (
+              <option key={font} value={font}>
+                {font}
+              </option>
+            ))}
           </select>
         </div>
 
-        <div style={{ marginBottom: "1rem" }}>
-          <label>{t("language")}</label>
+        {/* Language */}
+        <div className="accessibility__section">
+          <label className="accessibility__label">{t("language")}</label>
           <select
+            className="accessibility__select"
             value={tempSettings.language}
             onChange={(e) => {
               const lang = e.target.value;
@@ -117,14 +114,16 @@ export default function AccessibilitySettings() {
           >
             <option value="en">English</option>
             <option value="da">Danish</option>
-            <option>French</option>
-            <option>Spanish</option>
+            <option value="fr">French</option>
+            <option value="es">Spanish</option>
           </select>
         </div>
 
-        <div style={{ marginBottom: "1rem" }}>
-          <label>{t("contrast")}</label>
+        {/* Contrast */}
+        <div className="accessibility__section">
+          <label className="accessibility__label">{t("contrast")}</label>
           <select
+            className="accessibility__select"
             value={tempSettings.contrast}
             onChange={(e) => updateTempSetting("contrast", e.target.value)}
           >
@@ -133,44 +132,64 @@ export default function AccessibilitySettings() {
           </select>
         </div>
 
-        {/* Example Screen Reader UI Placeholder */}
-        <div style={{ marginBottom: "1rem" }}>
-          <label>Screen Reader:</label>
-          <button>On</button>
-          <button>Off</button>
-          <div>
-            <label>Speed</label>
-            <select>
-              <option>0.25x</option>
-              <option>0.50x</option>
-              <option>0.75x</option>
-              <option>1.00x</option>
-              <option>1.25x</option>
-            </select>
+        {/* Screen Reader Toggle */}
+        <div className="accessibility__section">
+          <div className="accessibility__toggles">
+            <span className="accessibility__toggle-label">Screen Reader</span>
+            <div
+              className={`accessibility__toggle-switch ${
+                tempSettings.screenReader ? "enabled" : ""
+              }`}
+              onClick={() =>
+                updateTempSetting("screenReader", !tempSettings.screenReader)
+              }
+              role="switch"
+              aria-checked={tempSettings.screenReader}
+            />
+          </div>
+        </div>
+
+        {/* Voice Control Toggle */}
+        <div className="accessibility__section">
+          <div className="accessibility__toggles">
+            <span className="accessibility__toggle-label">Voice Control</span>
+            <div
+              className={`accessibility__toggle-switch ${
+                tempSettings.voiceControl ? "enabled" : ""
+              }`}
+              onClick={() =>
+                updateTempSetting("voiceControl", !tempSettings.voiceControl)
+              }
+              role="switch"
+              aria-checked={tempSettings.voiceControl}
+            />
           </div>
         </div>
 
         {/* Action Buttons */}
-        <div style={{ marginTop: "1rem", display: "flex", gap: "1rem" }}>
-          <button onClick={revertChanges}>{t("revert")}</button>
-          <button onClick={applyChanges}>{t("apply")}</button>
+        <div className="accessibility__button-group">
+          <button className="accessibility__button" onClick={revertChanges}>
+            {t("revert")}
+          </button>
+          <button className="accessibility__button" onClick={applyChanges}>
+            {t("apply")}
+          </button>
         </div>
+
       </div>
 
-      {/* Right Panel: Sample Page Preview */}
-      <div style={{ flex: 2 }}>
-        <h2>Preview</h2>
-        <div style={previewStyle}>
-          <h3>{t("mealTitle")}</h3>
-          <img
-            src="\public\PreviewImage.png"
-            alt="Chicken Biryani"
-            style={{ width: "200px", borderRadius: "8px" }}
-          />
-          <p>
-            {t("mealDescription")}
-          </p>
-        </div>
+      {/* Right Panel - Preview */}
+      <div className="accessibility__preview" style={previewStyle}>
+        <h3>{t("mealTitle") || "Meal 10 - Chicken Biryani"}</h3>
+        <img
+          src="/public/PreviewImage.png"
+          alt="Chicken Biryani"
+          style={{ width: "200px", borderRadius: "8px" }}
+        />
+        <p>
+          {t("mealDescription") ||
+            "Lorem Ipsum is simply dummy text of the printing and typesetting industry..."}
+        </p>
       </div>
     </div>
   );
