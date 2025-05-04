@@ -78,18 +78,49 @@ const CloseButton = styled.button`
   cursor: pointer;
 `;
 
+const ConfirmationOrderDialog = styled.dialog`
+  border: none;
+  padding: 2rem;
+  border-radius: 6px;
+  margin: 10px; 
+  background-color: #65a233;
+  position: fixed; /* stays in the same spot on the screen */
+  top: 55%;
+  left: 50%;
+  transform: translate(-50%, -50%); /* centers the dialog */
+  justify-items: center;
+  height: 250px;
+  width: 350px; 
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  font-size: 19px;
+
+  & h3 {
+    margin-top: 0rem;;
+    margin-bottom: 3rem; 
+  }
+
+  & p {
+    margin-bottom: 3rem; 
+    line-height: 1.6; /* space between text lines */
+  }
+`;
+
+
 
 function OrderFood() {
 
     const [availableDishes, setAvailableDishes] = useState([]);
     const [selectedDish, setSelectedDish] = useState(null); 
-    // const [order, setOrder] = useState(null); //for use when we want to fetch data from our own API (backend)
+    const [order, setOrder] = useState(null); //for use when we want to fetch data from our own API (backend)
 
     //bedId placeholder, to be replaced with the actual bedId when we got it from the login-team.
     // const bedId = "Tilføjes_senere"; 
 
     //reference to dialog-element. useRef is used here to interact with DOM elements without causing a re-render.
     const infoDialogRef = useRef(null);
+    const confirmationDialogRef = useRef(null);
 
 
     //for use when we want to fetch data from our own API (backend)
@@ -126,6 +157,18 @@ function OrderFood() {
     //     );
     // };
 
+  
+    //for use when we want to use our own API (backend)  
+    const cancelOrder = (orderId) => {
+      fetchData(
+        `https://.dk/api/orders/${bedId}/cancelOrder/${orderId}`,
+        () => {
+          setOrderStatus('CANCELLED');
+        },
+        'DELETE'
+      );
+    };
+
 
     // storing the selected dish and opens infodialogbox
     const openInfoDialog = (dish) => {
@@ -136,6 +179,13 @@ function OrderFood() {
 
     return (
         <>
+            <ConfirmationOrderDialog ref={confirmationDialogRef}>
+              <CloseButton onClick={() => confirmationDialogRef.current.close()}>x</CloseButton>
+              <h3>Tak for din bestilling</h3>
+              <h3>{selectedDish?.name}</h3>
+              <button className="button_orderfood_custom" onClick={() => confirmationDialogRef.current.close()}>Luk vindue</button>        
+            </ConfirmationOrderDialog>
+
 
             <StyledInfoDialog ref={infoDialogRef}>
             {/*  && checks if selectedDish exists, if true, the following will render*/}
@@ -146,7 +196,11 @@ function OrderFood() {
                     <p><strong>Beskrivelse:</strong> {selectedDish.description || "Ingen beskrivelse tilgængelig"}</p>
                     <textarea className="commentfield_orderfood" placeholder="Skriv en kommentar her med allergier mv."></textarea>
                     {/* <button className="button_orderfood_custom" onClick={() => createOrder(selectedDish)}>Bestil</button> for use when we want to use our own API (backend) */}
-                    <button className="button_orderfood_custom">Bestil</button>
+                    <button className="button_orderfood_custom" onClick={() => {
+                      infoDialogRef.current.close();        
+                      confirmationDialogRef.current.showModal();
+                      }}>Bestil
+                    </button>
                   </>  
                 )}
             </StyledInfoDialog>
