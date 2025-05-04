@@ -13,7 +13,7 @@ const GridOrderFoodContainer = styled.div`
 
 const Box = styled.div`
   border-radius: 8px;
-  height: 100px;
+  height: 90px;
   width: 250px;
   background-color: #65a233; /* green color */
   display: flex;
@@ -44,7 +44,7 @@ const StyledInfoDialog = styled.dialog`
   margin: 10px; 
   background-color: #65a233;
   position: fixed; /* stays in the same spot on the screen */
-  top: 50%;
+  top: 55%;
   left: 50%;
   transform: translate(-50%, -50%); /* centers the dialog */
   justify-items: center;
@@ -56,11 +56,12 @@ const StyledInfoDialog = styled.dialog`
   font-size: 19px;
 
   & h3 {
-    margin-bottom: 1rem; 
+    margin-top: 0rem;;
+    margin-bottom: 0rem; 
   }
 
   & p {
-    margin-bottom: 1rem; 
+    margin-bottom: 3rem; 
     line-height: 1.6; /* space between text lines */
   }
 `;
@@ -68,40 +69,24 @@ const StyledInfoDialog = styled.dialog`
 
 const CloseButton = styled.button`
   position: absolute; /*position to the right corner*/
-  top: 15px;
-  right: 25px;
+  top: 5px;
+  right: 15px;
   background: none;
   border: none;
   color: black;
-  font-size: 20px;
+  font-size: 35px;
   cursor: pointer;
 `;
-
-
-const Commentfield = styled.div`
-  border-radius: 8px;
-  height: 100px;
-  width: 250px;
-  background-color: white; /* green color */
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  color: black;
-  font-size: 25px;
-  font-weight: bold;
-  box-shadow: 0 6px 10px rgba(116, 173, 68, 0.2);
-  padding: 8px;
-`;
-
-
 
 
 function OrderFood() {
 
     const [availableDishes, setAvailableDishes] = useState([]);
-    const [selectedDish, setSelectedDish] = useState(null); // state for selected dish
+    const [selectedDish, setSelectedDish] = useState(null); 
+    const [order, setOrder] = useState(null);
 
+    //bedId placeholder, to be replaced with the actual bedId when we got it from the login-team.
+    const bedId = "Tilføjes_senere"; 
 
     //reference to dialog-element. useRef is used here to interact with DOM elements without causing a re-render.
     const infoDialogRef = useRef(null);
@@ -124,6 +109,22 @@ function OrderFood() {
       }, []);
 
 
+     //for use when we want to use our own API (backend)  
+    const createOrder = (selectedDish) => {
+        const newOrder = {
+            bed_id: bedId,
+            note: document.querySelector('.commentfield_orderfood').value,
+            status: "PENDING",
+            dish: selectedDish
+        };
+
+        fetchData(
+            `https://.dk/api/orders/${bedId}/createOrder`,
+            () => setOrder(newOrder),
+            'POST',
+            newOrder
+        );
+    };
 
     // storing the selected dish and opens infodialogbox
     const openInfoDialog = (dish) => {
@@ -141,9 +142,9 @@ function OrderFood() {
                   <>
                    <CloseButton onClick={() => infoDialogRef.current.close()}>x</CloseButton>
                     <h3>{selectedDish.name}</h3>
-                    <p><strong>Description:</strong> {selectedDish.description || "Ingen beskrivelse tilgængelig"}</p>
-                    <Commentfield></Commentfield>
-                    <button className="button_orderfood_custom">Bestil</button>
+                    <p><strong>Beskrivelse:</strong> {selectedDish.description || "Ingen beskrivelse tilgængelig"}</p>
+                    <textarea className="commentfield_orderfood" placeholder="Skriv en kommentar her med allergier mv."></textarea>
+                    <button className="button_orderfood_custom" onClick={() => createOrder(selectedDish)}>Bestil</button>
                   </>  
                 )}
             </StyledInfoDialog>
