@@ -156,7 +156,7 @@ function OrderFood() {
     const [orderedDishId, setOrderedDishId] = useState(null);
 
     //bedId placeholder, to be replaced with the actual bedId when we got it from the login-team.
-    const bedId = "Tilføjes_senere"; 
+    // const bedId = "Tilføjes_senere"; 
 
     //reference to dialog-element. useRef is used here to interact with DOM elements without causing a re-render.
     const infoDialogRef = useRef(null);
