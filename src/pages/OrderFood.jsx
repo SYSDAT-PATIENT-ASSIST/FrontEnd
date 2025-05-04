@@ -83,10 +83,10 @@ function OrderFood() {
 
     const [availableDishes, setAvailableDishes] = useState([]);
     const [selectedDish, setSelectedDish] = useState(null); 
-    const [order, setOrder] = useState(null);
+    // const [order, setOrder] = useState(null); //for use when we want to fetch data from our own API (backend)
 
     //bedId placeholder, to be replaced with the actual bedId when we got it from the login-team.
-    const bedId = "Tilføjes_senere"; 
+    // const bedId = "Tilføjes_senere"; 
 
     //reference to dialog-element. useRef is used here to interact with DOM elements without causing a re-render.
     const infoDialogRef = useRef(null);
@@ -110,21 +110,22 @@ function OrderFood() {
 
 
      //for use when we want to use our own API (backend)  
-    const createOrder = (selectedDish) => {
-        const newOrder = {
-            bed_id: bedId,
-            note: document.querySelector('.commentfield_orderfood').value,
-            status: "PENDING",
-            dish: selectedDish
-        };
+    // const createOrder = (selectedDish) => {
+    //     const newOrder = {
+    //         bed_id: bedId,
+    //         note: document.querySelector('.commentfield_orderfood').value,
+    //         status: "PENDING",
+    //         dish: selectedDish
+    //     };
 
-        fetchData(
-            `https://.dk/api/orders/${bedId}/createOrder`,
-            () => setOrder(newOrder),
-            'POST',
-            newOrder
-        );
-    };
+    //     fetchData(
+    //         `https://.dk/api/orders/${bedId}/createOrder`,
+    //         () => setOrder(newOrder),
+    //         'POST',
+    //         newOrder
+    //     );
+    // };
+
 
     // storing the selected dish and opens infodialogbox
     const openInfoDialog = (dish) => {
@@ -144,7 +145,8 @@ function OrderFood() {
                     <h3>{selectedDish.name}</h3>
                     <p><strong>Beskrivelse:</strong> {selectedDish.description || "Ingen beskrivelse tilgængelig"}</p>
                     <textarea className="commentfield_orderfood" placeholder="Skriv en kommentar her med allergier mv."></textarea>
-                    <button className="button_orderfood_custom" onClick={() => createOrder(selectedDish)}>Bestil</button>
+                    {/* <button className="button_orderfood_custom" onClick={() => createOrder(selectedDish)}>Bestil</button> for use when we want to use our own API (backend) */}
+                    <button className="button_orderfood_custom">Bestil</button>
                   </>  
                 )}
             </StyledInfoDialog>
