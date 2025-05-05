@@ -1,19 +1,24 @@
 import { useState } from 'react'
+import { NavLink, Link, Outlet } from "react-router"
 import Logo from '../assets/HospitalLogo.jpg'
 import '../styles/Index.css'
+import Header from '../components/Header.jsx'
 
-function Index() 
-{
+function Index() {
   return (
     <>
-      <div>
-        <a href="/" target="_blank">
-        <div className="logo">
-          <img src={Logo} className="logo" alt="Vite logo" />
+      <div className="index-container">
+
+        <Header />
+
+        <div className="index-content">
+
+          <Outlet />
+
         </div>
-        </a>
+
+
       </div>
-      <h1>SYS PROJEKT Patient Assist</h1>
     </>
   )
 }
