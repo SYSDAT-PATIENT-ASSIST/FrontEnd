@@ -1,11 +1,22 @@
 import "../styles/Tailwind.css";
 import apiFacade from "/data/mockApiFacade"; 
+import { useEffect, useState } from "react";
+import  { useParams } from "react-router";
+
 
 
 function OrderDetails() {
 
- // blabla.fetchData("/recipes", (data) => checkType(data), "GET", true); // /recipes is the endpoint for READALL recipes = array
+  const { orderId } = useParams();
+  const [order, setOrder] = useState(null);
 
+  useEffect(() => {
+    const fetchedOrder = apiFacade.getOrderById(orderId);
+    setOrder(fetchedOrder);
+  }, [orderId]);
+
+
+// testing the data fetching
   const fetchSomething = () => {
     apiFacade.getAllOrders()
       .then((data) => {
@@ -14,7 +25,13 @@ function OrderDetails() {
       .catch((error) => {
         console.error("Error fetching data:", error);
       });
+
+
+
+
   };
+
+  if (!order) return <p>Loading...</p>;
 
   return (
 
@@ -58,7 +75,7 @@ function OrderDetails() {
         {/* Table Content */}
         <div className="grid grid-cols-3 gap-2 mb-4">
           <div className="bg-blue-50 border text-center py-2 rounded text-xs shadow-inner">
-            Hakkebøf m/Kartofler
+            {order.title}
           </div>
           <div className="bg-blue-50 border text-center py-2 rounded text-xs shadow-inner">
             Peanut allergi

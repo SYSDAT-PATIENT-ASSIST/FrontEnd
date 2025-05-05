@@ -29,7 +29,7 @@ createRoot(document.getElementById('root')).render(
           <Route path='kitchen' element={<KitchenDashboard />} />
           <Route path='auth/login' element={<LoginPage />} />
           <Route path="/DishCalenderPage" element={<DishCalendarPage/>} />
-          <Route path="orderdetails/id" element={< OrderDetails/>} />
+          <Route path="orderdetails/:id" element={< OrderDetails/>} />
           <Route path="/test" element={<TestToBeDeleted />} /> {/* Skal Slettes før Dev Merge*/}
         </Route>
         <Route path="/calendar" element={<Calendar />}>
