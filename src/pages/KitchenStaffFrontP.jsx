@@ -8,7 +8,6 @@ function KitchenStaffFrontP() {
   const [error, setError] = useState(null);
   const navigate = useNavigate();
 
-
   useEffect(() => {
     mockFacade
       .getAllOrders()
@@ -21,6 +20,7 @@ function KitchenStaffFrontP() {
   );
 
   const specialMeals = orders.filter((order) => order.comment?.trim()).length;
+
   const finishedSpecialMeals = orders.filter(
     (order) => order.comment?.trim() && order.status === "READY"
   ).length;
@@ -88,12 +88,15 @@ function KitchenStaffFrontP() {
             <p className="text-lg mb-2">
               <strong>Special måltider:</strong> {specialMeals}
             </p>
+
             <p className="text-lg mb-2">
               <strong>Hakkebøf m. løg:</strong> {beefCount}
             </p>
+
             <p className="text-lg mb-2">
               <strong>Peanut Butter Sandwhich:</strong> {sandwhichCount}
             </p>
+
             <p className="text-lg">
               <strong>Færdiggjorte specialmåltider:</strong>{" "}
               {finishedSpecialMeals}
@@ -127,6 +130,7 @@ function KitchenStaffFrontP() {
               <p className="text-center text-gray-500 italic mt-4">
                 Ikke flere specialretter!
               </p>
+
             ) : (
               specialOrders.map((order) => {
                 // SET COLOR + LABEL
@@ -139,14 +143,17 @@ function KitchenStaffFrontP() {
                     buttonLabel = "NY!";
                     buttonColor = "bg-blue-400 hover:bg-blue-500 text-white";
                     break;
+
                   case "IN_PREPARATION":
                     buttonLabel = "Igang";
                     buttonColor =
                       "bg-yellow-400 hover:bg-yellow-500 text-black";
                     break;
+
                   case "DELAYED":
                     boxColor = "bg-red-300";
                     break;
+
                   default:
                     break;
                 }
@@ -159,11 +166,13 @@ function KitchenStaffFrontP() {
                         navigate(`/orderdetails/${order.id}`);
                       }
                     }}
+
                     className={`cursor-pointer p-4 border border-gray-300 flex items-center justify-between rounded ${boxColor}`}
                   >
-                    <p className="text-lg text-black font-semibold">
+                    <p className="text-lg text-black font-bold">
                       Bestilling #{order.id}
                     </p>
+
                     {order.status === "DELAYED" ? (
                       <p className="italic text-black">Forsinket!</p>
                     ) : (
@@ -178,6 +187,7 @@ function KitchenStaffFrontP() {
               })
             )}
           </div>
+
           {error && <p className="text-red-600 mt-4">Fejl: {error.message}</p>}
         </div>
       </div>
