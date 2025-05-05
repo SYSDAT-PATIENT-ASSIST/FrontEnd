@@ -1,27 +1,24 @@
-import { useState, useEffect } from "react";
 import "../styles/Tailwind.css";
 
-function BestillingsinfoPage() {
+function OrderDetails() {
   return (
-    <div className="min-h-screen w-full bg-pink-200 flex justify-center items-start p-6">
+    <div className="min-h-screen w-full bg-white flex justify-center items-start p-6">
       {/* Card */}
-      <div className="relative w-[400px] bg-white rounded-xl shadow-lg p-4 font-sans text-sm">
-
-        {/* Header Row: Hospital, Køkken, Exit */}
+      <div className="relative w-fit bg-white rounded-xl shadow-lg p-3 font-sans text-sm text-black">
+        
+        {/* 
+        // Header Row: Hospital, Køkken, Exit
         <div className="flex items-start justify-between mb-4 gap-2">
-          {/* Bornholms Hospital Box */}
           <div className="bg-white border rounded px-3 py-1 text-xs font-bold shadow-sm w-[40%] text-center h-[56px] flex items-center justify-center">
             Bornholms Hospital
           </div>
 
-          {/* Køkken Box */}
           <div className="bg-white border rounded px-3 py-1 text-xs shadow-sm w-[40%] text-center h-[56px] flex flex-col justify-center">
             <div className="text-sm font-bold">Køkken</div>
             <div className="text-xs">Mandag 10/03</div>
             <div className="font-bold text-sm">15:18</div>
           </div>
 
-          {/* Exit Button beside Køkken */}
           <button
             className="w-7 h-7 flex items-center justify-center bg-white border text-red-500 text-xs font-bold rounded shadow"
             aria-label="Luk"
@@ -29,6 +26,7 @@ function BestillingsinfoPage() {
             X
           </button>
         </div>
+        */}
 
         {/* Section Title with Arrow */}
         <div className="flex items-center justify-between bg-gray-100 p-2 rounded mb-3 font-semibold">
@@ -78,4 +76,4 @@ function BestillingsinfoPage() {
   );
 }
 
-export default BestillingsinfoPage;
+export default OrderDetails;
