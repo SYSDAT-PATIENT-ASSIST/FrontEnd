@@ -5,21 +5,20 @@ import '../styles/Index.css'
 import Header from '../components/Header.jsx'
 import { useSettings } from "../components/SettingsContext";
 
-function Index() 
-{
+function Index() {
   return (
     <>
       <div className="index-container">
-      
-      <Header />
-      
-      <div className="index-content">
 
-        <Outlet />
-      
-      </div>
-      
-      
+        <Header />
+
+        <div className="index-content">
+
+          <Outlet />
+
+        </div>
+
+
       </div>
     </>
   )

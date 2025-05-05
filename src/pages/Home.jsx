@@ -5,24 +5,23 @@ import '../styles/Home.css'
 import Header from '../components/Header.jsx'
 import { useSettings } from '../components/SettingsContext.jsx'
 
-function Home() 
-{
+function Home() {
   return (
     <>
       <div className="home__container">
 
-      <div className="home__links">
-      
-        <Link to="/calendar"> <img src={Logo} /> <h1>Mad bestilling</h1> </Link>
-        <Link to="/calendar"> <img src={Logo} /> <h1>Øvelser</h1> </Link>
-        <Link to="/calendar"> <img src={Logo} /> <h1>Kontakt</h1> </Link>
-        <Link to="/calendar"> <img src={Logo} /> <h1>Hospital info</h1> </Link>
-        <Link to="/calendar"> <img src={Logo} /> <h1>Underholdning</h1> </Link>
-        <Link to="/calendar"> <img src={Logo} /> <h1>Min SP</h1> </Link>
-      
-      </div>
-        
-      
+        <div className="home__links">
+
+          <Link to="/DishCalenderPage"> <img src={Logo} /> <h1>AdminMadbestilling</h1> </Link>
+          <Link to="/calendar"> <img src={Logo} /> <h1>Mad bestilling</h1> </Link>
+          <Link to="/calendar"> <img src={Logo} /> <h1>Øvelser</h1> </Link>
+          <Link to="/calendar"> <img src={Logo} /> <h1>Kontakt</h1> </Link>
+          <Link to="/calendar"> <img src={Logo} /> <h1>Hospital info</h1> </Link>
+          <Link to="/calendar"> <img src={Logo} /> <h1>Underholdning</h1> </Link>
+          <Link to="/calendar"> <img src={Logo} /> <h1>Min SP</h1> </Link>
+
+        </div>
+
       </div>
     </>
   )
