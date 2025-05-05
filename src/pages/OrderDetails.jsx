@@ -1,32 +1,35 @@
 import "../styles/Tailwind.css";
+import apiFacade from "/data/mockApiFacade"; 
+
 
 function OrderDetails() {
+
+ // blabla.fetchData("/recipes", (data) => checkType(data), "GET", true); // /recipes is the endpoint for READALL recipes = array
+
+  const fetchSomething = () => {
+    apiFacade.getAllOrders()
+      .then((data) => {
+        console.log("Fetched data:", data);
+      })
+      .catch((error) => {
+        console.error("Error fetching data:", error);
+      });
+  };
+
   return (
-    <div className="min-h-screen w-full bg-white flex justify-center items-start p-6">
+
+    
+    
+
+    /* the outher parent */
+    <div className="flex items-center justify-center min-h-screen px-4">
+ 
+
+
       {/* Card */}
-      <div className="relative w-fit bg-white rounded-xl shadow-lg p-3 font-sans text-sm text-black">
-        
-        {/* 
-        // Header Row: Hospital, Køkken, Exit
-        <div className="flex items-start justify-between mb-4 gap-2">
-          <div className="bg-white border rounded px-3 py-1 text-xs font-bold shadow-sm w-[40%] text-center h-[56px] flex items-center justify-center">
-            Bornholms Hospital
-          </div>
-
-          <div className="bg-white border rounded px-3 py-1 text-xs shadow-sm w-[40%] text-center h-[56px] flex flex-col justify-center">
-            <div className="text-sm font-bold">Køkken</div>
-            <div className="text-xs">Mandag 10/03</div>
-            <div className="font-bold text-sm">15:18</div>
-          </div>
-
-          <button
-            className="w-7 h-7 flex items-center justify-center bg-white border text-red-500 text-xs font-bold rounded shadow"
-            aria-label="Luk"
-          >
-            X
-          </button>
-        </div>
-        */}
+      <div className="relative w-[400px] bg-white rounded-xl shadow-lg p-6 font-sans text-black">
+      
+      <button onClick={fetchSomething}> fetch all orders</button>
 
         {/* Section Title with Arrow */}
         <div className="flex items-center justify-between bg-gray-100 p-2 rounded mb-3 font-semibold">
