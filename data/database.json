@@ -12,6 +12,7 @@
   },
   "dishes": [
     { "id": "1", "name": "Lasagne", "description": "med oksekød", "available_from": "13.05.2025", "available_until": "13.06.2025", "status": "AVAILABLE", "kcal": 350, "protein": 30, "carbohydrates": 15, "fat": 30 },
-    { "id": "2", "name": "Kylling i karry", "description": "med nødder", "available_from": "13.05.2025", "available_until": "13.06.2025", "status": "SOLD_OUT", "kcal": 250, "protein": 40, "carbohydrates": 25, "fat": 15 }
+    { "id": "2", "name": "Kylling i karry", "description": "med nødder", "available_from": "13.05.2025", "available_until": "13.06.2025", "status": "AVAILABLE", "kcal": 250, "protein": 40, "carbohydrates": 25, "fat": 15 },
+    { "id": "3", "name": "Wok med ris", "description": "med kylling", "available_from": "13.05.2025", "available_until": "13.06.2025", "status": "SOLD_OUT", "kcal": 210, "protein": 50, "carbohydrates": 20, "fat": 10 }
   ]
 }

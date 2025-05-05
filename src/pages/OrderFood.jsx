@@ -11,11 +11,13 @@ const GridOrderFoodContainer = styled.div`
 `;
 
 
-const Box = styled.div`
+const BoxDish = styled.div`
   border-radius: 8px;
   height: 90px;
   width: 250px;
-  background-color: ${(props) => props.$isOrdered ? '#f37b31' : '#65a233'}; // background color changes when the dish is ordered
+  background-color: ${(props) => 
+    props.$isSoldOut ? '#9d2e0f' : // sold out color
+    props.$isOrdered ? '#f37b31' : '#65a233'}; // background color changes when the dish is ordered
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -32,20 +34,22 @@ const Box = styled.div`
   &:hover {
     transform: translateY(-10px); /* moves the element upwards by 10px when hovered */
     box-shadow: 0 12px 20px rgba(116, 173, 68, 0.6);
-    background-color:${(props) => props.$isOrdered ? '#f37b31' : '#84d045'}; // background color changes when the dish is ordered
+    background-color:${(props) => 
+      props.$isSoldOut ? '##9d2e0f' : // sold out color
+      props.$isOrdered ? '#f37b31' : '#84d045'}; // background color changes when the dish is ordered
     opacity: 1;
   }
 `;
 
 
-const StyledInfoDialog = styled.dialog`
+const StyledOrderDialog = styled.dialog`
   border: none;
   padding: 2rem;
   border-radius: 6px;
   margin: 10px; 
   background-color: #65a233;
   position: fixed; /* stays in the same spot on the screen */
-  top: 55%;
+  top: 470px;
   left: 50%;
   transform: translate(-50%, -50%); /* centers the dialog */
   justify-items: center;
@@ -68,7 +72,7 @@ const StyledInfoDialog = styled.dialog`
 `;
 
 
-const CloseButton = styled.button`
+const CloseOrderButton = styled.button`
   position: absolute; /*position to the right corner*/
   top: 5px;
   right: 15px;
@@ -86,7 +90,7 @@ const ConfirmationOrderDialog = styled.dialog`
   margin: 10px; 
   background-color: #65a233;
   position: fixed; /* stays in the same spot on the screen */
-  top: 55%;
+  top: 460px;
   left: 50%;
   transform: translate(-50%, -50%); /* centers the dialog */
   justify-items: center;
@@ -123,7 +127,7 @@ const CancelOrderDialog = styled.dialog`
   margin: 10px; 
   background-color: #65a233;
   position: fixed; /* stays in the same spot on the screen */
-  top: 55%;
+  top: 460px;
   left: 50%;
   transform: translate(-50%, -50%); /* centers the dialog */
   justify-items: center;
@@ -146,6 +150,14 @@ const CancelOrderDialog = styled.dialog`
 `;
 
 
+const Soldout_orderfood_custom = styled.p`
+  padding: 0px 12px;
+  border-radius: 5px;
+  font-weight: bold;
+  font-size: 20px;
+  margin-top: 15px;
+`;
+
 
 function OrderFood() {
 
@@ -154,12 +166,13 @@ function OrderFood() {
     // const [order, setOrder] = useState(null); //for use when we want to fetch data from our own API (backend)
     const [orderId, setOrderId] = useState(null);
     const [orderedDishId, setOrderedDishId] = useState(null);
+    const [note, setNote] = useState(''); 
 
     //bedId placeholder, to be replaced with the actual bedId when we got it from the login-team.
     // const bedId = "Tilføjes_senere"; 
 
     //reference to dialog-element. useRef is used here to interact with DOM elements without causing a re-render.
-    const infoDialogRef = useRef(null);
+    const orderDialogRef = useRef(null);
     const confirmationDialogRef = useRef(null);
     const cancelDialogRef = useRef(null);
 
@@ -185,7 +198,7 @@ function OrderFood() {
     // const createOrder = (selectedDish) => {
     //     const newOrder = {
     //         bed_id: bedId,
-    //         note: document.querySelector('.commentfield_orderfood')?.value || '',
+    //         note: note,
     //         status: "PENDING",
     //         dish: { id: selectedDish.id }
     //     };
@@ -226,26 +239,26 @@ function OrderFood() {
     };
     
 
-    // storing the selected dish and opens infodialogbox
-    const openInfoDialog = (dish) => {
+    // storing the selected dish and opens orderdialogbox
+    const openOrderDialog = (dish) => {
         setSelectedDish(dish); 
-        infoDialogRef.current.showModal();
+        orderDialogRef.current.showModal();
     };
   
 
     return (
         <>
-            <StyledInfoDialog ref={infoDialogRef}>
+            <StyledOrderDialog ref={orderDialogRef}>
             {/*  && checks if selectedDish exists, if true, the following will render*/}
               {selectedDish && (
                   <>
-                   <CloseButton onClick={() => infoDialogRef.current.close()}>x</CloseButton>
+                   <CloseOrderButton onClick={() => orderDialogRef.current.close()}>x</CloseOrderButton>
                     <h3>{selectedDish.name}</h3>
                     <p><strong>Beskrivelse:</strong> {selectedDish.description || "Ingen beskrivelse tilgængelig"}</p>
-                    <textarea className="commentfield_orderfood" placeholder="Skriv en kommentar her med allergier mv."></textarea>
+                    <textarea className="commentfield_orderfood" placeholder="Skriv en kommentar her med allergier mv." value={note} onChange={(e) => setNote(e.target.value)}></textarea>
                     {/* <button className="button_orderfood_custom" onClick={() => createOrder(selectedDish)}>Bestil</button> for use when we want to use our own API (backend) */}
                     <button className="button_orderfood_custom" onClick={() => {
-                      infoDialogRef.current.close();        
+                      orderDialogRef.current.close();        
                       confirmationDialogRef.current.showModal();
                       setOrderedDishId(selectedDish.id); // Temporary: used only for frontend testing without backend. with backend: setOrderedDishId(response.dish.id);
                       setOrderId(1); // Temporary dummy ID: should be removed when backend returns a real orderId. with backend: setOrderId(response.id);
@@ -253,17 +266,17 @@ function OrderFood() {
                     </button>
                   </>  
                 )}
-            </StyledInfoDialog>
+            </StyledOrderDialog>
 
             <ConfirmationOrderDialog ref={confirmationDialogRef}>
-              <CloseButton onClick={() => confirmationDialogRef.current.close()}>x</CloseButton>
+              <CloseOrderButton onClick={() => confirmationDialogRef.current.close()}>x</CloseOrderButton>
               <h3>Tak for din bestilling</h3>
               <h3>{selectedDish?.name}</h3>
               <button className="button_orderfood_custom" onClick={() => confirmationDialogRef.current.close()}>Luk vindue</button>        
             </ConfirmationOrderDialog>
 
             <CancelOrderDialog ref={cancelDialogRef}>
-              <CloseButton onClick={() => cancelDialogRef.current.close()}>x</CloseButton>
+              <CloseOrderButton onClick={() => cancelDialogRef.current.close()}>x</CloseOrderButton>
               <h3>Er du sikker på at du vil afbestille?</h3>
               <button className="button_orderfood_custom" onClick={() => {
                 cancelOrder(orderId);
@@ -284,11 +297,20 @@ function OrderFood() {
                     {availableDishes.length > 0 ? (
                         availableDishes.map((dish) => (
                           <div key={dish.id}>
-                            <Box 
+                            <BoxDish 
                                 $isOrdered={dish.id == orderedDishId}
-                                onClick={() => openInfoDialog(dish)}
-                                >
-                                <div>{dish.name}</div>       
+                                $isSoldOut={dish.status === 'SOLD_OUT'}
+                                onClick={() => dish.status !== 'SOLD_OUT' && openOrderDialog(dish)} //wihtout checking the time
+                                // onClick={() => {
+                                //   const now =  new Date();
+                                //   const isBefore14 = now.getHours() < 14; // check if the current time is before 14:00
+                                //   if (dish.status !== 'SOLD_OUT' && isBefore14) {
+                                //     openOrderDialog(dish);
+                                //   }
+                                // }}
+                            >
+                                <div>{dish.name}</div>
+                                {dish.status === 'SOLD_OUT' && <Soldout_orderfood_custom>Udsolgt</Soldout_orderfood_custom>}       
                                 {dish.id == orderedDishId && (
                                 <CancelOrderButton onClick={(e) => {
                                   e.stopPropagation (); // prevents the click event from bubbling up to the Box component
@@ -296,7 +318,7 @@ function OrderFood() {
                                   }}>Afbestil
                                 </CancelOrderButton>
                               )}           
-                            </Box> 
+                            </BoxDish> 
                           </div>
                         ))
                         ) : (
