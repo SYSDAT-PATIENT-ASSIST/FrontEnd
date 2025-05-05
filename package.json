@@ -11,7 +11,7 @@
     "jsonserver": "jsonserver --path data/database.json --port 3000 --host 127.0.0.1"
   },
   "dependencies": {
-    "i18next": "^25.0.1",
+    "i18next": "^25.0.2",
     "i18next-browser-languagedetector": "^8.0.5",
     "jsonserver": "^0.1.6",
     "react": "^19.0.0",

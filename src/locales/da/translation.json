@@ -14,9 +14,15 @@
   "menuContact": "Kontakt",
   "menuHospitalInfo": "Hospital info",
   "menuEntertainment": "Underholdning",
-  "menuMySP": "Min SP"
+  "menuMySP": "Min SP",
 
-   
+  "headerHospitalName": "Bornholms Hospital",
+  "headerLocationCode": "202-1",
+  "headerDepartmentName": "Kirurgisk afdeling",
+  "quit": "Afslut",
+  "settings": "Indstillinger",
+  "headerDay": "Mandag 10-03",
+  "headerTime": "15:00"
 }  
 
    

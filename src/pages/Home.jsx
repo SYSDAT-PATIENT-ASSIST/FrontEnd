@@ -1,10 +1,10 @@
-import { useTranslation } from 'react-i18next'
-import { Link } from "react-router"
-import Logo from '../assets/HospitalLogo.jpg'
-import '../styles/Home.css'
+import { useTranslation } from 'react-i18next';
+import { Link } from "react-router";
+import Logo from '../assets/HospitalLogo.jpg';
+import '../styles/Home.css';
 
 function Home() {
-  const { t } = useTranslation('home') // 'home' = namespace
+  const { t } = useTranslation(); // 't' function will fetch the translation based on the current language
 
   return (
     <>
@@ -19,7 +19,7 @@ function Home() {
         </div>
       </div>
     </>
-  )
+  );
 }
 
-export default Home
+export default Home;

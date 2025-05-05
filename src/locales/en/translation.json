@@ -14,6 +14,14 @@
     "menuContact": "Contact",
     "menuHospitalInfo": "Hospital Info",
     "menuEntertainment": "Entertainment",
-    "menuMySP": "My SP"
+    "menuMySP": "My SP",
+
+    "headerHospitalName": "Bornholms Hospital",
+    "headerLocationCode": "202-1",
+    "headerDepartmentName": "Surgical Department",
+    "quit": "Quit",
+    "settings": "Settings",
+    "headerDay": "Monday 10-03",
+    "headerTime": "15:00"
   }
   
