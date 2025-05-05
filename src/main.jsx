@@ -24,7 +24,7 @@ createRoot(document.getElementById("root")).render(
           <Route path="/" element={<Index />}>
             <Route index element={<Home />} />
             <Route path="home" element={<Home />} />
-            <Route path="settings" element={<Settings />} />
+            <Route path="settings" element={<Settings/>} />
             <Route path="menu" element={<MenuManagement />} />
             <Route path="kitchen" element={<KitchenDashboard />} />
             <Route path="auth/login" element={<LoginPage />} />

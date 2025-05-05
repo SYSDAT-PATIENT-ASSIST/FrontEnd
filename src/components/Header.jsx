@@ -37,7 +37,7 @@ function Header() {
                   <img src={QuitIcon} className="logo" alt="Quit" />
                 </Link>
 
-                <Link to="/" className="header__panel-right-actions-settings">
+                <Link to="/Settings" className="header__panel-right-actions-settings">
                   <img src={SettingsIcon} className="logo" alt="Settings" />
                 </Link>
 
