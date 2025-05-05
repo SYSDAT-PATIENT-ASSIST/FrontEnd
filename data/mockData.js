@@ -56,7 +56,7 @@ const data = {
         bed_id: "205-1",
         order_time: "2025-05-01T08:20:00",
         comment: "Peanut allergy",
-        status: "IN_PREPARATION"
+        status: "NEW"
       },
       {
         id: "6",

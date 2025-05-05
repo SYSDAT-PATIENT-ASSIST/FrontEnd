@@ -1,9 +1,13 @@
 import React, { useEffect, useState } from "react";
 import mockFacade from "../../data/mockApiFacade";
+import { useNavigate } from "react-router";
+
 
 function KitchenStaffFrontP() {
   const [orders, setOrders] = useState([]);
   const [error, setError] = useState(null);
+  const navigate = useNavigate();
+
 
   useEffect(() => {
     mockFacade
@@ -13,19 +17,51 @@ function KitchenStaffFrontP() {
   }, []);
 
   const specialOrders = orders.filter(
-    (order) => order.comment?.trim() && order.status !== "KLAR"
+    (order) => order.comment?.trim() && order.status !== "READY"
   );
+
   const specialMeals = orders.filter((order) => order.comment?.trim()).length;
   const finishedSpecialMeals = orders.filter(
-    (order) => order.comment?.trim() && order.status === "KLAR"
+    (order) => order.comment?.trim() && order.status === "READY"
   ).length;
+
   const beefCount = orders.filter((order) =>
     order.dishes?.some((d) => d.name === "Hakkebøf m. løg")
   ).length;
+
   const sandwhichCount = orders.filter((order) =>
     order.dishes?.some((d) => d.name === "Peanut Butter Sandwich")
   ).length;
-  const isDelayed = specialOrders.some((order) => order.status === "FORSINKET");
+
+  const isDelayed = specialOrders.some((order) => order.status === "DELAYED");
+
+  const handleMarkDelayed = async () => {
+    const updated = await Promise.all(
+      orders.map(async (order) => {
+        if (order.comment?.trim() && order.status !== "READY") {
+          await mockFacade.updateOrderStatus(order.id, "DELAYED");
+          return { ...order, status: "DELAYED" };
+        }
+        return order;
+      })
+    );
+
+    setOrders(updated);
+  };
+
+  const handleMarkReady = async () => {
+    const updated = await Promise.all(
+      orders.map(async (order) => {
+        if (order.comment?.trim() && order.status !== "READY") {
+          await mockFacade.updateOrderStatus(order.id, "READY");
+          return { ...order, status: "READY" };
+        }
+        return order;
+      })
+    );
+
+    setOrders(updated);
+  };
 
   return (
     <div className="min-h-screen bg-fixed bg-cover bg-center flex flex-col">
@@ -44,7 +80,11 @@ function KitchenStaffFrontP() {
           </h1>
 
           {/* STATS BOX */}
-          <div className="bg-[#D5FBFF] text-black p-4 border border-gray-300">
+          <div
+            className={`p-4 border border-gray-300 ${
+              isDelayed ? "bg-red-300" : "bg-[#D5FBFF]"
+            } text-black`}
+          >
             <p className="text-lg mb-2">
               <strong>Special måltider:</strong> {specialMeals}
             </p>
@@ -62,68 +102,83 @@ function KitchenStaffFrontP() {
 
           {/* BUTTON BAR */}
           <div className="flex items-center justify-between my-4">
-            <button className="w-40 bg-orange-500 hover:bg-orange-600 text-white font-bold py-2 px-4 rounded">
-              Forsinket!
-            </button>
+            {!isDelayed && (
+              <button
+                onClick={handleMarkDelayed}
+                className="w-40 bg-orange-500 hover:bg-orange-600 text-white font-bold py-2 px-4 rounded"
+              >
+                Forsinket!
+              </button>
+            )}
 
             <h1 className="text-xl text-black font-bold">Specialretter</h1>
 
-            <button className="w-40 bg-sky-500 hover:bg-sky-600 text-white font-bold py-2 px-4 rounded">
+            <button
+              onClick={handleMarkReady}
+              className="w-40 bg-sky-500 hover:bg-sky-600 text-white font-bold py-2 px-4 rounded"
+            >
               Marker som klar
             </button>
           </div>
 
-           {/* SPECIAL ORDER BOXES */}
-           <div className="overflow-y-auto flex-grow space-y-2">
-            {specialOrders.map((order) => {
-              // SET COLOR + LABEL
-              let boxColor = "bg-[#D5FBFF]";
-              let buttonLabel = "";
-              let buttonColor = "";
+          {/* SPECIAL ORDER BOXES */}
+          <div className="overflow-y-auto flex-grow space-y-2">
+            {specialOrders.length === 0 ? (
+              <p className="text-center text-gray-500 italic mt-4">
+                Ikke flere specialretter!
+              </p>
+            ) : (
+              specialOrders.map((order) => {
+                // SET COLOR + LABEL
+                let boxColor = "bg-[#D5FBFF]";
+                let buttonLabel = "";
+                let buttonColor = "";
 
-              switch (order.status) {
-                case "NY":
-                  buttonLabel = "NY!";
-                  buttonColor =
-                    "bg-blue-400 hover:bg-blue-500 text-white";
-                  break;
-                case "IN_PREPARATION":
-                  buttonLabel = "Igang";
-                  buttonColor =
-                    "bg-yellow-400 hover:bg-yellow-500 text-black";
-                  break;
-                case "FORSINKET":
-                  boxColor = "bg-red-300";
-                  break;
-                default:
-                  break;
-              }
+                switch (order.status) {
+                  case "NEW":
+                    buttonLabel = "NY!";
+                    buttonColor = "bg-blue-400 hover:bg-blue-500 text-white";
+                    break;
+                  case "IN_PREPARATION":
+                    buttonLabel = "Igang";
+                    buttonColor =
+                      "bg-yellow-400 hover:bg-yellow-500 text-black";
+                    break;
+                  case "DELAYED":
+                    boxColor = "bg-red-300";
+                    break;
+                  default:
+                    break;
+                }
 
-              return (
-                <div
-                  key={order.id}
-                  className={`p-4 border border-gray-300 flex items-center justify-between rounded ${boxColor}`}
-                >
-                  <p className="text-lg text-black font-semibold">
-                    Bestilling #{order.id}
-                  </p>
-                  {order.status === "FORSINKET" ? (
-                    <p className="italic text-black">Forsinket</p>
-                  ) : (
-                    <button
-                      className={`${buttonColor} font-bold py-1 px-3 rounded`}
-                    >
-                      {buttonLabel}
-                    </button>
-                  )}
-                </div>
-              );
-            })}
+                return (
+                    <div
+                    key={order.id}
+                    onClick={() => {
+                      if (order.status === "NEW") {
+                        navigate(`/orderdetails/${order.id}`);
+                      }
+                    }}
+                    className={`cursor-pointer p-4 border border-gray-300 flex items-center justify-between rounded ${boxColor}`}
+                  >
+                    <p className="text-lg text-black font-semibold">
+                      Bestilling #{order.id}
+                    </p>
+                    {order.status === "DELAYED" ? (
+                      <p className="italic text-black">Forsinket!</p>
+                    ) : (
+                      <button
+                        className={`${buttonColor} font-bold py-1 px-3 rounded`}
+                      >
+                        {buttonLabel}
+                      </button>
+                    )}
+                  </div>
+                );
+              })
+            )}
           </div>
-
-          {error && (
-            <p className="text-red-600 mt-4">Fejl: {error.message}</p>
-          )}
+          {error && <p className="text-red-600 mt-4">Fejl: {error.message}</p>}
         </div>
       </div>
     </div>
