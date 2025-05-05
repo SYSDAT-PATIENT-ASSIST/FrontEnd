@@ -52,6 +52,14 @@ export default function AccessibilitySettings() {
     updateSettings(settings);
   };
 
+  const previewTranslation = (key) => {
+    const lang = tempSettings.language;
+    return (
+      i18n.getResource(lang, "translation", key) ||
+      `Missing: ${key} (${lang})`
+    );
+  };
+
   const previewStyle = {
     fontFamily: fontFamilies[tempSettings.fontType],
     fontSize: fontSizes[tempSettings.fontSize],
@@ -109,7 +117,6 @@ export default function AccessibilitySettings() {
             onChange={(e) => {
               const lang = e.target.value;
               updateTempSetting("language", lang);
-              i18n.changeLanguage(lang);
             }}
           >
             <option value="en">English</option>
@@ -180,14 +187,14 @@ export default function AccessibilitySettings() {
 
       {/* Right Panel - Preview */}
       <div className="accessibility__preview" style={previewStyle}>
-        <h3>{t("mealTitle") || "Meal 10 - Chicken Biryani"}</h3>
+        <h3>{previewTranslation("mealTitle") || "Meal 10 - Chicken Biryani"}</h3>
         <img
           src="/public/PreviewImage.png"
           alt="Chicken Biryani"
           style={{ width: "200px", borderRadius: "8px" }}
         />
         <p>
-          {t("mealDescription") ||
+          {previewTranslation("mealDescription") ||
             "Lorem Ipsum is simply dummy text of the printing and typesetting industry..."}
         </p>
       </div>
