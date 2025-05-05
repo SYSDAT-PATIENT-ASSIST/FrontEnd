@@ -1,14 +1,21 @@
-import { StrictMode } from 'react'
-import { createRoot } from 'react-dom/client'
-import { BrowserRouter, Routes, Route } from "react-router"
-import Index from './pages/Index.jsx'
+import { StrictMode } from "react";
+import { createRoot } from "react-dom/client";
+import { BrowserRouter, Routes, Route } from "react-router";
+import Index from "./pages/Index.jsx";
+import BestillingsinfoPage from "./pages/Bestillingsinfo.jsx";
+import "./styles/index.css";
+import "./styles/Tailwind.css";
 
-createRoot(document.getElementById('root')).render(
+
+createRoot(document.getElementById("root")).render(
   <StrictMode>
     <BrowserRouter>
-        <Routes>
+      <Routes>
+        
           <Route path="/" element={<Index />} />
-        </Routes>
+          <Route path="bestillingsinfo" element={<BestillingsinfoPage />} />
+        
+      </Routes>
     </BrowserRouter>
-  </StrictMode>,
-)
+  </StrictMode>
+);

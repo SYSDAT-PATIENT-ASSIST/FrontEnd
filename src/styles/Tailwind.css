@@ -1,0 +1,5 @@
+@import "tailwindcss";
+/* Where tailwind is build. when instantiated from JSX/HTML */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
