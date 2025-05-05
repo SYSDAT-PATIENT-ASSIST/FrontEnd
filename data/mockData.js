@@ -20,7 +20,7 @@ const data = {
     dishes: [
       {
         id: 101,
-        name: "Beef Patty",
+        name: "Hakkebøf m. løg",
         description: "Traditional beef patty with onions.",
         available_from: "2023-01-01",
         available_until: "2023-12-31",
@@ -55,14 +55,14 @@ const data = {
         id: "5",
         bed_id: "205-1",
         order_time: "2025-05-01T08:20:00",
-        note: "Peanut allergy",
+        comment: "Peanut allergy",
         status: "IN_PREPARATION"
       },
       {
         id: "6",
         bed_id: "205-2",
         order_time: "2025-05-01T08:25:00",
-        note: "Gluten-free",
+        comment: "Gluten-free",
         status: "IN_PREPARATION"
       }
     ],
