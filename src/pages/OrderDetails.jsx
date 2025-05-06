@@ -10,10 +10,11 @@ function OrderDetails() {
   const [order, setOrder] = useState(null);
   const [dish, setDish] = useState(null);
 
-// class variables
+  // class variables
   const navigate = useNavigate();
 
-
+  // useEffect to fetch the order details by id when called upon
+  // and set the order state with the fetched data
   useEffect(() => {
     const fetchOrder = async () => {
       try {
@@ -40,9 +41,10 @@ function OrderDetails() {
       });
   };
 
-  function handleClick() {
+// handleClick function for the accept button. with updating the order to "Igang" and returning to kitchenstaff page
+  function handleClickUpDateStatus() {
     console.log("Accept Button clicked!");
-  
+
     const updateStatus = async () => {
       try {
         const updatedOrder = await apiFacade.updateOrderStatus(id, "Igang");
@@ -53,10 +55,13 @@ function OrderDetails() {
         console.error("Failed to update order status:", err);
       }
     };
-  
-    updateStatus(); // call it!
+
+    updateStatus(); 
   }
 
+  function handleClickNavKichenStaff() {
+    navigate("/kitchenstaff");
+  }
 
   if (!order) return <p>Loading...</p>;
 
@@ -65,7 +70,17 @@ function OrderDetails() {
     <div className="flex items-center justify-center min-h-screen px-4">
       {/* Card */}
       <div className="relative w-[400px] bg-white rounded-xl shadow-lg p-6 font-sans text-black">
-        <button onClick={fetchSomething}> fetch all orders</button>
+        
+        {/* Test Button to fetch some data 
+       
+        <button
+          onClick={fetchSomething}
+          className="hover:bg-blue-400 bg-blue-500 text-white py-2 px-4 rounded font-semibold w-1/3"
+        >
+          fetch all orders
+        </button>
+        */}
+
 
         {/* Section Title with Arrow */}
         <div className="flex items-center justify-between bg-gray-100 p-2 rounded mb-3 font-semibold">
@@ -73,6 +88,7 @@ function OrderDetails() {
           <button
             className="w-7 h-7 flex items-center justify-center bg-white rounded shadow hover:bg-gray-200 text-gray-600 text-sm"
             aria-label="Open details"
+            onClick={handleClickNavKichenStaff}
           >
             ➤
           </button>
@@ -80,7 +96,7 @@ function OrderDetails() {
 
         {/* Bestilling/Seng bar */}
         <div className="bg-blue-100 rounded p-2 text-xs font-bold text-blue-600 flex justify-between mb-3">
-        <span>{order?.id ? `Bestilling #${order.id}` : "Bestilling"}</span> 
+          <span>{order?.id ? `Bestilling #${order.id}` : "Bestilling"}</span>
           <span>{order?.bed_id ? `Seng ${order.bed_id}` : "Seng"}</span>
         </div>
 
@@ -108,13 +124,16 @@ function OrderDetails() {
             {order?.note && <h1>{order.note}</h1>}
           </div>
           <div className="bg-blue-50 border text-center py-2 font-bold rounded text-xs shadow-inner">
-         <h2>NY</h2>
+            <h2>NY</h2>
           </div>
         </div>
 
         {/* Accept Button */}
         <div className="flex justify-center">
-          <button onClick={handleClick} className="bg-blue-500 text-white py-2 px-4 rounded font-semibold w-1/3">
+          <button
+            onClick={handleClickUpDateStatus}
+            className="hover:bg-blue-400 bg-blue-500 text-white py-2 px-4 rounded font-semibold w-1/3"
+          >
             Accepter
           </button>
         </div>
