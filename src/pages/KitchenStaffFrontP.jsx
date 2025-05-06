@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import mockFacade from "../../data/mockApiFacade";
 import { useNavigate } from "react-router";
 
-
 function KitchenStaffFrontP() {
   const [orders, setOrders] = useState([]);
   const [error, setError] = useState(null);
@@ -130,7 +129,6 @@ function KitchenStaffFrontP() {
               <p className="text-center text-gray-500 italic mt-4">
                 Ikke flere specialretter!
               </p>
-
             ) : (
               specialOrders.map((order) => {
                 // SET COLOR + LABEL
@@ -159,14 +157,15 @@ function KitchenStaffFrontP() {
                 }
 
                 return (
-                    <div
+                  <div
                     key={order.id}
                     onClick={() => {
                       if (order.status === "NEW") {
                         navigate(`/orderdetails/${order.id}`);
+                      } else if (order.status === "IN_PREPARATION") {
+                        navigate(`/OrderConfirmation`);
                       }
                     }}
-
                     className={`cursor-pointer p-4 border border-gray-300 flex items-center justify-between rounded ${boxColor}`}
                   >
                     <p className="text-lg text-black font-bold">
