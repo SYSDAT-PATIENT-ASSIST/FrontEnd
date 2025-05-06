@@ -1,52 +1,71 @@
 import "../styles/Tailwind.css";
-import apiFacade from "/data/mockApiFacade"; 
+import apiFacade from "/data/mockApiFacade";
 import { useEffect, useState } from "react";
-import  { useParams } from "react-router";
-
-
+import { useParams } from "react-router";
+import { useNavigate } from "react-router";
 
 function OrderDetails() {
-
-  const { orderId } = useParams();
+  // hooks / state variables
+  const { id } = useParams();
   const [order, setOrder] = useState(null);
+  const [dish, setDish] = useState(null);
+
+// class variables
+  const navigate = useNavigate();
+
 
   useEffect(() => {
-    const fetchedOrder = apiFacade.getOrderById(orderId);
-    setOrder(fetchedOrder);
-  }, [orderId]);
+    const fetchOrder = async () => {
+      try {
+        const fetchedOrder = await apiFacade.getOrderById(id);
+        setOrder(fetchedOrder);
+        console.log("Fetched order:", fetchedOrder);
+      } catch (err) {
+        console.error("Failed to fetch order:", err);
+      }
+    };
 
+    fetchOrder();
+  }, [id]);
 
-// testing the data fetching
+  // testing the data fetching
   const fetchSomething = () => {
-    apiFacade.getAllOrders()
+    apiFacade
+      .getAllOrders()
       .then((data) => {
         console.log("Fetched data:", data);
       })
       .catch((error) => {
         console.error("Error fetching data:", error);
       });
-
-
-
-
   };
+
+  function handleClick() {
+    console.log("Accept Button clicked!");
+  
+    const updateStatus = async () => {
+      try {
+        const updatedOrder = await apiFacade.updateOrderStatus(id, "Igang");
+        setOrder(updatedOrder);
+        console.log("Order status updated:", updatedOrder);
+        navigate("/kitchenstaff"); // Redirect to the kitchen page after updating the status
+      } catch (err) {
+        console.error("Failed to update order status:", err);
+      }
+    };
+  
+    updateStatus(); // call it!
+  }
+
 
   if (!order) return <p>Loading...</p>;
 
   return (
-
-    
-    
-
     /* the outher parent */
     <div className="flex items-center justify-center min-h-screen px-4">
- 
-
-
       {/* Card */}
       <div className="relative w-[400px] bg-white rounded-xl shadow-lg p-6 font-sans text-black">
-      
-      <button onClick={fetchSomething}> fetch all orders</button>
+        <button onClick={fetchSomething}> fetch all orders</button>
 
         {/* Section Title with Arrow */}
         <div className="flex items-center justify-between bg-gray-100 p-2 rounded mb-3 font-semibold">
@@ -61,33 +80,41 @@ function OrderDetails() {
 
         {/* Bestilling/Seng bar */}
         <div className="bg-blue-100 rounded p-2 text-xs font-bold text-blue-600 flex justify-between mb-3">
-          <span>Bestilling #298</span>
-          <span>Seng: 202-1</span>
+        <span>{order?.id ? `Bestilling #${order.id}` : "Bestilling"}</span> 
+          <span>{order?.bed_id ? `Seng ${order.bed_id}` : "Seng"}</span>
         </div>
 
-        {/* Table Headers */}
+        {/* Table Headers the "Ret". "Kommentar". "Status"*/}
         <div className="grid grid-cols-3 gap-2 mb-2">
-          <div className="bg-blue-200 text-center font-bold py-1 rounded">Ret</div>
-          <div className="bg-blue-200 text-center font-bold py-1 rounded">Kommentar</div>
-          <div className="bg-blue-200 text-center font-bold py-1 rounded">Status</div>
+          <div className="bg-blue-200 text-center font-bold py-1 rounded">
+            Ret
+          </div>
+          <div className="bg-blue-200 text-center font-bold py-1 rounded">
+            Kommentar
+          </div>
+          <div className="bg-blue-200 text-center font-bold py-1 rounded">
+            Status
+          </div>
         </div>
 
-        {/* Table Content */}
+        {/* Table Content/ the info   */}
         <div className="grid grid-cols-3 gap-2 mb-4">
           <div className="bg-blue-50 border text-center py-2 rounded text-xs shadow-inner">
-            {order.title}
+            {order?.dishes?.map((dish) => (
+              <h1 key={dish.id}>{dish.name}</h1>
+            ))}
           </div>
           <div className="bg-blue-50 border text-center py-2 rounded text-xs shadow-inner">
-            Peanut allergi
+            {order?.note && <h1>{order.note}</h1>}
           </div>
           <div className="bg-blue-50 border text-center py-2 font-bold rounded text-xs shadow-inner">
-            NY
+         <h2>NY</h2>
           </div>
         </div>
 
         {/* Accept Button */}
         <div className="flex justify-center">
-          <button className="bg-blue-500 text-white py-2 px-4 rounded font-semibold w-1/3">
+          <button onClick={handleClick} className="bg-blue-500 text-white py-2 px-4 rounded font-semibold w-1/3">
             Accepter
           </button>
         </div>
