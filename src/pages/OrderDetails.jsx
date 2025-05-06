@@ -50,7 +50,7 @@ function OrderDetails() {
         const updatedOrder = await apiFacade.updateOrderStatus(id, "Igang");
         setOrder(updatedOrder);
         console.log("Order status updated:", updatedOrder);
-        navigate("/kitchenstaff"); // Redirect to the kitchen page after updating the status
+        navigate("/kitchenStaff"); // Redirect to the kitchen page after updating the status
       } catch (err) {
         console.error("Failed to update order status:", err);
       }
@@ -60,7 +60,7 @@ function OrderDetails() {
   }
 
   function handleClickNavKichenStaff() {
-    navigate("/kitchenstaff");
+    navigate("/kitchenStaff");
   }
 
   if (!order) return <p>Loading...</p>;
