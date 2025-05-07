@@ -8,6 +8,7 @@ import Home from './pages/Home.jsx';
 import Settings from './pages/Settings.jsx';
 import MenuManagement from './pages/MenuManagment.jsx';
 import KitchenDashboard from './pages/KitchenDashboard.jsx';
+import OrderConfirmation from './pages/OrderConfirmation.jsx';
 import LoginPage from './pages/LoginPage.jsx';
 
 import Calendar from './pages/Calendar.jsx'
@@ -26,6 +27,7 @@ createRoot(document.getElementById('root')).render(
           <Route path="settings" element={<Settings />} />
           <Route path='menu' element={<MenuManagement />} />
           <Route path='kitchen' element={<KitchenDashboard />} />
+          <Route path="order-confirmation" element={<OrderConfirmation />} />
           <Route path='auth/login' element={<LoginPage />} />
           <Route path="/DishCalenderPage" element={<DishCalendarPage />} />
           <Route path="/test" element={<TestToBeDeleted />} /> {/* Skal Slettes før Dev Merge*/}
