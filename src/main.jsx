@@ -15,7 +15,10 @@ import DishCalendarPage from './pages/DishCalenderPage.jsx'
 import CalendarLanding from './components/calendar/CalendarLanding.jsx'
 import CalendarView from './components/calendar/CalendarView.jsx'
 import TestToBeDeleted from './pages/TestToBeDeleted.jsx'; // Skal slettes før Dev Merge
+import KitchenStaffFrontP from './pages/KitchenStaffFrontP.jsx';
 import OrderDetails from './pages/OrderDetails.jsx'; 
+
+
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
@@ -28,7 +31,8 @@ createRoot(document.getElementById('root')).render(
           <Route path='menu' element={<MenuManagement />} />
           <Route path='kitchen' element={<KitchenDashboard />} />
           <Route path='auth/login' element={<LoginPage />} />
-          <Route path="/DishCalenderPage" element={<DishCalendarPage/>} />
+          <Route path="/DishCalenderPage" element={<DishCalendarPage />} />
+          <Route path="/kitchenStaff" element={<KitchenStaffFrontP />} />
           <Route path="orderdetails/:id" element={< OrderDetails/>} />
           <Route path="/test" element={<TestToBeDeleted />} /> {/* Skal Slettes før Dev Merge*/}
         </Route>
