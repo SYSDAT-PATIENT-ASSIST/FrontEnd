@@ -3,8 +3,11 @@ import { NavLink, Link } from "react-router"
 import Logo from '../../assets/CapitalHTransBG.png'
 import Arrow from '../../assets/left_arrow.png'
 import '../../styles/calendar/CalendarHeader.css'
+import { useTranslation } from 'react-i18next'
 
 function CalendarHeader() {
+  const { t } = useTranslation();
+
   return (
     <>
       <div className="calendar-header__panel">
@@ -26,7 +29,7 @@ function CalendarHeader() {
 
           <Link to="/" className="calendar-header__panel-right-back">
             <img src={Arrow} alt="Return" />
-            <h1>Tilbage</h1>
+            <h1>{t("back")}</h1>
           </Link>
 
         </div>

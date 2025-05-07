@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "../../styles/calendar/CalenderVisual.css";
-
-const days = ["Ma", "Ti", "On", "To", "Fr", "Lø", "Sø"];
+import { useTranslation } from "react-i18next";
 
 // MOCK EVENTS ADDED
 const mockEvents = {
@@ -25,6 +24,9 @@ const CalenderVisual = () => {
   const [currentYear] = useState(today.getFullYear());
   const [currentMonth] = useState(today.getMonth());
   const [calendarDates, setCalendarDates] = useState([]);
+
+  const { t } = useTranslation();
+  const days = t("calendarDays", { returnObjects: true });
 
   //  STATE ADDED TO CONTROL EXPANSION
   const [isExpanded, setIsExpanded] = useState(false);
@@ -136,11 +138,13 @@ const CalenderVisual = () => {
             <div className="event-item" key={idx}>
               <span className="event-time">{event.time}</span>
               <span className="event-title">{event.title}</span>
-            </div>
-          ))
+              </div>
+            ))
           : isExpanded && (
-            <div className="event-item no-events">No events for this day</div>
-          )}
+              <div className="event-item no-events">
+                {t("calendarNoEvents")}
+              </div>
+            )}
       </div>
     </div>
   );

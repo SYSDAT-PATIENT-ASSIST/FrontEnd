@@ -25,6 +25,7 @@
     "headerTime": "15:00",
   
 
+
     "dishes": {
   "grilledSalmon": "Grillet laks",
   "pumpkinSoup": "Græskarsuppe",
@@ -51,3 +52,34 @@
     "weekdaySat": "Lør"
   }
   
+
+  "headerHospitalName": "Bornholms Hospital",
+  "headerLocationCode": "202-1",
+  "headerDepartmentName": "Kirurgisk afdeling",
+  "quit": "Afslut",
+  "settings": "Indstillinger",
+  "headerDay": "Mandag 10-03",
+  "headerTime": "15:00",
+
+  "loginWelcome": "Velkommen til køkkenet",
+  "loginSubtitle": "Log ind for at administrere menuen og måltidsplaner",
+  "loginUsername": "Brugernavn",
+  "loginUsernamePlaceholder": "Indtast dit brugernavn",
+  "loginPassword": "Adgangskode",
+  "loginPasswordPlaceholder": "Indtast din adgangskode",
+  "loginButton": "Log ind",
+  "loginError": "Ugyldige loginoplysninger. Prøv igen.",
+
+  "calendarView": "Se kalender",
+  "calendarMonth": "måned",
+  "calendarWeek": "uge",
+  "calendarDay": "dag",
+  "calendarToday": "i dag",
+  "calendarAdmin": "administrer",
+
+  "calendarDays": ["Ma", "Ti", "On", "To", "Fr", "Lø", "Sø"],
+  "calendarNoEvents": "Ingen begivenheder for denne dag",
+  "back": "Tilbage"
+  
+}  
+
