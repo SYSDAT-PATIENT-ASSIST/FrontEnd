@@ -24,13 +24,12 @@ function KitchenStaffFrontP() {
     (order) => order.comment?.trim() && order.status === "READY"
   ).length;
 
-  const beefCount = orders.filter((order) =>
-    order.dishes?.some((d) => d.name === "Hakkebøf m. løg")
-  ).length;
-
-  const sandwhichCount = orders.filter((order) =>
-    order.dishes?.some((d) => d.name === "Peanut Butter Sandwich")
-  ).length;
+  const dishCounts = {};
+  orders.forEach((order) => {
+    order.dishes?.forEach((dish) => {
+      dishCounts[dish.name] = (dishCounts[dish.name] || 0) + 1;
+    });
+  });
 
   const isDelayed = specialOrders.some((order) => order.status === "DELAYED");
 
@@ -88,13 +87,11 @@ function KitchenStaffFrontP() {
               <strong>Special måltider:</strong> {specialMeals}
             </p>
 
-            <p className="text-lg mb-2">
-              <strong>Hakkebøf m. løg:</strong> {beefCount}
-            </p>
-
-            <p className="text-lg mb-2">
-              <strong>Peanut Butter Sandwhich:</strong> {sandwhichCount}
-            </p>
+            {Object.entries(dishCounts).map(([dishName, count]) => (
+              <p key={dishName} className="text-lg mb-2">
+                <strong>{dishName}:</strong> {count}
+              </p>
+            ))}
 
             <p className="text-lg">
               <strong>Færdiggjorte specialmåltider:</strong>{" "}
