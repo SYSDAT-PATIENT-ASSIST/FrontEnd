@@ -9,6 +9,7 @@ import Settings from './pages/Settings.jsx';
 import MenuManagement from './pages/MenuManagment.jsx';
 import KitchenDashboard from './pages/KitchenDashboard.jsx';
 import LoginPage from './pages/LoginPage.jsx';
+import AdminPage from './pages/AdminPage.jsx';
 
 import Calendar from './pages/Calendar.jsx'
 import DishCalendarPage from './pages/DishCalenderPage.jsx'
@@ -28,6 +29,7 @@ createRoot(document.getElementById('root')).render(
           <Route path='menu' element={<MenuManagement />} />
           <Route path='kitchen' element={<KitchenDashboard />} />
           <Route path='auth/login' element={<LoginPage />} />
+          <Route path='auth/admin' element={<AdminPage />} />
           <Route path="/DishCalenderPage" element={<DishCalendarPage />} />
           <Route path="/kitchenStaff" element={<KitchenStaffFrontP />} />
           <Route path="/test" element={<TestToBeDeleted />} /> {/* Skal Slettes før Dev Merge*/}
