@@ -42,6 +42,7 @@
   "calendarAdmin": "administrer",
 
   "calendarDays": ["Ma", "Ti", "On", "To", "Fr", "Lø", "Sø"],
-  "calendarNoEvents": "Ingen begivenheder for denne dag"
+  "calendarNoEvents": "Ingen begivenheder for denne dag",
+  "back": "Tilbage"
   
 }  

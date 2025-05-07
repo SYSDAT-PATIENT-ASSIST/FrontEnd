@@ -42,6 +42,7 @@
     "calendarAdmin": "administer",
     
     "calendarDays": ["Mo", "Tu", "We", "Th", "Fr", "Sa", "Su"],
-    "calendarNoEvents": "No events for this day"
+    "calendarNoEvents": "No events for this day",
+    "back": "Back"
 
   }
