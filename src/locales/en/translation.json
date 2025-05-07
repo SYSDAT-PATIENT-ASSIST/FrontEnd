@@ -8,7 +8,7 @@
     "contrast": "Color Contrast",
     "apply": "Apply",
     "revert": "Revert Changes",
-  
+    
     "adminMealOrder": "Admin meal order",
     "menuMealOrder": "Meal Order",
     "menuExercises": "Exercises",
@@ -16,12 +16,38 @@
     "menuHospitalInfo": "Hospital Info",
     "menuEntertainment": "Entertainment",
     "menuMySP": "My SP",
-
     "headerHospitalName": "Bornholms Hospital",
     "headerLocationCode": "202-1",
     "headerDepartmentName": "Surgical Department",
     "quit": "Quit",
     "settings": "Settings",
     "headerDay": "Monday 10-03",
-    "headerTime": "15:00"
+    "headerTime": "15:00",
+
+    "dishes": {
+  "grilledSalmon": "Grilled Salmon",
+  "pumpkinSoup": "Pumpkin Soup",
+  "roastDuck": "Roast Duck",
+  "vegetableStirFry": "Vegetable Stir Fry",
+  "beefStroganoff": "Beef Stroganoff",
+  "chickenCurry": "Chicken Curry",
+  "pastaPrimavera": "Pasta Primavera",
+  "caesarSalad": "Caesar Salad"
+},
+
+  
+    "dishCalendarManagerTitle": "Dish Calendar Manager",
+    "selectDateSubtitle": "Select a Date",
+    "dishesForDate": "Dishes for {{dateKey}}",
+    "searchDishPlaceholder": "Search for a dish...",
+    "activateButton": "Activate",
+    "deactivateButton": "Deactivate",
+    "weekdaySun": "Sun",
+    "weekdayMon": "Mon",
+    "weekdayTue": "Tue",
+    "weekdayWed": "Wed",
+    "weekdayThu": "Thu",
+    "weekdayFri": "Fri",
+    "weekdaySat": "Sat"
   }
+  
