@@ -21,13 +21,57 @@ const mockEvents = {
 
 const CalenderVisual = () => {
   const today = new Date();
-  const [selectedDate, setSelectedDate] = useState(null);
-  const [currentYear] = useState(today.getFullYear());
-  const [currentMonth] = useState(today.getMonth());
-  const [calendarDates, setCalendarDates] = useState([]);
+  
+  
+  const [currentYear, setCurrentYear] = useState(today.getFullYear());
+  const [currentMonth, setCurrentMonth] = useState(today.getMonth());
 
-  //  STATE ADDED TO CONTROL EXPANSION
+  const [selectedDate, setSelectedDate] = useState(null);
+  const [calendarDates, setCalendarDates] = useState([]);
   const [isExpanded, setIsExpanded] = useState(false);
+
+  
+  const getOneYearBefore = () => {
+    const currentDate = new Date();
+    return new Date(currentDate.getFullYear(), currentDate.getMonth() - 12, 1);
+  };
+  
+  const getOneYearAfter = () => {
+    const currentDate = new Date();
+    return new Date(currentDate.getFullYear(), currentDate.getMonth() + 12, 1);
+  };
+  
+  const isWithinOneYear = (year, month) => {
+    const viewingDate = new Date(year, month, 1);
+    return viewingDate >= getOneYearBefore() && viewingDate <= getOneYearAfter();
+  };
+  
+
+  const isPreviousMonthDisabled = () => {
+    return !isWithinOneYear(currentYear, currentMonth - 1);
+  };
+  
+  const isNextMonthDisabled = () => {
+    return !isWithinOneYear(currentYear, currentMonth + 1);
+  };  
+
+  const changeMonth = (offset) => {
+    setSelectedDate(null);
+
+    const newDate = new Date(currentYear, currentMonth + offset, 1);
+    const newYear = newDate.getFullYear();
+    const newMonth = newDate.getMonth();
+
+    if (!isWithinOneYear(newYear, newMonth)) {
+      return;
+    }
+
+    setCurrentYear(newYear);
+    setCurrentMonth(newMonth);
+  };
+  
+  
+  
 
   const generateCalendarDates = (year, month) => {
     const firstDay = new Date(year, month, 1);
@@ -38,7 +82,6 @@ const CalenderVisual = () => {
     const prevMonthLastDate = new Date(year, month, 0).getDate();
     const dates = [];
 
-    // Previous month's days
     for (let i = startDay - 1; i >= 0; i--) {
       dates.push({
         day: prevMonthLastDate - i,
@@ -46,7 +89,6 @@ const CalenderVisual = () => {
       });
     }
 
-    // Current month's days
     for (let i = 1; i <= totalDays; i++) {
       dates.push({
         day: i,
@@ -54,7 +96,6 @@ const CalenderVisual = () => {
       });
     }
 
-    // Next month's days
     const nextDays = 42 - dates.length;
     for (let i = 1; i <= nextDays; i++) {
       dates.push({
@@ -66,26 +107,48 @@ const CalenderVisual = () => {
     return dates;
   };
 
+  
   useEffect(() => {
     setCalendarDates(generateCalendarDates(currentYear, currentMonth));
   }, [currentYear, currentMonth]);
 
-  // NEW FUNCTION TO HANDLE EXPAND/TOGGLE ON CLICK
   const handleDateClick = (date) => {
     if (selectedDate?.day === date.day) {
-      setIsExpanded(!isExpanded); // toggle off if clicked again
+      setIsExpanded(!isExpanded);
     } else {
       setSelectedDate(date);
-      setIsExpanded(true); // always expand on new date
+      setIsExpanded(true);
     }
   };
 
-  // USED TO LOOK UP EVENTS FOR SELECTED DAY
   const selectedDay = selectedDate?.day;
   const events = selectedDay ? mockEvents[selectedDay] || [] : [];
 
   return (
     <div className="calendar-container">
+      <div className="calendar-header">
+        <button
+          className="nav-arrow"
+          onClick={() => changeMonth(-1)}
+          disabled={isPreviousMonthDisabled()}
+        >
+          ←
+        </button>
+        <div className="calendar-title">
+          {new Date(currentYear, currentMonth).toLocaleString("default", {
+            month: "long",
+          })}{" "}
+          {currentYear}
+        </div>
+        <button
+          className="nav-arrow"
+          onClick={() => changeMonth(1)}
+          disabled={isNextMonthDisabled()}
+        >
+          →
+        </button>
+      </div>
+
       <div className="day-labels-row">
         {days.map((day) => (
           <div className="day-label" key={day}>
@@ -93,6 +156,7 @@ const CalenderVisual = () => {
           </div>
         ))}
       </div>
+
       <div className="calendar-grid">
         {calendarDates.map((dateObj, index) => {
           const { day, monthOffset } = dateObj;
@@ -110,10 +174,9 @@ const CalenderVisual = () => {
 
           const classNames = ["day-cell"];
           if (!isCurrentMonth) classNames.push("other-month");
-          //if (isToday) classNames.push('current'); /* current day highlight */
+          if (isToday) classNames.push("current");
           if (isSelected) classNames.push("selected");
 
-          // Check if this day has events
           const hasEvent = isCurrentMonth && mockEvents[day];
 
           return (
@@ -129,18 +192,17 @@ const CalenderVisual = () => {
         })}
       </div>
 
-      {/* NEW EVENT PANEL SECTION */}
       <div className={`event-panel ${isExpanded ? "expanded" : ""}`}>
         {events.length > 0
           ? events.map((event, idx) => (
-            <div className="event-item" key={idx}>
-              <span className="event-time">{event.time}</span>
-              <span className="event-title">{event.title}</span>
-            </div>
-          ))
+              <div className="event-item" key={idx}>
+                <span className="event-time">{event.time}</span>
+                <span className="event-title">{event.title}</span>
+              </div>
+            ))
           : isExpanded && (
-            <div className="event-item no-events">No events for this day</div>
-          )}
+              <div className="event-item no-events">No events for this day</div>
+            )}
       </div>
     </div>
   );
