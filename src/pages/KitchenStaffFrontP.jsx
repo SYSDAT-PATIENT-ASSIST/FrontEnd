@@ -163,7 +163,7 @@ function KitchenStaffFrontP() {
                       if (order.status === "NEW") {
                         navigate(`/orderdetails/${order.id}`);
                       } else if (order.status === "IN_PREPARATION") {
-                        navigate(`/OrderConfirmation`);
+                        navigate(`/Order-confirmation`);
                       }
                     }}
                     className={`cursor-pointer p-4 border border-gray-300 flex items-center justify-between rounded ${boxColor}`}
