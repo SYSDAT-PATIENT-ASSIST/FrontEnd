@@ -23,5 +23,25 @@
     "quit": "Quit",
     "settings": "Settings",
     "headerDay": "Monday 10-03",
-    "headerTime": "15:00"
+    "headerTime": "15:00",
+    
+    "loginWelcome": "Welcome to the kitchen",
+    "loginSubtitle": "Log in to manage the menu and meal plans",
+    "loginUsername": "Username",
+    "loginUsernamePlaceholder": "Enter your username",
+    "loginPassword": "Password",
+    "loginPasswordPlaceholder": "Enter your password",
+    "loginButton": "Log in",
+    "loginError": "Invalid login credentials. Please try again.",
+
+    "calendarView": "See calendar",
+    "calendarMonth": "month",
+    "calendarWeek": "week",
+    "calendarDay": "day",
+    "calendarToday": "today",
+    "calendarAdmin": "administer",
+    
+    "calendarDays": ["Mo", "Tu", "We", "Th", "Fr", "Sa", "Su"],
+    "calendarNoEvents": "No events for this day"
+
   }
