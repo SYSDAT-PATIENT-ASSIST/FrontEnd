@@ -300,14 +300,17 @@ function OrderFood() {
                             <BoxDish 
                                 $isOrdered={dish.id == orderedDishId}
                                 $isSoldOut={dish.status === 'SOLD_OUT'}
-                                onClick={() => dish.status !== 'SOLD_OUT' && openOrderDialog(dish)} //wihtout checking the time
-                                // onClick={() => {
+                                onClick={() => { //wihtout checking the time
+                                  const hasOrdered = orderedDishId !== null; // check if an order has been placed
+                                  if ( dish.status !== 'SOLD_OUT' && !hasOrdered) {
+                                    openOrderDialog(dish);
+                                }
                                 //   const now =  new Date();
                                 //   const isBefore14 = now.getHours() < 14; // check if the current time is before 14:00
-                                //   if (dish.status !== 'SOLD_OUT' && isBefore14) {
-                                //     openOrderDialog(dish);
-                                //   }
-                                // }}
+                                //   const hasOrdered = orderedDishId !== null; // check if an order has been placed
+                                //   if (dish.status !== 'SOLD_OUT' && isBefore14 && !hasOrdered) {
+                                //     openOrderDialog(dish); 
+                              }}
                             >
                                 <div>{dish.name}</div>
                                 {dish.status === 'SOLD_OUT' && <Soldout_orderfood_custom>Udsolgt</Soldout_orderfood_custom>}       
