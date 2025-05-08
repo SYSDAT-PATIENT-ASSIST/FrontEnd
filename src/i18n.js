@@ -6,12 +6,12 @@ import LanguageDetector from "i18next-browser-languagedetector";
 // Import translation files for different languages
 import translationEN from "./locales/en/translation.json";
 import translationDA from "./locales/da/translation.json";
-// import translationDE from "./locales/de/translation.json"; // Uncomment if you want to support German
+import translationDE from "./locales/de/translation.json";
 
 const resources = {
 en: { translation: translationEN },
 da: { translation: translationDA },
-// de: { translation: translationDE }, // Uncomment to enable German translations
+de: { translation: translationDE },
 };
 
 i18n

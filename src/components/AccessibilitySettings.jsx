@@ -121,6 +121,7 @@ export default function AccessibilitySettings() {
           >
             <option value="en">English</option>
             <option value="da">Danish</option>
+            <option value="de">German</option>
             <option value="fr">French</option>
             <option value="es">Spanish</option>
           </select>
