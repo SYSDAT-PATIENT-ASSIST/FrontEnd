@@ -21,8 +21,7 @@ const mockEvents = {
 
 const CalenderVisual = () => {
   const today = new Date();
-  
-  
+
   const [currentYear, setCurrentYear] = useState(today.getFullYear());
   const [currentMonth, setCurrentMonth] = useState(today.getMonth());
 
@@ -30,30 +29,43 @@ const CalenderVisual = () => {
   const [calendarDates, setCalendarDates] = useState([]);
   const [isExpanded, setIsExpanded] = useState(false);
 
-  
+  const [weekNumber, setWeekNumber] = useState(getWeekNumber(today));
+
+  function getWeekNumber(date) {
+    const copiedDate = new Date(
+      Date.UTC(date.getFullYear(), date.getMonth(), date.getDate())
+    );
+    const dayNum = copiedDate.getUTCDay() || 7;
+    copiedDate.setUTCDate(copiedDate.getUTCDate() + 4 - dayNum);
+    const yearStart = new Date(Date.UTC(copiedDate.getUTCFullYear(), 0, 1));
+    const weekNum = Math.ceil(((copiedDate - yearStart) / 86400000 + 1) / 7);
+    return weekNum;
+  }
+
   const getOneYearBefore = () => {
     const currentDate = new Date();
     return new Date(currentDate.getFullYear(), currentDate.getMonth() - 12, 1);
   };
-  
+
   const getOneYearAfter = () => {
     const currentDate = new Date();
     return new Date(currentDate.getFullYear(), currentDate.getMonth() + 12, 1);
   };
-  
+
   const isWithinOneYear = (year, month) => {
     const viewingDate = new Date(year, month, 1);
-    return viewingDate >= getOneYearBefore() && viewingDate <= getOneYearAfter();
+    return (
+      viewingDate >= getOneYearBefore() && viewingDate <= getOneYearAfter()
+    );
   };
-  
 
   const isPreviousMonthDisabled = () => {
     return !isWithinOneYear(currentYear, currentMonth - 1);
   };
-  
+
   const isNextMonthDisabled = () => {
     return !isWithinOneYear(currentYear, currentMonth + 1);
-  };  
+  };
 
   const changeMonth = (offset) => {
     setSelectedDate(null);
@@ -68,10 +80,8 @@ const CalenderVisual = () => {
 
     setCurrentYear(newYear);
     setCurrentMonth(newMonth);
+    setWeekNumber(getWeekNumber(new Date(newYear, newMonth, 1)));
   };
-  
-  
-  
 
   const generateCalendarDates = (year, month) => {
     const firstDay = new Date(year, month, 1);
@@ -107,12 +117,14 @@ const CalenderVisual = () => {
     return dates;
   };
 
-  
   useEffect(() => {
     setCalendarDates(generateCalendarDates(currentYear, currentMonth));
   }, [currentYear, currentMonth]);
 
   const handleDateClick = (date) => {
+    const fullDate = new Date(currentYear, currentMonth, date.day);
+    setWeekNumber(getWeekNumber(fullDate));
+
     if (selectedDate?.day === date.day) {
       setIsExpanded(!isExpanded);
     } else {
@@ -134,12 +146,15 @@ const CalenderVisual = () => {
         >
           ←
         </button>
+
         <div className="calendar-title">
           {new Date(currentYear, currentMonth).toLocaleString("default", {
             month: "long",
           })}{" "}
           {currentYear}
+          <div className="calendar-week">uge {weekNumber}</div>
         </div>
+
         <button
           className="nav-arrow"
           onClick={() => changeMonth(1)}
