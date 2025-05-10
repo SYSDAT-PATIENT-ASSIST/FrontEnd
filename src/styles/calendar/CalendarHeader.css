@@ -72,19 +72,28 @@
 .calendar-header__panel-right-back {
     display: flex;
     align-items: center;
-    justify-content: center;
-    padding-right: 1rem;
-    padding-left: 1rem;
-    border-radius: 4px;
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
     background-color: #0079b4;
-    height: fit-content;
-    gap: 1vw;
-    h1 {
-        color: white;
-        font-size: 1.2rem;
-        font-weight: 300;
-    }
-    img {
-        width: 1rem;
-    }
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.2s ease, transform 0.1s ease;
 }
+
+.calendar-header__panel-right-back:hover {
+    background-color: #005f8a;
+    transform: translateY(-1px);
+}
+
+.calendar-header__panel-right-back h1 {
+    margin-right: 15px;
+    font-weight: 500;
+    color: white;
+}
+
+.calendar-header__panel-right-back img {
+    width: 2rem;
+    height: 1rem;
+    object-fit: contain;
+}
+
