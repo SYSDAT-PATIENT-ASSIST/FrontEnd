@@ -33,6 +33,10 @@ const CalenderVisual = () => {
 
   const [weekNumber, setWeekNumber] = useState(getWeekNumber(today));
 
+  const [eventsByDate, setEventsByDate] = useState({});
+  const [loadError, setLoadError] = useState(null);
+
+
   function getWeekNumber(date) {
     const copiedDate = new Date(
       Date.UTC(date.getFullYear(), date.getMonth(), date.getDate())
@@ -135,8 +139,51 @@ const CalenderVisual = () => {
     }
   };
 
+  useEffect(() => {
+  fetch("http://localhost:9999/api/events")
+    .then(res => {
+      // Simuleret backend-fejl
+      //throw new Error("Simuleret backend-fejl");
+      
+      if (!res.ok) throw new Error(res.status);
+      return res.json();
+    })
+    .then(events => {
+      
+      const grouped = events.reduce((acc, ev) => {
+        const d = new Date(ev.startTime);
+        const time = d.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" });
+        const durationMin = Math.round(ev.duration / 60);
+        // lav en “YYYY-MM-DD” nøgle:
+        const year  = d.getFullYear();
+        const month = String(d.getMonth() + 1).padStart(2, "0");
+        const day   = String(d.getDate()).padStart(2, "0");
+        const dateKey = `${year}-${month}-${day}`;
+
+        // hvis nøglen ikke findes, opret en ny array:
+        acc[dateKey] = acc[dateKey] || [];
+        acc[dateKey].push({ time, title: ev.name, duration: durationMin });
+
+        return acc;
+      }, {});
+      setEventsByDate(grouped);
+    })
+    .catch(err => {
+      console.error("Kunne ikke hente events:", err);
+      setLoadError(err.message);
+    });
+}, []);
+
+
+
   const selectedDay = selectedDate?.day;
-  const events = selectedDay ? mockEvents[selectedDay] || [] : [];
+  //const events = selectedDay ? mockEvents[selectedDay] || [] : [];
+
+  //Her er den opdaterede kode, der bruger eventsByDate i stedet for mockEvents:
+  const selectedKey = selectedDay? `${currentYear}-${String(currentMonth+1).padStart(2,"0")}-${String(selectedDay).padStart(2,"0")}`: null;
+  const events = selectedKey ? eventsByDate[selectedKey] || [] : [];
+
+
 
   return (
     <div className="calendar-container">
@@ -194,8 +241,14 @@ const CalenderVisual = () => {
           if (isToday) classNames.push("current");
           if (isSelected) classNames.push("selected");
 
-          const hasEvent = isCurrentMonth && mockEvents[day];
+          //const hasEvent = isCurrentMonth && mockEvents[day];
 
+          // Her er den opdaterede kode, der bruger eventsByDate i stedet for mockEvents:
+          const key      = `${currentYear}-${String(currentMonth+1).padStart(2,"0")}-${String(day).padStart(2,"0")}`;
+          const hasEvent = isCurrentMonth && eventsByDate[key]?.length > 0;
+
+          
+          
           return (
             <div
               key={index}
@@ -215,6 +268,7 @@ const CalenderVisual = () => {
               <div className="event-item" key={idx}>
                 <span className="event-time">{event.time}</span>
                 <span className="event-title">{event.title}</span>
+                <span className="event-duration">({event.duration} min)</span>
               </div>
             ))
           : isExpanded && (
