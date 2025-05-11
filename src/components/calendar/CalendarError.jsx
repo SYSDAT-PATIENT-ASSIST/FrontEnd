@@ -1,5 +1,4 @@
 import React from "react";
-//import "../styles/CalendarError.css";   // lille styling, se nedenfor
 import "../../styles/calendar/CalendarError.css"; // lille styling, se nedenfor
 
 export default function CalendarError({componentFailed ,onRetry }) {
