@@ -8,8 +8,8 @@ function Calendar() {
   return (
     <>
       <div className="calendar__container">
-        <CalendarErrorBoundary componentFailed="Kalenderen">
           <CalendarHeader />
+          <CalendarErrorBoundary componentFailed="Kalenderen" onRetry={() => window.location.reload()}>
           <div className="calendar__content">
             <Outlet />
           </div>
