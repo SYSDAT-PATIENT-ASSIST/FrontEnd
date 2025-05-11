@@ -47,7 +47,7 @@ function OrderDetails() {
 
     const updateStatus = async () => {
       try {
-        const updatedOrder = await apiFacade.updateOrderStatus(id, "Igang");
+        const updatedOrder = await apiFacade.updateOrderStatus(id, "IN_PREPARATION");
         setOrder(updatedOrder);
         console.log("Order status updated:", updatedOrder);
         navigate("/kitchenStaff"); // Redirect to the kitchen page after updating the status
