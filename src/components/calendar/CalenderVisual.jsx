@@ -20,8 +20,10 @@ const mockEvents = {
 };
 
 const CalenderVisual = () => {
-  const today = new Date();
+  // Simuleret frontend-fejl
+  //throw new Error("Simuleret frontend-fejl");
 
+  const today = new Date();
   const [currentYear, setCurrentYear] = useState(today.getFullYear());
   const [currentMonth, setCurrentMonth] = useState(today.getMonth());
 
