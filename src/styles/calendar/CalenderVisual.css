@@ -109,6 +109,12 @@
   font-style: italic;
 }
 
+.event-duration {
+  font-size: 0.8rem;
+  color: #888;
+  margin-left: 8px;
+}
+
 /* No-events fallback */
 .no-events {
   text-align: center;
@@ -125,9 +131,50 @@
 }
 
 .event-dot {
-  width: 6px;
-  height: 6px;
+  width: 5px;
+  height: 5px;
   background-color: red;
   border-radius: 50%;
+}
+
+.calendar-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  background-color: #f5f5f5;
+}
+
+.nav-arrow {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  color: black; /* <-- make arrow black */
+  cursor: pointer;
+  padding: 8px;
+  transition: background-color 0.2s ease;
+  border-radius: 6px;
+}
+
+.nav-arrow:hover {
+  background-color: #f0f8ff;
+}
+
+.calendar-title {
+  font-weight: bold;
+  color: black;
+  text-align: center;
+  font-size: 1.2rem;
+  font-weight: bold;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  line-height: 1.4;
+}
+
+.calendar-week {
+  font-size: 0.9rem;
+  color: #000000;
   margin-top: 4px;
 }

@@ -1,0 +1,21 @@
+.calendar-error {
+    background: #fdeaea;
+    color: #a60000;
+    border: 1px solid #f5c2c2;
+    border-radius: 8px;
+    padding: 1rem;
+    text-align: center;
+    max-width: 320px;
+    margin: 2rem auto;
+  }
+  
+  .calendar-error button {
+    margin-top: 0.5rem;
+    padding: 0.5rem 1rem;
+    border: none;
+    background: #a60000;
+    color: #fff;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  

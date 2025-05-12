@@ -6,6 +6,7 @@
     height: 15vh;
     min-height: 70px;
     max-height: 70px;
+    padding-top: 4px;
     a {
         text-decoration: none;
         h1 {
@@ -25,21 +26,25 @@
     align-items: space-between;
     justify-content: space-between;
     gap: 1vw;
+    margin: 0;
+    padding: 0;
     height: 100%;
-    min-width: 275px;
+    min-width: 225px;
 }
 
 .header__panel-right {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 1vw;
+    gap: 0.5vw;
     height: 100%;
     min-width: 161px;
 }
 
 .header__panel-right-actions {
     display: flex;
+    align-items: center;
+    justify-content: center;
     flex-direction: column;
     align-items: flex-start;
     justify-content: space-between;
@@ -116,26 +121,41 @@
     }
 }
 
-.header__panel-right-date_time {
-    padding-left: 8px;
-    padding-right: 8px;
-    /* padding-top: 2px; */
-    /* padding-bottom: 2px; */
-    border-radius: 5px;
-    background-color: white;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 100%;
-    margin: 0;
-    
-    h1 {
-        color: gray;
-        font-size: 1rem;
-    }
-    h2 {
-        color: black;
-        font-size: 1.5rem;
-    }
+.header__clock {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 0.75rem 1.25rem;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.95);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  height: 100%;
+  margin-left: 1rem;
+  transition: all 0.3s ease;
+  border: 1px solid rgba(200, 200, 255, 0.4);
+}
+
+.header__clock-date {
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: #444;
+}
+
+.header__clock-time {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: #0056d6;
+  margin-top: 0.3rem;
+  letter-spacing: 0.5px;
+  text-shadow: 0 0 6px rgba(0, 86, 214, 0.3);
+}
+
+.header__clock:hover {
+  transform: scale(1.03);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+  border-color: rgba(150, 150, 255, 0.6);
 }

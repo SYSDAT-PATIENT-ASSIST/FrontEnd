@@ -1,8 +1,8 @@
 import { useState } from 'react'
 import { NavLink, Link, Outlet } from "react-router"
-import '../styles/CalendarLanding.css'
-import CalendarLogo from '../assets/calendar_icon_white.png'
-import CalendarHeader from '../components/CalendarHeader.jsx'
+import '../../styles/calendar/CalendarLanding.css'
+import CalendarLogo from '../../assets/calendar_icon_white.png'
+import CalendarHeader from './CalendarHeader.jsx'
 
 function CalendarLanding() {
   return (
