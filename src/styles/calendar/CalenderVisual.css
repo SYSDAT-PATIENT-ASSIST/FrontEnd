@@ -109,6 +109,12 @@
   font-style: italic;
 }
 
+.event-duration {
+  font-size: 0.8rem;
+  color: #888;
+  margin-left: 8px;
+}
+
 /* No-events fallback */
 .no-events {
   text-align: center;
