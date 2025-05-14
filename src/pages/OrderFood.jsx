@@ -199,7 +199,7 @@ function OrderFood() {
     //     const newOrder = {
     //         bed_id: bedId,
     //         note: note,
-    //         status: "PENDING",
+    //         status: "VENTER",
     //         dish: { id: selectedDish.id }
     //     };
 
@@ -299,21 +299,21 @@ function OrderFood() {
                           <div key={dish.id}>
                             <BoxDish 
                                 $isOrdered={dish.id == orderedDishId}
-                                $isSoldOut={dish.status === 'SOLD_OUT'}
+                                $isSoldOut={dish.status === 'UDSOLGT'}
                                 onClick={() => { //wihtout checking the time
                                   const hasOrdered = orderedDishId !== null; // check if an order has been placed
-                                  if ( dish.status !== 'SOLD_OUT' && !hasOrdered) {
+                                  if ( dish.status !== 'UDSOLGT' && !hasOrdered) {
                                     openOrderDialog(dish);
                                 }
                                 //   const now =  new Date();
                                 //   const isBefore14 = now.getHours() < 14; // check if the current time is before 14:00
                                 //   const hasOrdered = orderedDishId !== null; // check if an order has been placed
-                                //   if (dish.status !== 'SOLD_OUT' && isBefore14 && !hasOrdered) {
+                                //   if (dish.status !== 'UDSOLGT' && isBefore14 && !hasOrdered) {
                                 //     openOrderDialog(dish); 
                               }}
                             >
                                 <div>{dish.name}</div>
-                                {dish.status === 'SOLD_OUT' && <Soldout_orderfood_custom>Udsolgt</Soldout_orderfood_custom>}       
+                                {dish.status === 'UDSOLGT' && <Soldout_orderfood_custom>Udsolgt</Soldout_orderfood_custom>}       
                                 {dish.id == orderedDishId && (
                                 <CancelOrderButton onClick={(e) => {
                                   e.stopPropagation (); // prevents the click event from bubbling up to the Box component
