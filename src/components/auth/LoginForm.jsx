@@ -1,121 +1,97 @@
-import { useState } from 'react';
-import { useNavigate } from 'react-router';
-import { ChefHat, User, Lock, LogIn } from 'lucide-react';
+import { useState } from "react";
+import { useNavigate } from "react-router";
+import { ChefHat, User, Lock, LogIn } from "lucide-react";
+import { login } from "../api";
 
 const LoginForm = () => {
   const navigate = useNavigate();
-  const [formData, setFormData] = useState({
-    username: '',
-    password: '',
-  });
-  const [error, setError] = useState('');
+  const [formData, setFormData] = useState({ username: "", password: "" });
+  const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
+    setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setError('');
+    setError("");
     setIsLoading(true);
 
     try {
-      // TODO: Implement actual authentication
-      await new Promise((resolve) => setTimeout(resolve, 1000)); // Simulated API call
-      navigate('/kitchen');
+      const { token } = await login(formData.username, formData.password);
+      if (!token) throw new Error("No token returned");
+      localStorage.setItem("token", token);
+      navigate("/kitchen");
     } catch (err) {
-      setError('Ugyldige loginoplysninger. Prøv igen.');
+      setError("Ugyldige loginoplysninger. Prøv igen.");
     } finally {
       setIsLoading(false);
     }
   };
 
   return (
-    <div className='w-full max-w-md p-8 bg-white rounded-lg shadow-lg'>
-      <div className='text-center mb-8'>
-        <div className='flex items-center justify-center mb-4'>
-          <ChefHat className='w-12 h-12 text-blue-600' />
+    <div className="w-full max-w-md p-8 bg-white rounded-lg shadow-lg">
+      <div className="text-center mb-8">
+        <div className="flex items-center justify-center mb-4">
+          <ChefHat className="w-12 h-12 text-blue-600" />
         </div>
-        <h1 className='text-3xl font-bold text-gray-800 mb-2'>
-          Velkommen til køkkenet
-        </h1>
-        <p className='text-gray-600'>
-          Log ind for at administrere menuen og måltidsplaner
-        </p>
+        <h1 className="text-3xl font-bold text-gray-800 mb-2">Velkommen til køkkenet</h1>
+        <p className="text-gray-600">Log ind for at administrere menuen og måltidsplaner</p>
       </div>
 
       {error && (
-        <div className='mb-4 p-3 bg-red-100 border-l-4 border-red-500 text-red-700 rounded'>
+        <div className="mb-4 p-3 bg-red-100 border-l-4 border-red-500 text-red-700 rounded">
           {error}
         </div>
       )}
 
-      <form onSubmit={handleSubmit} className='space-y-6'>
+      <form onSubmit={handleSubmit} className="space-y-6">
         <div>
-          <label
-            className='block text-gray-700 text-sm font-bold mb-2'
-            htmlFor='username'
-          >
+          <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="username">
             Brugernavn
           </label>
-          <div className='relative'>
-            <div className='absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none'>
-              <User className='h-5 w-5 text-gray-400' />
-            </div>
+          <div className="relative">
+            <User className="absolute inset-y-0 left-0 w-5 h-5 text-gray-400 ml-3 my-auto" />
             <input
-              type='text'
-              id='username'
-              name='username'
+              type="text"
+              name="username"
               value={formData.username}
               onChange={handleChange}
-              className='block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md leading-5 bg-white text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500'
-              placeholder='Indtast dit brugernavn'
               required
+              className="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md"
+              placeholder="Indtast dit brugernavn"
             />
           </div>
         </div>
 
         <div>
-          <label
-            className='block text-gray-700 text-sm font-bold mb-2'
-            htmlFor='password'
-          >
+          <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="password">
             Adgangskode
           </label>
-          <div className='relative'>
-            <div className='absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none'>
-              <Lock className='h-5 w-5 text-gray-400' />
-            </div>
+          <div className="relative">
+            <Lock className="absolute inset-y-0 left-0 w-5 h-5 text-gray-400 ml-3 my-auto" />
             <input
-              type='password'
-              id='password'
-              name='password'
+              type="password"
+              name="password"
               value={formData.password}
               onChange={handleChange}
-              className='block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md leading-5 bg-white text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500'
-              placeholder='Indtast din adgangskode'
               required
+              className="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md"
+              placeholder="Indtast din adgangskode"
             />
           </div>
         </div>
 
         <button
-          type='submit'
+          type="submit"
           disabled={isLoading}
-          className={`w-full flex justify-center items-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 ${
-            isLoading ? 'opacity-75 cursor-not-allowed' : ''
-          }`}
+          className="w-full bg-blue-600 text-white py-2 px-4 rounded hover:bg-blue-700"
         >
-          {isLoading ? (
-            <div className='w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin'></div>
-          ) : (
+          {isLoading ? <div className="loader" /> : (
             <>
-              <LogIn className='w-5 h-5 mr-2' />
+              <LogIn className="w-5 h-5 inline-block mr-2" />
               Log ind
             </>
           )}
