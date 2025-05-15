@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { NavLink, Link, Outlet } from "react-router";
+import { NavLink, Link, Outlet } from "react-router-dom";
 import "../styles/calendar/Calendar.css";
 import CalendarHeader from "../components/calendar/CalendarHeader.jsx";
 import CalendarErrorBoundary from "../components/calendar/CalendarErrorBoundary.jsx";

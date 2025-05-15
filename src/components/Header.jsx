@@ -1,85 +1,147 @@
-import { useState, useEffect } from "react";
-import { Link } from "react-router";
-import Logo from "../assets/hospital-region-logo.jpeg";
-import QuitIcon from "../assets/exit-icon.webp";
+import React from "react";
+import styled from "styled-components";
+import { useNavigate } from "react-router-dom";
+import Logo from "../assets/hospital-region-logo.jpg";
+import ExitIcon from "../assets/exit-icon.webp";
 import SettingsIcon from "../assets/settings-icon-2.png";
-import AdminButton from "./auth/AdminButton";
-import "../styles/Header.css";
+import Clock from "./Clock";
 
-function Header() {
-  const [now, setNow] = useState(new Date());
+const HeaderWrapper = styled.header`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 70px;
+  padding: 0 16px;
+`;
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setNow(new Date());
-    }, 60000);
+const LeftSection = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 16px;
+`;
 
-    return () => clearInterval(interval); 
-  }, []);
+const LogoBox = styled.div`
+  display: flex;
+  align-items: center;
+  background: white;
+  border-radius: 10px;
+  padding: 6px 12px;
+  gap: 10px;
 
-  const weekdays = [
-    "Søndag",
-    "Mandag",
-    "Tirsdag",
-    "Onsdag",
-    "Torsdag",
-    "Fredag",
-    "Lørdag",
-  ];
-  const dayName = weekdays[now.getDay()];
-  const day = now.getDate().toString().padStart(2, "0");
-  const month = (now.getMonth() + 1).toString().padStart(2, "0");
-  const year = now.getFullYear();
-  const hours = now.getHours().toString().padStart(2, "0");
-  const minutes = now.getMinutes().toString().padStart(2, "0");
+  img {
+    height: 40px;
+  }
+
+  h1 {
+    font-size: 1rem;
+    color: black;
+    margin: 0;
+  }
+`;
+
+const LocationBox = styled.div`
+  background: white;
+  border-radius: 6px;
+  padding: 4px 10px;
+  display: flex;
+  flex-direction: column;
+
+  h2 {
+    font-size: 0.9rem;
+    margin: 0;
+    color: black;
+  }
+
+  h3 {
+    font-size: 0.7rem;
+    margin: 0;
+    color: grey;
+  }
+`;
+
+const RightSection = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 12px;
+`;
+
+const AdminButton = styled.button`
+  background: #2563eb;
+  color: white;
+  font-weight: bold;
+  font-size: 0.9rem;
+  padding: 8px 12px;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  height: 50px;
+  width: 60px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  &:hover {
+    background: #1d4ed8;
+  }
+`;
+
+const IconButton = styled.button`
+  background: ${(props) => props.bg || "#e5e5e5"};
+  border: none;
+  border-radius: 8px;
+  padding: 6px;
+  cursor: pointer;
+  height: 40px;
+  width: 40px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+
+  &:hover {
+    filter: brightness(1.1);
+  }
+`;
+
+const Header = () => {
+  const navigate = useNavigate();
 
   return (
-    <>
-      <div className="header__panel">
-        <div className="header__panel-left">
-          <Link to="/" className="header__panel-left-logo">
-            <img src={Logo} className="logo" alt="Logo" />
-            <h1>
-              Bornholms
-              <br />
-              Hospital
-            </h1>
-          </Link>
+    <HeaderWrapper>
+      <LeftSection>
+        <LogoBox>
+          <img src={Logo} alt="Hospital Logo" />
+          <h1>Bornholms Hospital</h1>
+        </LogoBox>
+        <LocationBox>
+          <h2>202-1</h2>
+          <h3>Kirurgisk afdeling</h3>
+        </LocationBox>
+      </LeftSection>
 
-          <Link to="/" className="header__panel-left-location">
-            <h1>202-1</h1>
-            <h2>Kirurgisk afdeling</h2>
-          </Link>
-        </div>
+      <RightSection>
+        <AdminButton onClick={() => navigate("/auth/login")}>Admin Login</AdminButton>
 
-        <div className="header__panel-right">
-          <div className="header__panel-right-actions">
-            <div className="flex gap-2 h-full">
-              <AdminButton />
+        <IconButton bg="#f87171">
+          <img src={ExitIcon} alt="Exit" />
+        </IconButton>
 
-              <div className="header__panel-right-actions">
-                <Link to="/" className="header__panel-right-actions-quit">
-                  <img src={QuitIcon} className="logo" alt="Quit" />
-                </Link>
+        <IconButton bg="#bfdbfe">
+          <img src={SettingsIcon} alt="Settings" />
+        </IconButton>
 
-                <Link to="/" className="header__panel-right-actions-settings">
-                  <img src={SettingsIcon} className="logo" alt="Settings" />
-                </Link>
-              </div>
-            </div>
-          </div>
-
-          <Link to="/calendar" className="header__clock">
-            <div className="header__clock-date">
-              {dayName} {day}-{month}-{year}
-            </div>
-            <div className="header__clock-time">
-              {hours}:{minutes}
-            </div>
-          </Link>
-        </div>
-      </div>
-    </>
+        <Clock />
+      </RightSection>
+    </HeaderWrapper>
   );
-}
+};
+
 export default Header;

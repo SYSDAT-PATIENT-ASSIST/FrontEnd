@@ -171,6 +171,28 @@ const DishForm = ({ formData, errors, onChange, onSave, onCancel }) => {
           />
           {errors.recipe && <Error>{errors.recipe}</Error>}
         </Field>
+
+        <Field>
+          <Label htmlFor="availableFrom">Tilgængelig fra</Label>
+          <Input
+            type="date"
+            id="availableFrom"
+            name="availableFrom"
+            value={formData.availableFrom}
+            onChange={onChange}
+          />
+        </Field>
+
+        <Field>
+          <Label htmlFor="availableUntil">Tilgængelig indtil</Label>
+          <Input
+            type="date"
+            id="availableUntil"
+            name="availableUntil"
+            value={formData.availableUntil}
+            onChange={onChange}
+          />
+        </Field>
       </Column>
 
       {/* Right Column */}

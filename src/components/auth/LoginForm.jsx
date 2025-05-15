@@ -1,148 +1,126 @@
-import { useState } from 'react';
-import { useNavigate } from 'react-router';
-import { ChefHat, User, Lock, LogIn } from 'lucide-react';
+import React, { useState } from "react";
+import styled from "styled-components";
+import { useNavigate } from "react-router-dom";
+
+// Styled components
+const FormWrapper = styled.form`
+  background: white;
+  padding: 2rem;
+  border-radius: 0.5rem;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 400px;
+`;
+
+const Title = styled.h2`
+  text-align: center;
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 1.5rem;
+`;
+
+const Label = styled.label`
+  font-weight: 500;
+  display: block;
+  margin-bottom: 0.5rem;
+`;
+
+const Input = styled.input`
+  width: 100%;
+  padding: 0.5rem;
+  margin-bottom: 1.25rem;
+  border: 1px solid #ccc;
+  border-radius: 0.375rem;
+`;
+
+const Button = styled.button`
+  width: 100%;
+  background: #2563eb;
+  color: white;
+  padding: 0.6rem;
+  border-radius: 0.375rem;
+  font-weight: 500;
+  transition: background 0.2s;
+
+  &:hover {
+    background: #1d4ed8;
+  }
+`;
+
+const ErrorBox = styled.div`
+  background: #fee2e2;
+  color: #b91c1c;
+  padding: 0.75rem;
+  border-radius: 0.375rem;
+  margin-bottom: 1.25rem;
+  font-size: 0.95rem;
+`;
 
 const LoginForm = () => {
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
   const navigate = useNavigate();
-  const [formData, setFormData] = useState({
-    username: '',
-    password: '',
-  });
-  const [error, setError] = useState('');
-  const [isLoading, setIsLoading] = useState(false);
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
+  const handleLogin = async (e) => {
+    e.preventDefault();
+    setError("");
+
+    try {
+      const response = await fetch("http://localhost:7070/auth/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ username, password }),
+      });
+
+      if (!response.ok) {
+        if (response.status === 401) {
+          setError("Forkert brugernavn eller adgangskode");
+        } else {
+          setError("Noget gik galt. Prøv igen senere.");
+        }
+        return;
+      }
+
+      const data = await response.json();
+      localStorage.setItem("token", data.token);
+      navigate("/kitchen");
+    } catch (err) {
+      console.error("Login fejl:", err);
+      setError("Kunne ikke oprette forbindelse til serveren.");
+    }
   };
 
-const handleSubmit = async (e) => {
-  e.preventDefault();
-  setError('');
-  setIsLoading(true);
-
-  try {
-    const response = await fetch('http://localhost:7070/auth/login', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        username: formData.username,
-        password: formData.password,
-      }),
-    });
-
-    if (!response.ok) {
-      const errorData = await response.json();
-      throw new Error(errorData.message || 'Login mislykkedes');
-    }
-
-    const data = await response.json();
-
-    // Store token if returned
-    if (data.token) {
-      localStorage.setItem('token', data.token);
-    }
-
-    navigate('/kitchen');
-  } catch (err) {
-    setError(err.message || 'Ugyldige loginoplysninger. Prøv igen.');
-  } finally {
-    setIsLoading(false);
-  }
-};
-
   return (
-    <div className='w-full max-w-md p-8 bg-white rounded-lg shadow-lg'>
-      <div className='text-center mb-8'>
-        <div className='flex items-center justify-center mb-4'>
-          <ChefHat className='w-12 h-12 text-blue-600' />
-        </div>
-        <h1 className='text-3xl font-bold text-gray-800 mb-2'>
-          Velkommen til køkkenet
-        </h1>
-        <p className='text-gray-600'>
-          Log ind for at administrere menuen og måltidsplaner
-        </p>
+    <FormWrapper onSubmit={handleLogin}>
+      <Title>Velkommen til køkkenet</Title>
+
+      {error && <ErrorBox>{error}</ErrorBox>}
+
+      <div>
+        <Label>Brugernavn</Label>
+        <Input
+          type="text"
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}
+          required
+        />
       </div>
 
-      {error && (
-        <div className='mb-4 p-3 bg-red-100 border-l-4 border-red-500 text-red-700 rounded'>
-          {error}
-        </div>
-      )}
+      <div>
+        <Label>Adgangskode</Label>
+        <Input
+          type="password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          required
+        />
+      </div>
 
-      <form onSubmit={handleSubmit} className='space-y-6'>
-        <div>
-          <label
-            className='block text-gray-700 text-sm font-bold mb-2'
-            htmlFor='username'
-          >
-            Brugernavn
-          </label>
-          <div className='relative'>
-            <div className='absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none'>
-              <User className='h-5 w-5 text-gray-400' />
-            </div>
-            <input
-              type='text'
-              id='username'
-              name='username'
-              value={formData.username}
-              onChange={handleChange}
-              className='block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md leading-5 bg-white text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500'
-              placeholder='Indtast dit brugernavn'
-              required
-            />
-          </div>
-        </div>
-
-        <div>
-          <label
-            className='block text-gray-700 text-sm font-bold mb-2'
-            htmlFor='password'
-          >
-            Adgangskode
-          </label>
-          <div className='relative'>
-            <div className='absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none'>
-              <Lock className='h-5 w-5 text-gray-400' />
-            </div>
-            <input
-              type='password'
-              id='password'
-              name='password'
-              value={formData.password}
-              onChange={handleChange}
-              className='block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md leading-5 bg-white text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500'
-              placeholder='Indtast din adgangskode'
-              required
-            />
-          </div>
-        </div>
-
-        <button
-          type='submit'
-          disabled={isLoading}
-          className={`w-full flex justify-center items-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 ${
-            isLoading ? 'opacity-75 cursor-not-allowed' : ''
-          }`}
-        >
-          {isLoading ? (
-            <div className='w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin'></div>
-          ) : (
-            <>
-              <LogIn className='w-5 h-5 mr-2' />
-              Log ind
-            </>
-          )}
-        </button>
-      </form>
-    </div>
+      <Button type="submit">Log ind</Button>
+    </FormWrapper>
   );
 };
 

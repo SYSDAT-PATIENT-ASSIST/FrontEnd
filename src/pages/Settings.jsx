@@ -1,6 +1,5 @@
 import { useState } from 'react'
-import { NavLink, Link, Outlet } from "react-router"
-import Logo from '../assets/HospitalLogo.jpg'
+import { NavLink, Link, Outlet } from "react-router-dom"
 import '../styles/Index.css'
 import Header from '../components/Header.jsx'
 

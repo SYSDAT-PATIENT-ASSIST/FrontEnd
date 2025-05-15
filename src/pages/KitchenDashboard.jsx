@@ -1,38 +1,40 @@
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router';
+import { Link } from 'react-router-dom';
 import {
   UtensilsCrossed,
   CalendarDays,
   ClipboardList,
   TrendingUp,
 } from 'lucide-react';
+import { getToken } from '../utils/auth';
 
 const KitchenDashboard = () => {
   const [dishCount, setDishCount] = useState(0);
 
   useEffect(() => {
-    const token = localStorage.getItem('token');
-
-    fetch('http://localhost:7070/api/dishes', {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    })
-      .then((res) => {
+    const fetchDishes = async () => {
+      try {
+        const token = await getToken();
+        const res = await fetch('http://localhost:7070/api/dishes', {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
         if (!res.ok) throw new Error('Kunne ikke hente retter');
-        return res.json();
-      })
-      .then((data) => setDishCount(data.length))
-      .catch((err) => {
+        const data = await res.json();
+        setDishCount(data.length);
+      } catch (err) {
         console.error('Fejl ved hentning af retter:', err);
         setDishCount(0);
-      });
+      }
+    };
+
+    fetchDishes();
   }, []);
 
   return (
     <div className='container mx-auto p-4'>
       <div className='bg-white rounded-lg shadow p-6'>
-        {/* Welcome Header */}
         <div className='mb-8'>
           <h1 className='text-3xl font-bold text-gray-800 mb-2'>
             Velkommen til køkkenet
@@ -42,9 +44,7 @@ const KitchenDashboard = () => {
           </p>
         </div>
 
-        {/* Quick Actions Grid */}
         <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8'>
-          {/* Menu Management Card */}
           <Link
             to='/menu'
             className='p-6 bg-blue-50 rounded-lg hover:bg-blue-100 transition-colors'
@@ -60,7 +60,6 @@ const KitchenDashboard = () => {
             </div>
           </Link>
 
-          {/* Calendar Card */}
           <Link
             to='/calendar'
             className='p-6 bg-green-50 rounded-lg hover:bg-green-100 transition-colors'
@@ -76,7 +75,6 @@ const KitchenDashboard = () => {
             </div>
           </Link>
 
-          {/* Orders Card */}
           <Link
             to='/orders'
             className='p-6 bg-purple-50 rounded-lg hover:bg-purple-100 transition-colors'
@@ -95,7 +93,6 @@ const KitchenDashboard = () => {
           </Link>
         </div>
 
-        {/* Stats Section */}
         <div className='bg-gray-50 rounded-lg p-6'>
           <h2 className='text-xl font-semibold text-gray-800 mb-4 flex items-center'>
             <TrendingUp className='w-6 h-6 mr-2 text-gray-600' />
