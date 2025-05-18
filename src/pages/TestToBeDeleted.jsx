@@ -17,13 +17,14 @@ function TestToBeDeleted() {
       .then(setSingleOrder)
       .catch(err => setError(err));
 
-    mockFacade.updateOrderStatus('3', 'DELIVERED')
+    mockFacade.updateOrderStatus(3, 'afsendt')
       .then(setUpdatedOrder)
       .catch(err => setError(err));
   }, []);
+  
 
   const countsByDishAndStatus = orders.reduce((counts, order) => {
-    const dishName = order.dishes?.[0]?.name ?? 'Unknown Dish';
+    const dishName = order.dish?.name ?? 'Unknown Dish';
     const status = order.status || 'UNKNOWN';
     const key = `${dishName}-${status}`;
     counts[key] = (counts[key] || 0) + 1;
@@ -58,11 +59,27 @@ function TestToBeDeleted() {
       </section>
 
       <section>
-        <h2>Order after update (id: "3", status: "DELIVERED")</h2>
-        {updatedOrder
-          ? <pre>{JSON.stringify(updatedOrder, null, 2)}</pre>
-          : <p>Loading…</p>}
-      </section>
+  <h2>Order Status</h2>
+  <div style={{ display: 'flex', gap: '2rem' }}>
+    <div>
+      <h3>Before Update</h3>
+      {singleOrder ? (
+        <pre>Status: {singleOrder.status}</pre>
+      ) : (
+        <p>Loading original status...</p>
+      )}
+    </div>
+    
+    <div>
+      <h3>After Update</h3>
+      {updatedOrder ? (
+        <pre>Status: {updatedOrder.status}</pre>
+      ) : (
+        <p>Loading updated status...</p>
+      )}
+    </div>
+  </div>
+</section>
     </div>
   );
 }
