@@ -194,7 +194,7 @@ function MenuManagement() {
         protein: Number(formData.protein),
         carbohydrates: Number(formData.carbs),
         fat: Number(formData.fat),
-        status: "TILGÆNGELIG",
+        status: "tilgængelig",
         allergens: formData.allergens
           .split(",")
           .map((a) => a.trim().toUpperCase())
@@ -248,10 +248,11 @@ function MenuManagement() {
         fetch(`http://localhost:7070/api/dishes/${id}/${field}`, {
           method: "PATCH",
           headers: {
-            "Content-Type": "text/plain", 
+            "Content-Type": "application/json", 
             Authorization: `Bearer ${token}`,
           },
-          body: String(value), 
+          body: JSON.stringify(value),
+          //body: String(value), 
         });
 
       const putRecipe = () =>
