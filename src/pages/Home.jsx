@@ -18,6 +18,7 @@ function Home() {
           <Link to="/calendar"> <img src={Logo} /> <h1>Hospital info</h1> </Link>
           <Link to="/calendar"> <img src={Logo} /> <h1>Underholdning</h1> </Link>
           <Link to="/calendar"> <img src={Logo} /> <h1>Min SP</h1> </Link>
+          <Link to="/MissingOrders"> <img src={Logo} /> <h1>Manglende bestillinger</h1></Link>
 
         </div>
 
