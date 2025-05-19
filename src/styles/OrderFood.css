@@ -27,29 +27,4 @@
     text-align: center;
 }
 
-.commentfield_orderfood {
-    width: 450px;
-    height: 150px;
-    border-radius: 8px;
-    padding: 5px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 1rem;
-    box-shadow: 0 6px 10px rgba(116, 173, 68, 0.2);
-    border: none;
-}
 
-.button_orderfood_custom {
-    background-color: #84d045;
-    border-radius: 8px;
-    margin-top: 20px;
-    font-size: 1rem;
-    font-weight: bold;
-    padding: 10px 50px;
-}
-
-.button_orderfood_custom:hover {
-    background-color: #82e631;
-    opacity: 1;
-  }
