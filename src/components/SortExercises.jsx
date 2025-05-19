@@ -1,0 +1,128 @@
+import React, { useState } from "react";
+//import '../styles/SortExercises.css'
+import ExerciseCard from './ExerciseCard';
+
+// Dummy video data
+export const videos = [
+  {
+    id: 1,
+    title: "Rehabilitate Back",
+    category: "Back",
+    date: "2024-12-01",
+    duration: 300,
+    videoId: "PTgQsURc3i8",           // <-- your YouTube ID
+  },
+  {
+    id: 2,
+    title: "Build Arms",
+    category: "Arms",
+    date: "2024-11-20",
+    duration: 180,
+    videoId: "dQw4w9WgXcQ",
+  },
+  {
+    id: 3,
+    title: "Leg Day Strength",
+    category: "Legs",
+    date: "2024-10-05",
+    duration: 240,
+    videoId: "M7lc1UVf-VE",
+  },
+];
+
+// Filter + sort funktion
+function getFilteredAndSortedVideos(videos, category, sortType) {
+  let filtered = category === "All"
+    ? videos
+    : videos.filter(video => video.category === category);
+
+  switch (sortType) {
+    case "title":
+      filtered.sort((a, b) => a.title.localeCompare(b.title));
+      break;
+    case "date":
+      filtered.sort((a, b) => new Date(b.date) - new Date(a.date));
+      break;
+    case "duration":
+      filtered.sort((a, b) => a.duration - b.duration);
+      break;
+    default:
+      break;
+  }
+
+  return filtered;
+}
+
+// Tilfældig video
+function getRandomVideo(videos) {
+  const index = Math.floor(Math.random() * videos.length);
+  return videos[index];
+}
+
+// Video preview grid, now using ExerciseCard
+const SortExercisesGrid = ({ videos }) => (
+  <section className="exercises__grid">
+    {videos.map(video => (
+      <ExerciseCard key={video.id} video={video} />
+    ))}
+  </section>
+);
+
+// Hovedkomponent
+const SortExercises = () => {
+  const [selectedCategory, setSelectedCategory] = useState("All");
+  const [sortType, setSortType] = useState("date");
+
+  const filteredVideos = getFilteredAndSortedVideos(videos, selectedCategory, sortType);
+
+  return (
+    <main className="exercises__wrapper">
+      <section className="exercises__controls">
+        <div className="exercises__control-group">
+          <label htmlFor="category" className="exercises__label">Category</label>
+          <select
+            id="category"
+            className="exercises__select"
+            value={selectedCategory}
+            onChange={e => setSelectedCategory(e.target.value)}
+          >
+            <option>All</option>
+            <option>Back</option>
+            <option>Arms</option>
+            <option>Legs</option>
+          </select>
+        </div>
+
+        <div className="exercises__control-group">
+          <label htmlFor="sort" className="exercises__label">Sort By</label>
+          <select
+            id="sort"
+            className="exercises__select"
+            value={sortType}
+            onChange={e => setSortType(e.target.value)}
+          >
+            <option value="date">Newest</option>
+            <option value="title">Alphabetical</option>
+            <option value="duration">Shortest</option>
+          </select>
+        </div>
+
+        <div className="exercises__random">
+          <button
+            className="exercises__button"
+            onClick={() => {
+              const randomVideo = getRandomVideo(videos);
+              alert(`Random video: ${randomVideo.title}`);
+            }}
+          >
+            Show Random Exercise
+          </button>
+        </div>
+      </section>
+
+      <SortExercisesGrid videos={filteredVideos} />
+    </main>
+  );
+};
+
+export default SortExercises;

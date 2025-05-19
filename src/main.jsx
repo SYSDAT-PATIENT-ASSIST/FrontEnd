@@ -15,6 +15,7 @@ import DishCalendarPage from "./pages/DishCalenderPage.jsx";
 import CalendarLanding from "./components/calendar/CalendarLanding.jsx";
 import CalendarView from "./components/calendar/CalendarView.jsx";
 import { SettingsProvider } from "./components/SettingsContext";
+import Exercises from "./pages/Exercises.jsx";
 
 createRoot(document.getElementById("root")).render(
   <SettingsProvider>
@@ -29,6 +30,7 @@ createRoot(document.getElementById("root")).render(
             <Route path="kitchen" element={<KitchenDashboard />} />
             <Route path="auth/login" element={<LoginPage />} />
             <Route path="/DishCalenderPage" element={<DishCalendarPage />} />
+            <Route path="/exercises" element={<Exercises />} />
           </Route>
           <Route path="/calendar" element={<Calendar />}>
             <Route index element={<CalendarLanding />} />
