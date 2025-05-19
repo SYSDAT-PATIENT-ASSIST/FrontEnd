@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { format } from "date-fns";
 
-export default function DishSelector({ selectedDate }) {
+export default function DishSelector({ selectedDate, activeDishes, setActiveDishes }) {
   const [dishes, setDishes] = useState([]);
-  const [activeDishes, setActiveDishes] = useState({});
   const [searchTerm, setSearchTerm] = useState("");
 
   useEffect(() => {
+    // Opret en liste af retter
     setDishes([
       { id: 1, name: "Grilled Salmon" },
       { id: 2, name: "Pumpkin Soup" },
@@ -29,13 +29,12 @@ export default function DishSelector({ selectedDate }) {
           ...prev[dateKey],
           [dishId]: {
             active: !currentStatus,
+            name: dishes.find((dish) => dish.id === dishId).name,
           },
         },
       };
     });
   };
-
-  const dateKey = format(selectedDate, "yyyy-MM-dd");
 
   // Filter dishes based on search term
   const filteredDishes = dishes.filter((dish) =>
@@ -44,7 +43,7 @@ export default function DishSelector({ selectedDate }) {
 
   return (
     <div className="team-e__dish-selector">
-      <h2 className="team-e__subtitle">Dishes for {dateKey}</h2>
+      <h2 className="team-e__subtitle">Dishes for {format(selectedDate, "yyyy-MM-dd")}</h2>
 
       <div className="team-e__search-dishes">
         <input
@@ -56,20 +55,22 @@ export default function DishSelector({ selectedDate }) {
         />
       </div>
 
-      {filteredDishes.map((dish) => {
-        const isActive = activeDishes[dateKey]?.[dish.id]?.active;
-        return (
-          <div key={dish.id} className="team-e__dish">
-            <span>{dish.name}</span>
-            <button
-              className={`team-e__toggle-button ${isActive ? "active" : "inactive"}`}
-              onClick={() => toggleDish(dish.id)}
-            >
-              {isActive ? "Deactivate" : "Activate"}
-            </button>
-          </div>
-        );
-      })}
+      <div className="team-e__all-dish-selector">
+        {filteredDishes.map((dish) => {
+          const isActive = activeDishes[format(selectedDate, "yyyy-MM-dd")]?.[dish.id]?.active;
+          return (
+            <div key={dish.id} className="team-e__dish">
+              <span>{dish.name}</span>
+              <button
+                className={`team-e__toggle-button ${isActive ? "active" : "inactive"}`}
+                onClick={() => toggleDish(dish.id)}
+                >
+                {isActive ? "Deactivate" : "Activate"}
+              </button>
+            </div>
+          );
+        })}
+      </div>
     </div>
   );
 }

@@ -1,118 +1,172 @@
-
 .team-e__dish-calendar-page {
-    padding: 20px;
-    font-family: Arial, sans-serif;
-  }
-  
-  .team-e__title {
-    font-size: 24px;
-    font-weight: bold;
-    margin-bottom: 20px;
-  }
-  
-  .team-e__calendar-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 20px;
-  }
-  
-  /* Calendar */
-  .team-e__calendar {
-    border: 1px solid #ccc;
-    padding: 10px;
-    border-radius: 8px;
-  }
-  
-  .team-e__subtitle {
-    font-size: 18px;
-    margin-bottom: 10px;
-  }
-  
-  .team-e__calendar-weekdays {
-    display: grid;
-    grid-template-columns: repeat(7, 1fr);
-    text-align: center;
-    margin-bottom: 8px;
-    font-weight: bold;
-  }
-  
-  .team-e__calendar-days {
-    display: grid;
-    grid-template-columns: repeat(7, 1fr);
-    gap: 5px;
-  }
-  
-  .team-e__day {
-    color: black;
-    padding: 10px;
-    background-color: #f0f0f0;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-  }
-  
-  .team-e__day:hover {
-    background-color: #cce5ff;
-  }
-  
-  .team-e__day.selected {
-    background-color: #007bff;
-    color: white;
-  }
-  
-  /* DishSelector */
-  .team-e__dish-selector {
-    border: 1px solid #ccc;
-    padding: 10px;
-    border-radius: 8px;
-  }
-  
-  .team-e__dish {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 8px;
-    color: black;
-    padding: 0.5rem;
-    border-radius: 5px;
-    background-color: white;
-  }
+  padding: 20px;
+  font-family: Arial, sans-serif;
+}
 
-  .team-e__search-dishes {
-    margin-bottom: 8px;
-    color: black;
-    padding: 0.5rem;
-    
-    border-radius: 5px;
-    background-color: white;
-    outline: none;
-  }
+.team-e__title {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
 
-  .team-e__search-input {
-    width: 100%;
-    padding: 0.5px;
-    border: 0px;
-  }
+.team-e__calendar-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
 
-  .team-e__search-input:focus {
-    outline: none;
-  }
+.team-e__calendar {
+  border: 1px solid #ccc;
+  padding: 15px;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+}
 
-  
-  .team-e__toggle-button {
-    padding: 6px 12px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
+.team-e__subtitle {
+  font-size: 18px;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.team-e__calendar-weekdays {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  text-align: center;
+  margin-bottom: 8px;
+  font-weight: bold;
+  color: #555;
+}
+
+.team-e__calendar-days {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 5px;
+}
+
+.team-e__day {
+  color: black;
+  padding: 10px;
+  background-color: #f0f0f0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.team-e__day:hover {
+  background-color: #cce5ff;
+}
+
+.team-e__day.selected {
+  background-color: #007bff;
+  color: white;
+}
+
+/* DishSelector */
+.team-e__dish-selector {
+  border: 1px solid #ccc;
+  padding: 15px;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+}
+
+.team-e__all-dish-selector {
+  height: 300px;
+  overflow: scroll;
+  scrollbar-width: thin;
+}
+
+.team-e__dish {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+  color: black;
+  padding: 0.8rem;
+  border-radius: 5px;
+  background-color: white;
+  transition: background-color 0.3s;
+}
+
+.team-e__dish:hover {
+  background-color: #f1f1f1;
+}
+
+.team-e__search-dishes {
+  margin-bottom: 15px;
+  color: black;
+  padding: 0.8rem;
+  border-radius: 5px;
+  background-color: white;
+  outline: none;
+  width: 100%;
+}
+
+.team-e__search-input {
+  width: 100%;
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.team-e__search-input:focus {
+  outline: none;
+  border-color: #007bff;
+}
+
+.team-e__toggle-button {
+  padding: 6px 12px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.team-e__toggle-button.active {
+  background-color: #dc3545;
+  color: white;
+}
+
+.team-e__toggle-button.inactive {
+  background-color: #28a745;
+  color: white;
+}
+
+.team-e__popup {
+  margin-top: 20px;
+  padding: 15px;
+  background-color: #ffffff;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  animation: fadeIn 0.3s ease-in-out;
+  color: black; 
+}
+
+
+.team-e__deactivate-button {
+  padding: 6px 12px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  background-color: #ffc107; /* Gul farve for deaktiveringsknappen */
+  color: white;
+  transition: background-color 0.3s;
+}
+
+.team-e__deactivate-button:hover {
+  background-color: #e0a800;
+}
+
+
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
   }
-  
-  .team-e__toggle-button.active {
-    background-color: #dc3545;
-    color: white;
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
-  
-  .team-e__toggle-button.inactive {
-    background-color: #28a745;
-    color: white;
-  }
-  
+}
