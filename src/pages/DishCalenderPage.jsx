@@ -20,14 +20,6 @@ export default function DishCalendarPage() {
       <h1 className="team-e__title">Dish Calendar Manager</h1>
 
       <div className="team-e__calendar-grid">
-        {/* Kalender – klik på dato viser popup */}
-   <CalendarView
-  selectedDate={selectedDate}
-  setSelectedDate={handleDateSelect}
-  activeDishes={activeDishes}
-  setActiveDishes={setActiveDishes}
-/>
-
         {/* Retter vises kun hvis en dato er valgt */}
         {selectedDate && (
           <DishSelector
@@ -36,6 +28,14 @@ export default function DishCalendarPage() {
             setActiveDishes={setActiveDishes}
           />
         )}
+        {/* Kalender – klik på dato viser popup */}
+          <CalendarView
+          selectedDate={selectedDate}
+          setSelectedDate={handleDateSelect}
+          activeDishes={activeDishes}
+          setActiveDishes={setActiveDishes}
+        />
+
       </div>
 
       {/* Popup vises kun hvis aktivt valgt */}

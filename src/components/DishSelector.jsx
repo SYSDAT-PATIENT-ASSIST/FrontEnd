@@ -55,20 +55,22 @@ export default function DishSelector({ selectedDate, activeDishes, setActiveDish
         />
       </div>
 
-      {filteredDishes.map((dish) => {
-        const isActive = activeDishes[format(selectedDate, "yyyy-MM-dd")]?.[dish.id]?.active;
-        return (
-          <div key={dish.id} className="team-e__dish">
-            <span>{dish.name}</span>
-            <button
-              className={`team-e__toggle-button ${isActive ? "active" : "inactive"}`}
-              onClick={() => toggleDish(dish.id)}
-            >
-              {isActive ? "Deactivate" : "Activate"}
-            </button>
-          </div>
-        );
-      })}
+      <div className="team-e__all-dish-selector">
+        {filteredDishes.map((dish) => {
+          const isActive = activeDishes[format(selectedDate, "yyyy-MM-dd")]?.[dish.id]?.active;
+          return (
+            <div key={dish.id} className="team-e__dish">
+              <span>{dish.name}</span>
+              <button
+                className={`team-e__toggle-button ${isActive ? "active" : "inactive"}`}
+                onClick={() => toggleDish(dish.id)}
+                >
+                {isActive ? "Deactivate" : "Activate"}
+              </button>
+            </div>
+          );
+        })}
+      </div>
     </div>
   );
 }

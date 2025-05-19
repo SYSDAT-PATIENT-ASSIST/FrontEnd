@@ -70,6 +70,12 @@
   background-color: #f9f9f9;
 }
 
+.team-e__all-dish-selector {
+  height: 300px;
+  overflow: scroll;
+  scrollbar-width: thin;
+}
+
 .team-e__dish {
   display: flex;
   justify-content: space-between;
