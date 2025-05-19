@@ -14,7 +14,7 @@ const MissingOrders = () => {
 
     return ( 
         <div className="bg-white rounded-2xl p-4 mt-8 md:w-[40rem] text-black m-auto w-[20rem] h-[30rem] overflow-y-scroll">
-            <h1 className="font-semibold text-2xl mb-2">Patienter der mangler mad</h1>
+            <h1 className="font-semibold text-2xl mb-2">Patienter der mangler at bestille mad</h1>
             <div className="flex flex-col gap-2">
                 {patient.map((p, index) => (
                     <div key={index} className="flex items-center border-b-2 border-gray-300 p-4">
