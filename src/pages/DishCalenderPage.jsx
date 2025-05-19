@@ -5,7 +5,8 @@ import ActiveDishes from "../components/ActiveDishes";
 import "../styles/DishCalenderPage.css";
 
 export default function DishCalendarPage() {
-  const [selectedDate, setSelectedDate] = useState(null);
+  // Default to today's date
+  const [selectedDate, setSelectedDate] = useState(new Date());
   const [activeDishes, setActiveDishes] = useState({});
   const [showPopup, setShowPopup] = useState(false);
 
@@ -20,22 +21,19 @@ export default function DishCalendarPage() {
       <h1 className="team-e__title">Dish Calendar Manager</h1>
 
       <div className="team-e__calendar-grid">
-        {/* Retter vises kun hvis en dato er valgt */}
-        {selectedDate && (
-          <DishSelector
-            selectedDate={selectedDate}
-            activeDishes={activeDishes}
-            setActiveDishes={setActiveDishes}
-          />
-        )}
-        {/* Kalender – klik på dato viser popup */}
-          <CalendarView
+        {/* Retter vises nu altid fordi selectedDate altid har en værdi */}
+        <DishSelector
+          selectedDate={selectedDate}
+          activeDishes={activeDishes}
+          setActiveDishes={setActiveDishes}
+        />
+
+        <CalendarView
           selectedDate={selectedDate}
           setSelectedDate={handleDateSelect}
           activeDishes={activeDishes}
           setActiveDishes={setActiveDishes}
         />
-
       </div>
 
       {/* Popup vises kun hvis aktivt valgt */}
@@ -43,8 +41,8 @@ export default function DishCalendarPage() {
         <div className="team-e__popup">
           <ActiveDishes
             selectedDate={selectedDate}
-  activeDishes={activeDishes}
-  setActiveDishes={setActiveDishes}
+            activeDishes={activeDishes}
+            setActiveDishes={setActiveDishes}
           />
 
           <button
