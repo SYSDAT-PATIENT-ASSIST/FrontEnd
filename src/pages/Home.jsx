@@ -1,4 +1,3 @@
-import { useState } from 'react'
 import { NavLink, Link, Outlet } from "react-router"
 import Logo from '../assets/HospitalLogo.jpg'
 import '../styles/Home.css'
@@ -18,6 +17,7 @@ function Home() {
           <Link to="/calendar"> <img src={Logo} /> <h1>Hospital info</h1> </Link>
           <Link to="/calendar"> <img src={Logo} /> <h1>Underholdning</h1> </Link>
           <Link to="/calendar"> <img src={Logo} /> <h1>Min SP</h1> </Link>
+          <Link to="/Link"> <img src={Logo} /> <h1>Min Sundhed</h1></Link>
 
         </div>
 

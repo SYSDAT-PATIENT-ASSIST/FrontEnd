@@ -11,12 +11,11 @@ import MenuManagement from './pages/MenuManagment.jsx';
 import KitchenDashboard from './pages/KitchenDashboard.jsx';
 import LoginPage from './pages/LoginPage.jsx';
 
-
-
 import Calendar from './pages/Calendar.jsx'
 import DishCalendarPage from './pages/DishCalenderPage.jsx'
 import CalendarLanding from './components/calendar/CalendarLanding.jsx'
 import CalendarView from './components/calendar/CalendarView.jsx'
+import LinkToPatientWebsite from './pages/LinkToPatientWebsite.jsx';
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
@@ -31,6 +30,7 @@ createRoot(document.getElementById('root')).render(
             <Route path='kitchen' element={<KitchenDashboard />} />
             <Route path='auth/login' element={<LoginPage />} />
             <Route path="/DishCalenderPage" element={<DishCalendarPage />} />
+            <Route path="Link" element={<LinkToPatientWebsite/>}/>
           </Route>
           <Route path="/calendar" element={<Calendar />}>
             <Route index element={<CalendarLanding />} />
