@@ -8,16 +8,17 @@ const GridOrderFoodContainer = styled.div`
     flex-direction: column;
     gap: 30px;    
     padding: 40px 0; 
+    margin-top: 30px;
 `;
 
 
 const BoxDish = styled.div`
   border-radius: 8px;
-  height: 90px;
-  width: 250px;
+  height: 100px;
+  width: 270px;
   background-color: ${(props) => 
     props.$isSoldOut ? '#9d2e0f' : // sold out color
-    props.$isOrdered ? '#f37b31' : '#65a233'}; // background color changes when the dish is ordered
+    props.$isOrdered ? '#f17223' : '#65a233'}; // background color changes when the dish is ordered
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -36,7 +37,7 @@ const BoxDish = styled.div`
     box-shadow: 0 12px 20px rgba(116, 173, 68, 0.6);
     background-color:${(props) => 
       props.$isSoldOut ? '##9d2e0f' : // sold out color
-      props.$isOrdered ? '#f37b31' : '#84d045'}; // background color changes when the dish is ordered
+      props.$isOrdered ? '#f17223' : '#84d045'}; // background color changes when the dish is ordered
     opacity: 1;
   }
 `;
@@ -49,18 +50,20 @@ const StyledOrderDialog = styled.dialog`
   margin: 10px; 
   background-color: #65a233;
   position: fixed; /* stays in the same spot on the screen */
-  top: 470px;
+  top: 450px;
   left: 50%;
   transform: translate(-50%, -50%); /* centers the dialog */
   justify-items: center;
-  height: 350px;
-  width: 550px; 
+  height:400px;
+  width: 570px; 
   flex-direction: column;
   align-items: center;
   text-align: center;
   font-size: 19px;
 
   & h3 {
+    font-size: 25px;
+    font-weight: bold;
     margin-top: 0rem;;
     margin-bottom: 0rem; 
   }
@@ -72,16 +75,72 @@ const StyledOrderDialog = styled.dialog`
 `;
 
 
+const Button_orderfood_custom = styled.button`
+    background-color: #84d045;
+    border : black solid 1px;
+    box-shadow: black 0px 0px 4px;
+    border-radius: 8px;
+    margin-top: 20px;
+    font-size: 1.3 rem;
+    font-weight: bold;
+    padding: 10px 50px;
+    width: 190px;
+    height: 50px;
+
+    &:hover {
+    background-color: #82e631;
+    opacity: 1;
+  }
+
+`;
+
+
+const ButtonOrderfoodClose = styled.button`
+    background-color: #84d045;
+    border : black solid 1px;
+    box-shadow: black 0px 0px 4px;
+    border-radius: 8px;
+    margin-top: 20px;
+    font-size: 17px;
+    font-weight: bold;
+    padding: 10px 50px;
+    width: 190px;
+    height: 50px;
+
+    &:hover {
+    background-color: #82e631;
+    opacity: 1;
+  }
+
+`;
+
+
 const CloseOrderButton = styled.button`
   position: absolute; /*position to the right corner*/
-  top: 5px;
-  right: 15px;
+  top: -10px;
+  right: 20px;
   background: none;
   border: none;
   color: black;
-  font-size: 35px;
+  font-size: 40px;
   cursor: pointer;
 `;
+
+
+const Commentfield_orderfood = styled.textarea`
+    width: 450px;
+    height: 150px;
+    border-radius: 8px;
+    padding: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1rem;
+    background-color: #f2f2f2;
+    box-shadow: 0 6px 10px rgba(116, 173, 68, 0.2);
+    border: none;
+  `;
+
 
 const ConfirmationOrderDialog = styled.dialog`
   border: none;
@@ -90,20 +149,22 @@ const ConfirmationOrderDialog = styled.dialog`
   margin: 10px; 
   background-color: #65a233;
   position: fixed; /* stays in the same spot on the screen */
-  top: 460px;
+  top: 405px;
   left: 50%;
   transform: translate(-50%, -50%); /* centers the dialog */
   justify-items: center;
-  height: 250px;
-  width: 350px; 
+  height: 320px;
+  width: 450px; 
   flex-direction: column;
   align-items: center;
   text-align: center;
-  font-size: 19px;
+
 
   & h3 {
     margin-top: 0rem;
     margin-bottom: 3rem; 
+    font-size: 25px;
+     font-weight: bold;
   }
 
   & p {
@@ -113,11 +174,16 @@ const ConfirmationOrderDialog = styled.dialog`
 `;
 
 const CancelOrderButton = styled.button`
-  background-color: #f37b31;
+  background-color: #f17223;
+  box-shadow: black 0px 0px 4px;
   padding: 6px 12px;
   border-radius: 5px;
+  border: black solid 1px;
   font-weight: bold;
+  width: 120px;
+  height: 40px;
   margin-top: 10px;
+  font-size: 17px;
 `;
 
 const CancelOrderDialog = styled.dialog`
@@ -127,26 +193,48 @@ const CancelOrderDialog = styled.dialog`
   margin: 10px; 
   background-color: #65a233;
   position: fixed; /* stays in the same spot on the screen */
-  top: 460px;
+  top: 405px;
   left: 50%;
   transform: translate(-50%, -50%); /* centers the dialog */
   justify-items: center;
-  height: 250px;
-  width: 350px; 
+  height: 310px;
+  width: 440px; 
   flex-direction: column;
   align-items: center;
   text-align: center;
-  font-size: 19px;
+
 
   & h3 {
     margin-top: 3rem;
     margin-bottom: 3rem; 
+    font-weight: bold;
+    font-size: 21px;
   }
 
   & p {
     margin-bottom: 3rem; 
     line-height: 1.6; /* space between text lines */
   }
+`;
+
+const ButtonConfirmOrderfoodCustom = styled.button`
+    background-color: #84d045;
+    border : black solid 1px;
+    box-shadow: black 0px 0px 4px;
+    border-radius: 8px;
+    margin-top: 20px;
+    font-size: 1.3 rem;
+    font-weight: bold;
+    padding: 10px 50px;
+    width: 279px;
+    height: 55px;
+    font-size: 19px;
+
+    &:hover {
+    background-color: #82e631;
+    opacity: 1;
+  }
+
 `;
 
 
@@ -255,15 +343,15 @@ function OrderFood() {
                    <CloseOrderButton onClick={() => orderDialogRef.current.close()}>x</CloseOrderButton>
                     <h3>{selectedDish.name}</h3>
                     <p><strong>Beskrivelse:</strong> {selectedDish.description || "Ingen beskrivelse tilgængelig"}</p>
-                    <textarea className="commentfield_orderfood" placeholder="Skriv en kommentar her med allergier mv." value={note} onChange={(e) => setNote(e.target.value)}></textarea>
-                    {/* <button className="button_orderfood_custom" onClick={() => createOrder(selectedDish)}>Bestil</button> for use when we want to use our own API (backend) */}
-                    <button className="button_orderfood_custom" onClick={() => {
+                    <Commentfield_orderfood placeholder="Skriv en kommentar her med allergier mv." value={note} onChange={(e) => setNote(e.target.value)}></Commentfield_orderfood>
+                    {/* <Button_orderfood_custom onClick={() => createOrder(selectedDish)}>Bestil</Button_orderfood_custom> for use when we want to use our own API (backend) */}
+                    <Button_orderfood_custom onClick={() => {
                       orderDialogRef.current.close();        
                       confirmationDialogRef.current.showModal();
                       setOrderedDishId(selectedDish.id); // Temporary: used only for frontend testing without backend. with backend: setOrderedDishId(response.dish.id);
                       setOrderId(1); // Temporary dummy ID: should be removed when backend returns a real orderId. with backend: setOrderId(response.id);
                       }}>Bestil
-                    </button>
+                    </Button_orderfood_custom>
                   </>  
                 )}
             </StyledOrderDialog>
@@ -272,13 +360,13 @@ function OrderFood() {
               <CloseOrderButton onClick={() => confirmationDialogRef.current.close()}>x</CloseOrderButton>
               <h3>Tak for din bestilling</h3>
               <h3>{selectedDish?.name}</h3>
-              <button className="button_orderfood_custom" onClick={() => confirmationDialogRef.current.close()}>Luk vindue</button>        
+              <ButtonOrderfoodClose onClick={() => confirmationDialogRef.current.close()}>Luk vindue</ButtonOrderfoodClose>        
             </ConfirmationOrderDialog>
 
             <CancelOrderDialog ref={cancelDialogRef}>
               <CloseOrderButton onClick={() => cancelDialogRef.current.close()}>x</CloseOrderButton>
               <h3>Er du sikker på at du vil afbestille?</h3>
-              <button className="button_orderfood_custom" onClick={() => {
+              <ButtonConfirmOrderfoodCustom onClick={() => {
                 cancelOrder(orderId);
                 setTimeout(() => {
                 setOrderedDishId(null);
@@ -287,7 +375,7 @@ function OrderFood() {
                 cancelDialogRef.current.close();
                 }, 0);
                 }}>Bekræft afbestilling
-              </button>      
+              </ButtonConfirmOrderfoodCustom>      
             </CancelOrderDialog>
           
             <div className="orderfood_container">
@@ -299,21 +387,21 @@ function OrderFood() {
                           <div key={dish.id}>
                             <BoxDish 
                                 $isOrdered={dish.id == orderedDishId}
-                                $isSoldOut={dish.status === 'SOLD_OUT'}
+                                $isSoldOut={dish.status === 'UDSOLGT'}
                                 onClick={() => { //wihtout checking the time
                                   const hasOrdered = orderedDishId !== null; // check if an order has been placed
-                                  if ( dish.status !== 'SOLD_OUT' && !hasOrdered) {
+                                  if ( dish.status !== 'UDSOLGT' && !hasOrdered) {
                                     openOrderDialog(dish);
                                 }
                                 //   const now =  new Date();
                                 //   const isBefore14 = now.getHours() < 14; // check if the current time is before 14:00
                                 //   const hasOrdered = orderedDishId !== null; // check if an order has been placed
-                                //   if (dish.status !== 'SOLD_OUT' && isBefore14 && !hasOrdered) {
+                                //   if (dish.status !== 'UDSOLGT' && isBefore14 && !hasOrdered) {
                                 //     openOrderDialog(dish); 
                               }}
                             >
                                 <div>{dish.name}</div>
-                                {dish.status === 'SOLD_OUT' && <Soldout_orderfood_custom>Udsolgt</Soldout_orderfood_custom>}       
+                                {dish.status === 'UDSOLGT' && <Soldout_orderfood_custom>Udsolgt</Soldout_orderfood_custom>}       
                                 {dish.id == orderedDishId && (
                                 <CancelOrderButton onClick={(e) => {
                                   e.stopPropagation (); // prevents the click event from bubbling up to the Box component
