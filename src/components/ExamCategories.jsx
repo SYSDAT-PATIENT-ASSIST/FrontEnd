@@ -8,7 +8,9 @@ export function CategoriesList() {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    throw new Error("Simuleret frontend-fejl");
+    //Test af errorhåndtering
+    //throw new Error("Simuleret frontend-fejl");
+    
     fetch("http://localhost:9999/api/examinations-and-treatments/categories")
       .then(res => {
         if (!res.ok) throw new Error(`HTTP ${res.status}`);
