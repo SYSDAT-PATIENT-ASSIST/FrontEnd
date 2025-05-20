@@ -14,6 +14,7 @@ import Calendar from './pages/Calendar.jsx'
 import DishCalendarPage from './pages/DishCalenderPage.jsx'
 import CalendarLanding from './components/calendar/CalendarLanding.jsx'
 import CalendarView from './components/calendar/CalendarView.jsx'
+import ExamsAndTreatmentsRoutes from './pages/Exam.jsx';
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
@@ -27,11 +28,13 @@ createRoot(document.getElementById('root')).render(
           <Route path='kitchen' element={<KitchenDashboard />} />
           <Route path='auth/login' element={<LoginPage />} />
           <Route path="/DishCalenderPage" element={<DishCalendarPage />} />
+          <Route path="/exams/*" element={<ExamsAndTreatmentsRoutes />} />
         </Route>
         <Route path="/calendar" element={<Calendar />}>
           <Route index element={<CalendarLanding />} />
           <Route path="view" index element={<CalendarView />} />
         </Route>
+        
       </Routes>
     </BrowserRouter>
   </StrictMode>
