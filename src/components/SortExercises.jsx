@@ -60,10 +60,15 @@ function getRandomVideo(videos) {
 }
 
 // Video preview grid, now using ExerciseCard
-const SortExercisesGrid = ({ videos }) => (
+const SortExercisesGrid = ({ videos, progressMap, onProgressChange }) => (
   <section className="exercises__grid">
     {videos.map(video => (
-      <ExerciseCard key={video.id} video={video} />
+      <ExerciseCard 
+        key={video.id} 
+        video={video}
+        progress={progressMap[video.id]}
+        onProgressChange={onProgressChange} 
+      />
     ))}
   </section>
 );
@@ -74,6 +79,16 @@ const SortExercises = () => {
   const [sortType, setSortType] = useState("date");
 
   const filteredVideos = getFilteredAndSortedVideos(videos, selectedCategory, sortType);
+  const [progressMap, setProgressMap] = useState({});
+
+  const handleProgressChange = (videoId, status) => {
+    setProgressMap(prev => {
+      const current = prev[videoId];
+      if (current === 'completed') return prev;
+      return { ...prev, [videoId]: status };
+    });
+  };  
+
 
   return (
     <main className="exercises__wrapper">
@@ -120,7 +135,7 @@ const SortExercises = () => {
         </div>
       </section>
 
-      <SortExercisesGrid videos={filteredVideos} />
+      <SortExercisesGrid videos={filteredVideos} progressMap={progressMap} onProgressChange={handleProgressChange} />
     </main>
   );
 };

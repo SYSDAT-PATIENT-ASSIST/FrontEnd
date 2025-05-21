@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import YouTubePlayer from '../components/YoutubePlayer';
 
-export default function ExerciseCard({ video }) {
+export default function ExerciseCard({ video, progress, onProgressChange }) {
   const containerId = `youtube-player-${video.id}`;
   const playerRef = useRef(null);
   const [isLoading, setIsLoading] = useState(true); // <- loading state
@@ -18,6 +18,12 @@ export default function ExerciseCard({ video }) {
           onReady: () => {
             if (isMounted) setIsLoading(false); // <- hide spinner
             console.log(`Player ${video.id} ready`);
+          },
+          onStateChange: (event) => {
+            if (window.YT && event.data === window.YT.PlayerState.PLAYING)
+              onProgressChange(video.id, 'started');
+            else if (window.YT && event.data === window.YT.PlayerState.ENDED)
+              onProgressChange(video.id, 'completed');
           },
         });
       }
@@ -50,6 +56,11 @@ export default function ExerciseCard({ video }) {
       >
         Watch on YouTube
       </a>
+      {progress && (
+        <p className="exercises__progress" style={{ fontStyle: 'italic', marginTop: '0.5rem', color: '#00ff88' }}>
+          {progress === 'completed' ? '✓ Completed' : 'Started'}
+        </p>
+      )}
     </article>
   );
 }
