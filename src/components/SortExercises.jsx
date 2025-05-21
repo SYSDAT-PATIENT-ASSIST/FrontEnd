@@ -79,13 +79,19 @@ const SortExercises = () => {
   const [sortType, setSortType] = useState("date");
 
   const filteredVideos = getFilteredAndSortedVideos(videos, selectedCategory, sortType);
-  const [progressMap, setProgressMap] = useState({});
+
+  const [progressMap, setProgressMap] = useState(() => {
+    const stored = sessionStorage.getItem('exerciseProgress');
+    return stored ? JSON.parse(stored) : {};
+  });
 
   const handleProgressChange = (videoId, status) => {
     setProgressMap(prev => {
       const current = prev[videoId];
       if (current === 'completed') return prev;
-      return { ...prev, [videoId]: status };
+      const updated = { ...prev, [videoId]: status};
+      sessionStorage.setItem('exerciseProgress', JSON.stringify(updated));
+      return updated;
     });
   };  
 
