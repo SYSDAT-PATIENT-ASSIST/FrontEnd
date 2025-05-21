@@ -67,6 +67,31 @@
 
   "calendarDays": ["Ma", "Ti", "On", "To", "Fr", "Lø", "Sø"],
   "calendarNoEvents": "Ingen begivenheder for denne dag",
-  "back": "Tilbage"
+  "back": "Tilbage",
+
+  "overviewExercises": "Alle Øvelser",
+
+  "categoryExercises": "Kategori",
+  "allExercises": "Alle",
+  "backExercises": "Ryg",
+  "armsExercises": "Arme",
+  "legsExercises": "Ben",
+
+  "sortByExercises": "Sorter efter",
+  "newestExercises": "Nyeste",
+  "alphabeticalExercises": "Alfabetisk",
+  "shortestExercises": "Korteste",
+
+  "showRandomExercise": "Vis tilfældig øvelse",
+
+  "categoryNames": {
+    "Back": "Ryg",
+    "Arms": "Arme",
+    "Legs": "Ben"
+  },
+  "secondsLabel": "sek",
+  "watchOnYoutube": "Se på YouTube",
+  "progressStarted": "Startet",
+  "progressCompleted": "Afsluttet"
   
 }  

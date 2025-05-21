@@ -67,6 +67,31 @@
   
     "calendarDays": ["Mo", "Di", "Mi", "Do", "Fr", "Sa", "So"],
     "calendarNoEvents": "Keine Ereignisse für diesen Tag",
-    "back": "Zurück"
+    "back": "Zurück",
+
+    "overviewExercises": "Alle Übungen",
+
+    "categoryExercises": "Kategorie",
+    "allExercises": "Alle",
+    "backExercises": "Rücken",
+    "armsExercises": "Arme",
+    "legsExercises": "Beine",
+
+    "sortByExercises": "Sortieren nach",
+    "newestExercises": "Neueste",
+    "alphabeticalExercises": "Alphabetisch",
+    "shortestExercises": "Kürzeste",
+
+    "showRandomExercise": "Zufällige Übung anzeigen",
+
+    "categoryNames": {
+      "Back": "Rücken",
+      "Arms": "Arme",
+      "Legs": "Beine"
+    },
+    "secondsLabel": "Sek.",
+    "watchOnYoutube": "Auf YouTube ansehen",
+    "progressStarted": "Gestartet",
+    "progressCompleted": "Abgeschlossen"
 
 }  

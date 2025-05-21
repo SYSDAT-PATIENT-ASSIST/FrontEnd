@@ -67,6 +67,31 @@
     
   "calendarDays": ["Mo", "Tu", "We", "Th", "Fr", "Sa", "Su"],
   "calendarNoEvents": "No events for this day",
-  "back": "Back"
+  "back": "Back",
+
+  "overviewExercises": "All Exercises",
+  
+  "categoryExercises": "Category",
+  "allExercises": "All",
+  "backExercises": "Back",
+  "armsExercises": "Arms",
+  "legsExercises": "Legs",
+
+  "sortByExercises": "Sort By",
+  "newestExercises": "Newest",
+  "alphabeticalExercises": "Alphabetical",
+  "shortestExercises": "Shortest",
+
+  "showRandomExercise": "Show Random Exercise",
+
+  "categoryNames": {
+    "Back": "Back",
+    "Arms": "Arms",
+    "Legs": "Legs"
+  },
+  "secondsLabel": "sec",
+  "watchOnYoutube": "Watch on YouTube",
+  "progressStarted": "Started",
+  "progressCompleted": "Completed"
 
 }

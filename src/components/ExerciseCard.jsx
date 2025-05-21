@@ -1,7 +1,9 @@
 import React, { useEffect, useRef, useState } from 'react';
 import YouTubePlayer from '../components/YoutubePlayer';
+import { useTranslation } from "react-i18next";
 
 export default function ExerciseCard({ video, progress, onProgressChange }) {
+  const { t } = useTranslation();
   const containerId = `youtube-player-${video.id}`;
   const playerRef = useRef(null);
   const [isLoading, setIsLoading] = useState(true); // <- loading state
@@ -46,7 +48,7 @@ export default function ExerciseCard({ video, progress, onProgressChange }) {
       </div>
       <h2 className="exercises__title">{video.title}</h2>
       <p className="exercises__info">
-        {video.category} · {video.duration} sec
+        {t(`categoryNames.${video.category}`)} · {video.duration} {t("secondsLabel")}
       </p>
       <a
         href={`https://youtu.be/${video.videoId}`}
@@ -54,11 +56,11 @@ export default function ExerciseCard({ video, progress, onProgressChange }) {
         rel="noopener noreferrer"
         className="exercises__link"
       >
-        Watch on YouTube
+        {t("watchOnYoutube")}
       </a>
       {progress && (
         <p className={`exercises__progress ${progress === 'completed' ? 'completed' : 'started'}`}>
-          {progress === 'completed' ? '✓ Completed' : '⏳ Started'}
+          {progress === 'completed' ? `✓ ${t("progressCompleted")}` : `⏳ ${t("progressStarted")}`}
         </p>
       )}
     </article>
