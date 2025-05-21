@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link, useParams} from "react-router";
+import { Link} from "react-router";
 import "../styles/exams.css";
 
 // Component: List all top-level categories
@@ -10,7 +10,7 @@ export function CategoriesList() {
   useEffect(() => {
     //Test af errorhåndtering
     //throw new Error("Simuleret frontend-fejl");
-    
+
     fetch("http://localhost:9999/api/examinations-and-treatments/categories")
       .then(res => {
         if (!res.ok) throw new Error(`HTTP ${res.status}`);
