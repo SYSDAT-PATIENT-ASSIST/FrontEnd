@@ -57,8 +57,8 @@ export default function ExerciseCard({ video, progress, onProgressChange }) {
         Watch on YouTube
       </a>
       {progress && (
-        <p className="exercises__progress" style={{ fontStyle: 'italic', marginTop: '0.5rem', color: '#00ff88' }}>
-          {progress === 'completed' ? '✓ Completed' : 'Started'}
+        <p className={`exercises__progress ${progress === 'completed' ? 'completed' : 'started'}`}>
+          {progress === 'completed' ? '✓ Completed' : '⏳ Started'}
         </p>
       )}
     </article>

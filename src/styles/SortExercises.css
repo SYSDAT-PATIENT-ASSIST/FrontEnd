@@ -88,3 +88,26 @@
   font-weight: 500;
   flex-shrink: 0;
 }
+
+.exercises__progress {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.9rem;
+  font-weight: 500;
+  margin: 0.75rem;
+  padding: 0.3rem 0.6rem;
+  border-radius: 999px;
+  background-color: #f0f0f0;
+  color: #555;
+}
+
+.exercises__progress.completed {
+  background-color: #d1fae5;
+  color: #065f46;
+}
+
+.exercises__progress.started {
+  background-color: #fef9c3;
+  color: #92400e;
+}
