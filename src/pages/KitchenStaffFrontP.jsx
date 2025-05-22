@@ -41,7 +41,7 @@ visibleOrders.forEach(order => {
   const handleMarkDelayed = async () => {
   const updated = await Promise.all(
     orders.map(async (order) => {
-      if (order.note?.trim() && order.status !== "FÆRDIG") {
+      if (order.note?.trim() && order.status !== "færdig") {
         await mockFacade.updateOrderStatus(order.id, "DELAYED");
         setDelayedOrder({ orderId: order.id, customerId: order.customerId });
         return { ...order, status: "DELAYED" };
@@ -57,9 +57,9 @@ visibleOrders.forEach(order => {
   const handleMarkReady = async () => {
     const updated = await Promise.all(
       orders.map(async (order) => {
-        if (order.note?.trim() && order.status !== "FÆRDIG") {
-          await mockFacade.updateOrderStatus(order.id, "FÆRDIG");
-          return { ...order, status: "FÆRDIG" };
+        if (order.note?.trim() && order.status !== "færdig") {
+          await mockFacade.updateOrderStatus(order.id, "færdig");
+          return { ...order, status: "færdig" };
         }
         return order;
       })
