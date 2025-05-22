@@ -18,19 +18,19 @@ export function CategoryDetail() {
       .catch(err => setError(err.message));
   }, [categoryName]);
 
-  if (error) return <div className="error">Fejl: {error}</div>;
+  if (error) return <div className="team-g__error">Fejl: {error}</div>;
   if (!items.length) return <div>Indlæser…</div>;
 
   return (
-    <div className="detail-container">
-      <Link to=".." className="back-link">← Tilbage til kategorier</Link>
+    <div className="team-g__detail-container">
+      <Link to=".." className="team-g__back-link">← Tilbage til kategorier</Link>
       {items.map(sub => (
-        <section key={sub.id} className="subcategory-section">
+        <section key={sub.id} className="team-g__subcategory-section">
           <h3>{sub.name}</h3>
           {sub.exams_and_treats.length > 0 ? (
-            <div className="treatments-list">
+            <div className="team-g__treatments-list">
               {sub.exams_and_treats.map(t => (
-                <div key={t.id} className="treatment-card">
+                <div key={t.id} className="team-g__treatment-card">
                   <a href={t.src_url} target="_blank" rel="noopener noreferrer">
                     <h4>{t.name}</h4>
                   </a>

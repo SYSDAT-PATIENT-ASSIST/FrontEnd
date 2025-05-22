@@ -25,10 +25,10 @@ export function CategoriesList() {
 
   return (
     
-    <div className="categories-container">
+    <div className="team-g__categories-container">
       {categories.map(cat => (
-        <div key={cat.id} className="category-card">
-          <Link to={cat.url_safe_name} className="category-link">
+        <div key={cat.id} className="team-g__category-card">
+          <Link to={cat.url_safe_name} className="team-g__category-link">
             <h2>{cat.name}</h2>
           </Link>
           {cat.description && <p>{cat.description}</p>}
