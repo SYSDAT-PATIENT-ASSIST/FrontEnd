@@ -17,7 +17,7 @@ const BoxDish = styled.div`
   height: 100px;
   width: 270px;
   background-color: ${(props) => 
-    props.$isSoldOut ? '#9d2e0f' : // sold out color
+    props.$isSoldOut ? '#9d2e0f' : 
     props.$isOrdered ? '#f17223' : '#65a233'}; // background color changes when the dish is ordered
   display: flex;
   flex-direction: column;
@@ -36,7 +36,7 @@ const BoxDish = styled.div`
     transform: translateY(-10px); /* moves the element upwards by 10px when hovered */
     box-shadow: 0 12px 20px rgba(116, 173, 68, 0.6);
     background-color:${(props) => 
-      props.$isSoldOut ? '##9d2e0f' : // sold out color
+      props.$isSoldOut ? '#9d2e0f' : 
       props.$isOrdered ? '#f17223' : '#84d045'}; // background color changes when the dish is ordered
     opacity: 1;
   }
@@ -257,7 +257,7 @@ function OrderFood() {
     const [note, setNote] = useState(''); 
 
     //bedId placeholder, to be replaced with the actual bedId when we got it from the login-team.
-    // const bedId = "Tilføjes_senere"; 
+    const bedId = "7"; 
 
     //reference to dialog-element. useRef is used here to interact with DOM elements without causing a re-render.
     const orderDialogRef = useRef(null);
@@ -265,66 +265,84 @@ function OrderFood() {
     const cancelDialogRef = useRef(null);
 
 
-    //for use when we want to fetch data from our own API (backend)
+    useEffect(() => {
+      fetch('http://localhost:9999/api/orderfood/all-available')
+          .then(res => {
+            if (!res.ok) throw new Error('Failed to fetch dishes');
+            return res.json();
+          })
+          .then(data => setAvailableDishes(data))
+          .catch(error => console.error(error));
+    }, []);
+
+
+    //used for testing without backend
     // useEffect(() => {
-    //     fetchData(
-    //       'url',
-    //       setAvailableDishes,
-    //       'GET'
-    //     );
+    //     fetch('http://localhost:3000/dishes/')
+    //         .then(res => res.json())
+    //         .then(data => setAvailableDishes(data))
+    //         .catch(err => console.error('Fejl ved hentning:', err));
     //   }, []);
 
-    useEffect(() => {
-        fetch('http://localhost:3000/dishes/')
-            .then(res => res.json())
-            .then(data => setAvailableDishes(data))
-            .catch(err => console.error('Fejl ved hentning:', err));
-      }, []);
 
+   const createOrder = (selectedDish) => {
+      const newOrder = {
+        bed_id: bedId,
+        note: note,
+        status: "VENTER",
+        order_time: new Date().toISOString(),
+        dish: { id: selectedDish.id }
+      };
 
-    //  for use when we want to use our own API (backend)  
-    // const createOrder = (selectedDish) => {
-    //     const newOrder = {
-    //         bed_id: bedId,
-    //         note: note,
-    //         status: "VENTER",
-    //         dish: { id: selectedDish.id }
-    //     };
+      fetch(`http://localhost:9999/api/orderfood/create`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(newOrder)
+      })
+        .then(res => {
+          if (!res.ok) {
+            throw new Error(`Serverfejl: ${res.status}`);
+          }
+          return res.json();
+        })
+        .then(data => {
+          if (data && data.dish && data.dish.id) {
+            setOrderId(data.id);
+            setOrderedDishId(data.dish.id);
+            orderDialogRef.current.close();
+            confirmationDialogRef.current.showModal();
+          } else {
+            console.error("Ugyldigt svar fra backend:", data);
+          }
+        })
+        .catch(err => {
+          console.error('Fejl ved bestilling:', err.message);
+        });
+    };
 
-    //     fetch(`https://.dk/api/orders/${bedId}/createOrder`, {
-    //         method: 'POST',
-    //         headers: { 'Content-Type': 'application/json' },
-    //         body: JSON.stringify(newOrder)
-    //     })
-    //     .then(res => res.json())
-    //     .then(data => {
-    //       setOrderId(data.id); // set the orderId to the response from the backend
-    //       setOrderedDishId(data.dish.id); // set the orderedDishId to the response from the backend
-    //     })
-    //     .catch(err => console.error('Fejl ved bestilling:', err));     
-    // };
 
   
     // for use when we want to use our own API (backend)  
-    // const cancelOrder = (orderId) => {
-    //   fetchData(`https://.dk/api/orders/${bedId}/cancelOrder/${orderId}`, {
-    //     method: 'PUT',
-    //     headers: {'Content-Type': 'application/json'},
-    //   })
-    //   .then(() =>{
-    //     setOrderId(null);
-    //     setOrderedDishId(null);
-    //   })
-    //   .catch(err => console.error('Fejl ved afbestilling:', err));  
-    // };
+    const cancelOrder = (orderId) => {
+      fetch(`http://localhost:9999/api/orderfood/cancel/${orderId}`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' }
+      })
+      .then(() => {
+        setOrderId(null);
+        setOrderedDishId(null);
+      })
+      .catch(err => console.error('Fejl ved afbestilling:', err));
+    };
+
 
     //dummy cancelOrder function for testing without backend
-    const cancelOrder = (orderId) => {
-      console.log(`Afbestilling af ordre med ID: ${orderId}`);
-      // Simulerer afbestilling uden backend
-      setOrderedDishId(null);
-      setOrderId(null);
-    };
+    // const cancelOrder = (orderId) => {
+    //   console.log(`Afbestilling af ordre med ID: ${orderId}`);
+    //   // Simulerer afbestilling uden backend
+    //   setOrderedDishId(null);
+    //   setOrderId(null);
+    // };
     
 
     // storing the selected dish and opens orderdialogbox
@@ -344,12 +362,8 @@ function OrderFood() {
                     <h3>{selectedDish.name}</h3>
                     <p><strong>Beskrivelse:</strong> {selectedDish.description || "Ingen beskrivelse tilgængelig"}</p>
                     <Commentfield_orderfood placeholder="Skriv en kommentar her med allergier mv." value={note} onChange={(e) => setNote(e.target.value)}></Commentfield_orderfood>
-                    {/* <Button_orderfood_custom onClick={() => createOrder(selectedDish)}>Bestil</Button_orderfood_custom> for use when we want to use our own API (backend) */}
                     <Button_orderfood_custom onClick={() => {
-                      orderDialogRef.current.close();        
-                      confirmationDialogRef.current.showModal();
-                      setOrderedDishId(selectedDish.id); // Temporary: used only for frontend testing without backend. with backend: setOrderedDishId(response.dish.id);
-                      setOrderId(1); // Temporary dummy ID: should be removed when backend returns a real orderId. with backend: setOrderId(response.id);
+                      createOrder(selectedDish)
                       }}>Bestil
                     </Button_orderfood_custom>
                   </>  
@@ -387,10 +401,10 @@ function OrderFood() {
                           <div key={dish.id}>
                             <BoxDish 
                                 $isOrdered={dish.id == orderedDishId}
-                                $isSoldOut={dish.status === 'UDSOLGT'}
+                                $isSoldOut={dish.status?.toUpperCase() === 'UDSOLGT'}
                                 onClick={() => { //wihtout checking the time
                                   const hasOrdered = orderedDishId !== null; // check if an order has been placed
-                                  if ( dish.status !== 'UDSOLGT' && !hasOrdered) {
+                                  if ( dish.status?.toUpperCase() !== 'UDSOLGT' && !hasOrdered) {
                                     openOrderDialog(dish);
                                 }
                                 //   const now =  new Date();
@@ -401,7 +415,7 @@ function OrderFood() {
                               }}
                             >
                                 <div>{dish.name}</div>
-                                {dish.status === 'UDSOLGT' && <Soldout_orderfood_custom>Udsolgt</Soldout_orderfood_custom>}       
+                                {dish.status?.toUpperCase() === 'UDSOLGT' && <Soldout_orderfood_custom>Udsolgt</Soldout_orderfood_custom>}       
                                 {dish.id == orderedDishId && (
                                 <CancelOrderButton onClick={(e) => {
                                   e.stopPropagation (); // prevents the click event from bubbling up to the Box component
