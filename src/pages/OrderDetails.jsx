@@ -47,7 +47,7 @@ function OrderDetails() {
 
     const updateStatus = async () => {
       try {
-        const updatedOrder = await apiFacade.updateOrderStatus(id, "IN_PREPARATION");
+        const updatedOrder = await apiFacade.updateOrderStatus(id, "BEKRÆFTET");
         setOrder(updatedOrder);
         console.log("Order status updated:", updatedOrder);
         navigate("/kitchenStaff"); // Redirect to the kitchen page after updating the status
@@ -116,9 +116,7 @@ function OrderDetails() {
         {/* Table Content/ the info   */}
         <div className="grid grid-cols-3 gap-2 mb-4">
           <div className="bg-blue-50 border text-center py-2 rounded text-xs shadow-inner">
-            {order?.dishes?.map((dish) => (
-              <h1 key={dish.id}>{dish.name}</h1>
-            ))}
+            {order?.dish?.name}
           </div>
           <div className="bg-blue-50 border text-center py-2 rounded text-xs shadow-inner">
             {order?.note && <h1>{order.note}</h1>}

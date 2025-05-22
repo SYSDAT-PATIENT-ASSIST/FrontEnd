@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import mockFacade from "../../data/mockApiFacade";
 import { useNavigate } from "react-router";
+import { useOrderStatus } from "../../contexts/OrderStatusContext";
 
 function KitchenStaffFrontP() {
   const [orders, setOrders] = useState([]);
@@ -14,45 +15,53 @@ function KitchenStaffFrontP() {
       .catch((err) => setError(err));
   }, []);
 
-  const specialOrders = orders.filter(
-    (order) => order.comment?.trim() && order.status !== "READY"
+  const { setDelayedOrder } = useOrderStatus();
+
+  const visibleOrders = orders.filter(o => o.status !== "afsendt");
+
+
+  const specialOrders = visibleOrders.filter(
+    (order) => order.note?.trim() && order.status !== "færdig"
   );
 
-  const specialMeals = orders.filter((order) => order.comment?.trim()).length;
+  const specialMeals = visibleOrders.filter((order) => order.note?.trim()).length;
 
-  const finishedSpecialMeals = orders.filter(
-    (order) => order.comment?.trim() && order.status === "READY"
+  const finishedSpecialMeals = visibleOrders.filter(
+    (order) => order.note?.trim() && order.status === "færdig"
   ).length;
 
-  const dishCounts = {};
-  orders.forEach((order) => {
-    order.dishes?.forEach((dish) => {
-      dishCounts[dish.name] = (dishCounts[dish.name] || 0) + 1;
-    });
-  });
+const dishCounts = {};
+visibleOrders.forEach(order => {
+  const dish = order.dish;
+  if (dish?.name) {
+    dishCounts[dish.name] = (dishCounts[dish.name] || 0) + 1;
+  }
+});
 
   const isDelayed = specialOrders.some((order) => order.status === "DELAYED");
 
   const handleMarkDelayed = async () => {
-    const updated = await Promise.all(
-      orders.map(async (order) => {
-        if (order.comment?.trim() && order.status !== "READY") {
-          await mockFacade.updateOrderStatus(order.id, "DELAYED");
-          return { ...order, status: "DELAYED" };
-        }
-        return order;
-      })
-    );
+  const updated = await Promise.all(
+    orders.map(async (order) => {
+      if (order.note?.trim() && order.status !== "FÆRDIG") {
+        await mockFacade.updateOrderStatus(order.id, "DELAYED");
+        setDelayedOrder({ orderId: order.id, customerId: order.customerId });
+        return { ...order, status: "DELAYED" };
+      }
+      return order;
+    })
+  );
 
-    setOrders(updated);
-  };
+  setOrders(updated);
+};
+
 
   const handleMarkReady = async () => {
     const updated = await Promise.all(
       orders.map(async (order) => {
-        if (order.comment?.trim() && order.status !== "READY") {
-          await mockFacade.updateOrderStatus(order.id, "READY");
-          return { ...order, status: "READY" };
+        if (order.note?.trim() && order.status !== "FÆRDIG") {
+          await mockFacade.updateOrderStatus(order.id, "FÆRDIG");
+          return { ...order, status: "FÆRDIG" };
         }
         return order;
       })
@@ -120,69 +129,73 @@ function KitchenStaffFrontP() {
             </button>
           </div>
 
-          {/* SPECIAL ORDER BOXES */}
-          <div className="overflow-y-auto flex-grow space-y-2">
-            {specialOrders.length === 0 ? (
-              <p className="text-center text-gray-500 italic mt-4">
-                Ikke flere specialretter!
-              </p>
-            ) : (
-              specialOrders.map((order) => {
-                // SET COLOR + LABEL
-                let boxColor = "bg-[#D5FBFF]";
-                let buttonLabel = "";
-                let buttonColor = "";
+{/* SPECIAL ORDER BOXES */}
+<div className="overflow-y-auto flex-grow space-y-2">
+  {specialOrders.length === 0 ? (
+    <p className="text-center text-gray-500 italic mt-4">
+      Ikke flere specialretter!
+    </p>
+  ) : (
+    specialOrders.map(order => {
+      let boxColor = "bg-[#D5FBFF]";
+      let buttonLabel = "";
+      let buttonColor = "";
 
-                switch (order.status) {
-                  case "NEW":
-                    buttonLabel = "NY!";
-                    buttonColor = "bg-blue-400 hover:bg-blue-500 text-white";
-                    break;
+      switch (order.status) {
+        case "venter":
+          buttonLabel = "VENTER";
+          buttonColor = "bg-blue-400 hover:bg-blue-500 text-white";
+          break;
 
-                  case "IN_PREPARATION":
-                    buttonLabel = "Igang";
-                    buttonColor =
-                      "bg-yellow-400 hover:bg-yellow-500 text-black";
-                    break;
+        case "afsendt":
+          buttonLabel = "AFSENDT";
+          buttonColor = "bg-purple-400 hover:bg-purple-500 text-white";
+          break;
 
-                  case "DELAYED":
-                    boxColor = "bg-red-300";
-                    break;
+        case "bekræftet":
+          buttonLabel = "BEKRÆFTET";
+          buttonColor = "bg-yellow-400 hover:bg-yellow-500 text-black";
+          break;
 
-                  default:
-                    break;
-                }
+        case "færdig":
+          boxColor = "bg-green-300";
+          break;
 
-                return (
-                  <div
-                    key={order.id}
-                    onClick={() => {
-                      if (order.status === "NEW") {
+        default:
+          break;
+      }
+
+      return (
+        <div
+          key={order.id}
+          onClick={() => {
+                      if (order.status === "venter") {
                         navigate(`/orderdetails/${order.id}`);
-                      } else if (order.status === "IN_PREPARATION") {
+                      } else if (order.status === "bekræftet") {
                         navigate(`/Order-confirmation`);
                       }
                     }}
-                    className={`cursor-pointer p-4 border border-gray-300 flex items-center justify-between rounded ${boxColor}`}
-                  >
-                    <p className="text-lg text-black font-bold">
-                      Bestilling #{order.id}
-                    </p>
+          className={`cursor-pointer p-4 border border-gray-300 flex items-center justify-between rounded ${boxColor}`}
+        >
+          <p className="text-lg text-black font-bold">
+            Bestilling #{order.id}
+          </p>
 
-                    {order.status === "DELAYED" ? (
-                      <p className="italic text-black">Forsinket!</p>
-                    ) : (
-                      <button
-                        className={`${buttonColor} font-bold py-1 px-3 rounded`}
-                      >
-                        {buttonLabel}
-                      </button>
-                    )}
-                  </div>
-                );
-              })
-            )}
-          </div>
+          {order.status === "færdig" ? (
+            <p className="italic text-black">FÆRDIG</p>
+          ) : (
+            <button
+              className={`${buttonColor} font-bold py-1 px-3 rounded`}
+            >
+              {buttonLabel}
+            </button>
+          )}
+        </div>
+      );
+    })
+  )}
+</div>
+
 
           {error && <p className="text-red-600 mt-4">Fejl: {error.message}</p>}
         </div>
