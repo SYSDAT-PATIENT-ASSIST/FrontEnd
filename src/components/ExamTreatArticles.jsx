@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router";
-import "../styles/Exams.css";
+import "../styles/exams.css";
 
 function ExamTreatArticle() {
   const { categoryName, articleName } = useParams();

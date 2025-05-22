@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link, useParams} from "react-router";
+import { Link, useParams } from "react-router";
 import "../styles/exams.css";
 
 // Component: Show subcategories and treatments of a given top-level category
@@ -31,7 +31,7 @@ export function CategoryDetail() {
             <div className="team-g__treatments-list">
               {sub.exams_and_treats.map(t => (
                 <div key={t.id} className="team-g__treatment-card">
-                  <a href={t.src_url} target="_blank" rel="noopener noreferrer">
+                  <a href={sub.url_safe_name + "/" + t.url_safe_name} >
                     <h4>{t.name}</h4>
                   </a>
                   {t.description && <p>{t.description}</p>}

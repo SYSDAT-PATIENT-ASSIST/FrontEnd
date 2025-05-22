@@ -142,6 +142,33 @@
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
 }
 
+.exam-treat__container {
+  background-color: white;
+  color: black;
+
+  padding: 10px;
+  border-radius: 8px;
+
+  h1 {
+    color: royalblue;
+    font-size: 2.5rem;
+    margin-bottom: 1.4rem;
+    font-weight: 500;
+    text-decoration: underline;
+  }
+
+  h2 {
+    color: royalblue;
+    font-size: 2rem;
+    margin-bottom: 1.2rem;
+  }
+
+  h3 {
+    color: royalblue;
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+  }
+}
 
 
 /* Responsive adjustments */

@@ -4,9 +4,16 @@ import { CategoriesList } from "../components/ExamCategories.jsx";
 import { CategoryDetail } from "../components/ExamCategoriesDetails.jsx";
 import ExamTreatArticle from "../components/ExamTreatArticles.jsx"; // default import
 import ErrorComponentBoundary from "../components/ErrorComponentBoundary.jsx";
+import { useEffect } from "react";
 
 export default function ExamsAndTreatmentsRoutes() {
   const [showModal, setShowModal] = useState(true);
+
+  useEffect(() => {
+    if (sessionStorage.getItem("acceptExamTreatWarning")) {
+      setShowModal(false);
+    }
+  }, [])
 
   return (
     <ErrorComponentBoundary
@@ -19,7 +26,10 @@ export default function ExamsAndTreatmentsRoutes() {
           <div style={modalContentStyle}>
             <h2 style={{ marginBottom: "1rem" }}>Information</h2>
             <p>Dette indhold er primært målrettet sundhedsprofessionelle.</p>
-            <button style={buttonStyle} onClick={() => setShowModal(false)}>
+            <button style={buttonStyle} onClick={() => {
+              setShowModal(false);
+              sessionStorage.setItem("acceptExamTreatWarning", true);
+            }}>
               OK
             </button>
           </div>
