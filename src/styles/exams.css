@@ -171,10 +171,46 @@
 }
 
 
-/* Responsive adjustments */
+/* Default styles */
+.team-g__categories-container,
+.team-g__treatments-list {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  background-image: url("/Bornholms_Hospital.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  position: relative;
+}
+
+/* Optional: Transparent overlay */
+.team-g__categories-container::before,
+.team-g__treatments-list::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background-color: rgba(255, 255, 255, 0.6); /* adjust for desired transparency */
+  z-index: 0;
+}
+.team-g__categories-container > *,
+.team-g__treatments-list > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* Small screens (phones) */
 @media (max-width: 600px) {
   .team-g__categories-container,
   .team-g__treatments-list {
     grid-template-columns: 1fr;
   }
 }
+
+/* Medium screens (tablets and small laptops) */
+@media (min-width: 601px) and (max-width: 1024px) {
+  .team-g__categories-container,
+  .team-g__treatments-list {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
