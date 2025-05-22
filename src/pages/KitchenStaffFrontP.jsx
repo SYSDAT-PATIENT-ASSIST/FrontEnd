@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import mockFacade from "../../data/mockApiFacade";
 import { useNavigate } from "react-router";
-import { useOrderStatus } from "../../contexts/OrderStatusContext";
 
 function KitchenStaffFrontP() {
   const [orders, setOrders] = useState([]);
@@ -15,7 +14,6 @@ function KitchenStaffFrontP() {
       .catch((err) => setError(err));
   }, []);
 
-  const { setDelayedOrder } = useOrderStatus();
 
   const visibleOrders = orders.filter(o => o.status !== "afsendt");
 

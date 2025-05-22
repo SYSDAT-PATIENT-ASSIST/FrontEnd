@@ -9,13 +9,13 @@ const OrderConfirmation = () => {
 
   useEffect(() => {
     facade.getAllOrders().then((all) => {
-      const inPrep = all.filter((o) => o.status === 'IN_PREPARATION');
+      const inPrep = all.filter((o) => o.status === 'bekræftet');
       setOrders(inPrep);
     });
   }, []);
 
   const markAsCompleted = async (id) => {
-    await facade.updateOrderStatus(id, 'COMPLETED');
+    await facade.updateOrderStatus(id, 'færdig');
     setOrders((prev) => prev.filter((o) => o.id !== id));
   };
 
