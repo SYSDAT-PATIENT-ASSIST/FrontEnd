@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Routes, Route } from "react-router";
 import { CategoriesList } from "../components/ExamCategories.jsx";
 import { CategoryDetail } from "../components/ExamCategoriesDetails.jsx";
@@ -35,7 +35,7 @@ const modalOverlayStyle = {
   left: 0,
   width: "100vw",
   height: "100vh",
-  backgroundColor: "rgba(255, 255, 255, 0.5)", // semi-transparent dark blue
+  backgroundColor: "rgba(255, 255, 255, 0.9)", // semi-transparent dark blue
   display: "flex",
   justifyContent: "center",
   alignItems: "center",
@@ -46,9 +46,10 @@ const modalContentStyle = {
   backgroundColor: "white",
   borderRadius: "8px",
   padding: "2rem",
-  maxWidth: "400px",
+  maxWidth: "500px",
   color: "black",
   textAlign: "center",
+  fontSize: "1.5rem",
   boxShadow: "0 8px 20px rgba(0,0,0,0.1)",
 };
 
