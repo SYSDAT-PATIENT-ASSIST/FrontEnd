@@ -8,6 +8,26 @@
   "contrast": "Farvekontrast",
   "apply": "Anvend",
   "revert": "Fortryd ændringer",
+
+  "screenReader": "Skærmlæser",
+  "voiceControl": "Stemmestyring",
+  "fontSizes": {
+    "Small": "Lille",
+    "Medium": "Mellem",
+    "Large": "Stor"
+  },
+  "contrastOptions": {
+    "Normal": "Normal",
+    "High": "Høj"
+  },
+  "languageOptions": {
+    "en": "Engelsk",
+    "da": "Dansk",
+    "de": "Tysk",
+    "fr": "Fransk",
+    "es": "Spansk"
+  },
+  "settingsSavedMessage": "Dine indstillinger er gemt!",
    
   "adminMealOrder": "Admin madbestilling",
   "menuMealOrder": "Mad bestilling",

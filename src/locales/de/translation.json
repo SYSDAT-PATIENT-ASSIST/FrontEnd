@@ -8,6 +8,26 @@
     "contrast": "Farbenkontrast",
     "apply": "Anwenden",
     "revert": "Änderungen rückgängig machen",
+
+    "screenReader": "Screenreader",
+    "voiceControl": "Sprachsteuerung",
+    "fontSizes": {
+      "Small": "Klein",
+      "Medium": "Mittel",
+      "Large": "Groß"
+    },
+    "contrastOptions": {
+      "Normal": "Normal",
+      "High": "Hoher"
+    },
+    "languageOptions": {
+      "en": "Englisch",
+      "da": "Dänisch",
+      "de": "Deutsch",
+      "fr": "Französisch",
+      "es": "Spanisch"
+    },
+    "settingsSavedMessage": "Deine Einstellungen wurden gespeichert!",
   
     "adminMealOrder": "Admin Mahlzeitenbestellung",
     "menuMealOrder": "Mahlzeitenbestellung",
