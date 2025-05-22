@@ -7,18 +7,23 @@ export function CategoriesList() {
   const [categories, setCategories] = useState([]);
   const [error, setError] = useState(null);
 
-  useEffect(() => {
+
+
+useEffect(() => {
     //Test af errorhåndtering
     //throw new Error("Simuleret frontend-fejl");
-
-    fetch("http://localhost:9999/api/examinations-and-treatments/categories")
-      .then(res => {
-        if (!res.ok) throw new Error(`HTTP ${res.status}`);
-        return res.json();
-      })
-      .then(data => setCategories(data))
-      .catch(err => setError(err.message));
-  }, []);
+  fetch("http://localhost:9999/api/examinations-and-treatments/categories")
+    .then(res => {
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      return res.json();
+    })
+    .then(data => {
+      // Sort categories alphabetically by name
+      const sorted = data.sort((a, b) => a.name.localeCompare(b.name));
+      setCategories(sorted);
+    })
+    .catch(err => setError(err.message));
+}, []);
 
   if (error) return <div className="error">Fejl: {error}</div>;
   if (!categories.length) return <div>Indlæser kategorier…</div>;
