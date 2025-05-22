@@ -19,21 +19,42 @@ const LoginForm = () => {
     }));
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setError('');
-    setIsLoading(true);
+const handleSubmit = async (e) => {
+  e.preventDefault();
+  setError('');
+  setIsLoading(true);
 
-    try {
-      // TODO: Implement actual authentication
-      await new Promise((resolve) => setTimeout(resolve, 1000)); // Simulated API call
-      navigate('/kitchen');
-    } catch (err) {
-      setError('Ugyldige loginoplysninger. Prøv igen.');
-    } finally {
-      setIsLoading(false);
+  try {
+    const response = await fetch('http://localhost:7070/auth/login', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        username: formData.username,
+        password: formData.password,
+      }),
+    });
+
+    if (!response.ok) {
+      const errorData = await response.json();
+      throw new Error(errorData.message || 'Login mislykkedes');
     }
-  };
+
+    const data = await response.json();
+
+    // Store token if returned
+    if (data.token) {
+      localStorage.setItem('token', data.token);
+    }
+
+    navigate('/kitchen');
+  } catch (err) {
+    setError(err.message || 'Ugyldige loginoplysninger. Prøv igen.');
+  } finally {
+    setIsLoading(false);
+  }
+};
 
   return (
     <div className='w-full max-w-md p-8 bg-white rounded-lg shadow-lg'>
