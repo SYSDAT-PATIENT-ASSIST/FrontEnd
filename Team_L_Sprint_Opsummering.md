@@ -19,7 +19,7 @@
 
 #### **Mads**
 - Email: _[indsæt email]_  
-- GitHub: _[indsæt GitHub link]_  
+- GitHub: [https://github.com/ScriptCodes](https://github.com/ScriptCodes)
 - Roller: Developer
 
 #### **Marcus**

@@ -25,7 +25,6 @@ const MenuModal = ({
     }
   }, [show]);
 
-  // Handle clicks outside the dialog content
   const handleBackdropClick = (e) => {
     const dialogDimensions = dialogRef.current.getBoundingClientRect();
     if (
@@ -44,7 +43,6 @@ const MenuModal = ({
       className='rounded-lg shadow-lg max-w-3xl w-full p-0 bg-white text-gray-800'
       onClick={handleBackdropClick}
     >
-      {/* Modal header */}
       <div className='flex justify-between items-center p-4 border-b'>
         <h3 className='text-2xl font-bold text-gray-800'>
           {type === 'add' && 'Tilføj ny ret'}
@@ -57,14 +55,9 @@ const MenuModal = ({
         </button>
       </div>
 
-      {/* Modal body */}
       <div className='p-4 text-gray-800 max-h-[70vh] overflow-y-auto'>
         {type === 'delete' && (
-          <DeleteConfirmation
-            item={item}
-            onCancel={onClose}
-            onConfirm={onDelete}
-          />
+          <DeleteConfirmation item={item} onCancel={onClose} onConfirm={onDelete} />
         )}
 
         {type === 'view' && item && <DishDetails item={item} />}

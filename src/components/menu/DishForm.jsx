@@ -1,14 +1,13 @@
-import React from 'react';
-import styled from 'styled-components';
-import { Check, ImagePlus } from 'lucide-react';
-import placeholder from '../../assets/Dish_placeholder.jpg';
+import React from "react";
+import styled from "styled-components";
+import { Check, ImagePlus } from "lucide-react";
+import placeholder from "../../assets/Dish_placeholder.jpg";
 
 const Form = styled.form`
   color: #1f2937;
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 2rem;
-
   @media (max-width: 768px) {
     grid-template-columns: 1fr;
   }
@@ -36,14 +35,23 @@ const Input = styled.input`
   width: 100%;
   padding: 0.5rem 0.75rem;
   border-radius: 0.375rem;
-  border: 1px solid ${props => (props.error ? '#f87171' : '#d1d5db')};
+  border: 1px solid ${(props) => (props.error ? "#f87171" : "#d1d5db")};
+`;
+
+const Select = styled.select`
+  width: 100%;
+  height: 120px;
+  padding: 0.5rem;
+  border-radius: 0.375rem;
+  border: 1px solid ${(props) => (props.error ? "#f87171" : "#d1d5db")};
+  background-color: white;
 `;
 
 const Textarea = styled.textarea`
   width: 100%;
   padding: 0.5rem 0.75rem;
   border-radius: 0.375rem;
-  border: 1px solid ${props => (props.error ? '#f87171' : '#d1d5db')};
+  border: 1px solid ${(props) => (props.error ? "#f87171" : "#d1d5db")};
 `;
 
 const Error = styled.p`
@@ -61,29 +69,27 @@ const ButtonGroup = styled.div`
 `;
 
 const Button = styled.button`
-  background-color: ${props => (props.primary ? '#16a34a' : '#e5e7eb')};
-  color: ${props => (props.primary ? 'white' : '#1f2937')};
+  background-color: ${(props) => (props.$primary ? "#16a34a" : "#e5e7eb")};
+  color: ${(props) => (props.$primary ? "white" : "#1f2937")};
+
   padding: 0.5rem 1rem;
   font-size: 1rem;
   border-radius: 0.375rem;
   display: flex;
   align-items: center;
-
   &:hover {
-    background-color: ${props => (props.primary ? '#15803d' : '#d1d5db')};
+    background-color: ${(props) => (props.primary ? "#15803d" : "#d1d5db")};
   }
 `;
 
 const ImageWrapper = styled.div`
   text-align: center;
-
   img {
     width: 100%;
     max-height: 200px;
     object-fit: cover;
     border-radius: 0.5rem;
   }
-
   button {
     margin-top: 0.5rem;
     font-size: 0.875rem;
@@ -93,7 +99,6 @@ const ImageWrapper = styled.div`
     display: inline-flex;
     align-items: center;
     gap: 0.4rem;
-
     &:hover {
       background: #9ca3af;
       color: white;
@@ -110,7 +115,7 @@ const Grid = styled.div`
 const DishForm = ({ formData, errors, onChange, onSave, onCancel }) => {
   return (
     <Form
-      onSubmit={e => {
+      onSubmit={(e) => {
         e.preventDefault();
         onSave();
       }}
@@ -118,7 +123,9 @@ const DishForm = ({ formData, errors, onChange, onSave, onCancel }) => {
       {/* Left Column */}
       <Column>
         <Field>
-          <Label htmlFor="title">Titel <span style={{ color: 'red' }}>*</span></Label>
+          <Label htmlFor="title">
+            Titel <span style={{ color: "red" }}>*</span>
+          </Label>
           <Input
             id="title"
             name="title"
@@ -131,7 +138,9 @@ const DishForm = ({ formData, errors, onChange, onSave, onCancel }) => {
         </Field>
 
         <Field>
-          <Label htmlFor="description">Beskrivelse <span style={{ color: 'red' }}>*</span></Label>
+          <Label htmlFor="description">
+            Beskrivelse <span style={{ color: "red" }}>*</span>
+          </Label>
           <Textarea
             id="description"
             name="description"
@@ -145,7 +154,9 @@ const DishForm = ({ formData, errors, onChange, onSave, onCancel }) => {
         </Field>
 
         <Field>
-          <Label htmlFor="ingredients">Ingredienser <span style={{ color: 'red' }}>*</span></Label>
+          <Label htmlFor="ingredients">
+            Ingredienser <span style={{ color: "red" }}>*</span>
+          </Label>
           <Textarea
             id="ingredients"
             name="ingredients"
@@ -159,7 +170,9 @@ const DishForm = ({ formData, errors, onChange, onSave, onCancel }) => {
         </Field>
 
         <Field>
-          <Label htmlFor="recipe">Opskrift <span style={{ color: 'red' }}>*</span></Label>
+          <Label htmlFor="recipe">
+            Opskrift <span style={{ color: "red" }}>*</span>
+          </Label>
           <Textarea
             id="recipe"
             name="recipe"
@@ -184,13 +197,15 @@ const DishForm = ({ formData, errors, onChange, onSave, onCancel }) => {
         </ImageWrapper>
 
         <Field>
-          <SmallLabel>Ernæringsinfo <span style={{ color: 'red' }}>*</span></SmallLabel>
+          <SmallLabel>
+            Ernæringsinfo <span style={{ color: "red" }}>*</span>
+          </SmallLabel>
           <Grid>
             {[
-              { key: 'calories', label: 'Kalorier (kcal)' },
-              { key: 'protein', label: 'Protein (g)' },
-              { key: 'carbs', label: 'Kulhydrater (g)' },
-              { key: 'fat', label: 'Fedt (g)' },
+              { key: "calories", label: "Kalorier (kcal)" },
+              { key: "protein", label: "Protein (g)" },
+              { key: "carbs", label: "Kulhydrater (g)" },
+              { key: "fat", label: "Fedt (g)" },
             ].map(({ key, label }) => (
               <div key={key}>
                 <SmallLabel htmlFor={key}>{label}</SmallLabel>
@@ -198,7 +213,15 @@ const DishForm = ({ formData, errors, onChange, onSave, onCancel }) => {
                   type="number"
                   id={key}
                   name={key}
-                  placeholder={`F.eks. ${key === 'calories' ? '350' : key === 'protein' ? '25' : key === 'carbs' ? '40' : '12'}`}
+                  placeholder={`F.eks. ${
+                    key === "calories"
+                      ? "350"
+                      : key === "protein"
+                      ? "25"
+                      : key === "carbs"
+                      ? "40"
+                      : "12"
+                  }`}
                   value={formData[key]}
                   onChange={onChange}
                   error={errors[key]}
@@ -210,24 +233,41 @@ const DishForm = ({ formData, errors, onChange, onSave, onCancel }) => {
         </Field>
 
         <Field>
-          <SmallLabel htmlFor="allergens">Allergener (adskilt med komma) <span style={{ color: 'red' }}>*</span></SmallLabel>
-          <Input
+          <SmallLabel htmlFor="allergens">
+            Allergener <span style={{ color: "red" }}>*</span>
+          </SmallLabel>
+          <Select
             id="allergens"
             name="allergens"
-            placeholder="F.eks.: Mælk, Gluten, Nødder"
-            value={formData.allergens}
-            onChange={onChange}
+            multiple
+            value={Array.isArray(formData.allergens) ? formData.allergens : []}
+            onChange={(e) => {
+              const selected = Array.from(
+                e.target.selectedOptions,
+                (option) => option.value
+              );
+              onChange({ target: { name: "allergens", value: selected } });
+            }}
             error={errors.allergens}
-          />
+          >
+            <option value="LAKTOSE">Mælk</option>
+            <option value="GLUTEN">Gluten</option>
+            <option value="NUTS">Nødder</option>
+            <option value="EGG">Æg</option>
+            <option value="FISH">Fisk</option>
+            <option value="SHELLFISH">Skaldyr</option>
+          </Select>
           {errors.allergens && <Error>{errors.allergens}</Error>}
         </Field>
       </Column>
 
       {/* Buttons */}
       <ButtonGroup>
-        <Button type="button" onClick={onCancel}>Annuller</Button>
-        <Button type="submit" primary>
-          <Check style={{ marginRight: '0.5rem' }} />
+        <Button type="button" onClick={onCancel}>
+          Annuller
+        </Button>
+        <Button type="submit" $primary>
+          <Check style={{ marginRight: "0.5rem" }} />
           Gem
         </Button>
       </ButtonGroup>
