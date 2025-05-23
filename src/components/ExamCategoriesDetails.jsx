@@ -63,14 +63,11 @@ export function CategoryDetail() {
                   {sub.exams_and_treats.map((t) => (
                     <div key={t.id} className="team-g__treatment-wrapper">
                       <a
-                        className={`team-g__treatment-toggle${
-                          (openTreatments[sub.id] || []).includes(t.id)
-                            ? " open"
-                            : ""
-                        }`}
-                        href={t.src_url}
-                        target="_blank"
-                        rel="noopener noreferrer"
+                        className={`team-g__treatment-toggle${(openTreatments[sub.id] || []).includes(t.id)
+                          ? " open"
+                          : ""
+                          }`}
+                        href={sub.url_safe_name + "/" + t.url_safe_name}
                         onClick={() => toggleTreatment(sub.id, t.id)}
                       >
                         <h4>{t.name}</h4>

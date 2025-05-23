@@ -21,20 +21,24 @@ body {
   padding: 1rem;
   text-align: center;
 }
+
 .team-g__category-card:hover {
   transform: translateY(-4px);
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
   background-color: lightgray;
 }
+
 .team-g__category-link {
   text-decoration: none;
   color: #1a202c;
 }
+
 .team-g__category-link h2 {
   margin: 0;
   font-size: 1.25rem;
   font-weight: 600;
 }
+
 .team-g__category-card p {
   margin-top: 0.5rem;
   font-size: 0.95rem;
@@ -48,6 +52,7 @@ body {
   box-sizing: border-box;
   overflow-x: hidden;
 }
+
 .team-g__back-link {
   display: inline-block;
   margin-bottom: 1rem;
@@ -56,6 +61,7 @@ body {
   font-weight: 500;
   font-size: 1.8rem;
 }
+
 .team-g__back-link:hover {
   text-decoration: underline;
 }
@@ -64,6 +70,7 @@ body {
 .team-g__subcategory-section {
   margin-bottom: 2rem;
 }
+
 .team-g__subcategory-section h3 {
   font-size: 1.5rem;
   color: #ffffff;
@@ -93,27 +100,31 @@ body {
   background-color: #e2e8f0;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
+
 .team-g__treatment-card h4 {
   margin: 0;
   font-size: 1.125rem;
   color: #1a202c;
 }
+
 .team-g__treatment-card p {
   margin-top: 0.5rem;
   font-size: 0.9rem;
   color: #4a5568;
 }
+
 .team-g__treatment-card a {
   text-decoration: none;
   color: inherit;
 }
+
 .team-g__treatment-card a:hover h4 {
   text-decoration: underline;
 }
 
 
 /* Accordion-style toggle buttons */
-.team-g__subcategory-toggle{
+.team-g__subcategory-toggle {
   background: none;
   border: none;
   text-align: left;
@@ -183,9 +194,43 @@ body {
   border-radius: 4px;
   cursor: pointer;
 }
+
 .team-g__modal-button:hover {
   background-color: #0062ff;
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+.exam-treat__container {
+  background-color: #fff;
+  color: #000;
+  padding: 1rem;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+/* Headings */
+.exam-treat__container h1,
+.exam-treat__container h2,
+.exam-treat__container h3 {
+  color: royalblue;
+  font-weight: 500;
+  margin-bottom: 1rem;
+}
+
+/* Specific heading tweaks */
+.exam-treat__container h1 {
+  font-size: 2.5rem;
+  margin-bottom: 1.4rem;
+  text-decoration: underline;
+}
+
+.exam-treat__container h2 {
+  font-size: 2rem;
+  margin-bottom: 1.2rem;
+}
+
+.exam-treat__container h3 {
+  font-size: 1.5rem;
 }
 
 /* Wrapper around each treatment */
@@ -194,10 +239,52 @@ body {
   flex-direction: column;
 }
 
-/* Responsive adjustments */
+/* Default styles */
+.team-g__categories-container,
+.team-g__treatments-list {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  background-color: #ffffff00;
+  background-size: cover;
+  background-repeat: no-repeat;
+  position: relative;
+}
+
+/* Optional: Transparent overlay */
+.team-g__categories-container::before,
+.team-g__treatments-list::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(255, 255, 255, 0.6);
+  /* adjust for desired transparency */
+  z-index: 0;
+}
+
+.team-g__categories-container>*,
+.team-g__treatments-list>* {
+  position: relative;
+  z-index: 1;
+}
+
+/* Small screens (phones) */
 @media (max-width: 600px) {
+
   .team-g__categories-container,
   .team-g__treatments-list {
     grid-template-columns: 1fr;
+  }
+}
+
+/* Medium screens (tablets and small laptops) */
+@media (min-width: 601px) and (max-width: 1024px) {
+
+  .team-g__categories-container,
+  .team-g__treatments-list {
+    grid-template-columns: 2fr 2fr;
   }
 }
