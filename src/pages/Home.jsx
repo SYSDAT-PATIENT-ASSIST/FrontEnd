@@ -12,7 +12,7 @@ function Home() {
         <div className="home__links">
         <Link to="/DishCalenderPage"> <img src={Logo} /> <h1>{t('adminMealOrder')}</h1> </Link>
           <Link to="/calendar"> <img src={Logo} /> <h1>{t('menuMealOrder')}</h1> </Link>
-          <Link to="/calendar"> <img src={Logo} /> <h1>{t('menuExercises')}</h1> </Link>
+          <Link to="/exercises"> <img src={Logo} /> <h1>{t('menuExercises')}</h1> </Link>
           <Link to="/calendar"> <img src={Logo} /> <h1>{t('menuContact')}</h1> </Link>
           <Link to="/calendar"> <img src={Logo} /> <h1>{t('menuHospitalInfo')}</h1> </Link>
           <Link to="/calendar"> <img src={Logo} /> <h1>{t('menuEntertainment')}</h1> </Link>
