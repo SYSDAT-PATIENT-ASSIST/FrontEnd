@@ -44,6 +44,7 @@ body {
   transform: translateY(-4px);
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
   background-color: rgba(115, 164, 255, 0.3);
+
 }
 
 .team-g__category-link {
@@ -65,12 +66,12 @@ body {
 
 /* ========== Detail Page Container ========== */
 .team-g__detail-container {
-  background-color: rgba(255, 255, 255, 0.3);
+  background-color: rgba(255, 255, 255, 0.6);
   min-height: 100vh;
   padding: 2rem 1rem;
   box-sizing: border-box;
   overflow-x: hidden;
-  border-radius: 30px;
+  border-radius: 5px;
 }
 
 .team-g__back-link {
@@ -80,6 +81,7 @@ body {
   text-decoration: none;
   font-weight: 500;
   font-size: 1.8rem;
+  gap: 0.5rem;
 }
 
 .team-g__back-link:hover {
@@ -101,13 +103,15 @@ body {
 
 /* ========== Treatments List ========== */
 .team-g__treatments-list {
+  padding-top: 1rem;
+  margin-top: 5px;
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
   gap: 1.5rem;
   align-items: center;
   text-align: center;
   font-size: 1.2rem;
-  border-radius: 1rem;
+  border-radius: 5rem;
   background: linear-gradient(to bottom, #3268fd73, #ffffffad 150%);
   text-shadow: 2px 2px 4px rgba(132, 241, 255, 0.3);
   position: relative;
@@ -165,7 +169,20 @@ body {
 }
 
 /* ========== Toggle Buttons ========== */
-.team-g__subcategory-toggle,
+.team-g__subcategory-toggle {
+  width: 100%;
+  border: none;
+  border-radius: 1rem;
+  padding: 1rem 0;
+  font-size: 1.5rem;
+  cursor: pointer;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 4px 12px rgba(3, 3, 3, 0.5);
+  transition: background 0.5s ease;
+  padding-left: 20px;
+  padding-right: 20px;
+  
+}
 .team-g__treatment-toggle {
   width: 100%;
   border: none;
@@ -179,25 +196,33 @@ body {
 }
 
 .team-g__subcategory-toggle {
-  background: linear-gradient(to bottom, #4f99fa, transparent 50%);
+  background: linear-gradient(to bottom, #ffffff32, #6babff32 60%);
+  background-color: rgba(0, 110, 255, 0.5);
   text-align: left;
   color: #ffffff;
 }
 
 .team-g__treatment-toggle {
-  background: linear-gradient(to bottom, #4f99fa, transparent 30%);
-  background-color: rgb(114, 157, 250);
+  align-items: center;
+  height: 100px;
+  border-radius: 30px;
+  padding-top: -20px;
+  background: linear-gradient(to bottom, #ffffff15, #6babff15 60%);
+  background-color: rgba(0, 110, 255, 0.2);
   font-size: 1.2rem;
   text-align: center;
+  
 }
 
 .team-g__subcategory-toggle:hover,
 .team-g__treatment-toggle:hover {
-  background-color: rgba(0, 110, 255, 0.8);
+  background-color: rgba(255, 255, 255, 0.2);
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+  color: #ffffff;
 }
 
 .team-g__treatment-toggle.open {
-  background-color: rgba(255, 255, 255, 0.05);
+  background-color: rgba(0, 110, 255, 0.2);
 }
 
 /* ========== Modal ========== */
