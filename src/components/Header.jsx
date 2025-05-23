@@ -7,15 +7,26 @@ import AdminButton from "./auth/AdminButton";
 import "../styles/Header.css";
 
 function Header() {
-  const [now, setNow] = useState(new Date());
+    const [now, setNow] = useState(new Date());
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setNow(new Date());
-    }, 60000);
+  
 
-    return () => clearInterval(interval); 
-  }, []);
+   useEffect(() => {
+      const interval = setInterval(() => {
+        const current = new Date();
+        setNow(current);
+
+        const hours = current.getHours();
+        const minutes = current.getMinutes();
+
+        
+        if (hours === 14 && minutes === 0) {
+          setShowReminder(true);
+        }
+      }, 60000); 
+
+      return () => clearInterval(interval);
+    }, []);
 
   const weekdays = [
     "Søndag",
@@ -32,6 +43,8 @@ function Header() {
   const year = now.getFullYear();
   const hours = now.getHours().toString().padStart(2, "0");
   const minutes = now.getMinutes().toString().padStart(2, "0");
+  const [showReminder, setShowReminder] = useState(false);
+
 
   return (
     <>
@@ -51,6 +64,22 @@ function Header() {
             <h2>Kirurgisk afdeling</h2>
           </Link>
         </div>
+
+        <div className="header__reminder-dropdown">
+
+          <button
+            className="reminder-button"
+            onClick={() => setShowReminder(!showReminder)}
+          >
+            💬 Meddelser
+          </button>
+          {showReminder && (
+            <div className="reminder-message">
+              🕑 Husk at bestille mad inden kl. <strong>14:00</strong>!
+            </div>
+          )}
+        </div>
+
 
         <div className="header__panel-right">
           <div className="header__panel-right-actions">
