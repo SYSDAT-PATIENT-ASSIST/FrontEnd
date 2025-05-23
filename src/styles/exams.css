@@ -1,4 +1,8 @@
 /* Container for top-level category cards */
+body {
+  overflow-x: hidden;
+}
+
 .team-g__categories-container {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -17,19 +21,24 @@
   padding: 1rem;
   text-align: center;
 }
+
 .team-g__category-card:hover {
   transform: translateY(-4px);
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+  background-color: lightgray;
 }
+
 .team-g__category-link {
   text-decoration: none;
   color: #1a202c;
 }
+
 .team-g__category-link h2 {
   margin: 0;
   font-size: 1.25rem;
   font-weight: 600;
 }
+
 .team-g__category-card p {
   margin-top: 0.5rem;
   font-size: 0.95rem;
@@ -38,10 +47,12 @@
 
 /* Layout for detail page */
 .team-g__detail-container {
-  max-width: 1000px;
-  margin: 1rem auto;
-  padding: 0 1rem;
+  min-height: 100vh;
+  padding: 2rem 1rem;
+  box-sizing: border-box;
+  overflow-x: hidden;
 }
+
 .team-g__back-link {
   display: inline-block;
   margin-bottom: 1rem;
@@ -50,6 +61,7 @@
   font-weight: 500;
   font-size: 1.8rem;
 }
+
 .team-g__back-link:hover {
   text-decoration: underline;
 }
@@ -58,6 +70,7 @@
 .team-g__subcategory-section {
   margin-bottom: 2rem;
 }
+
 .team-g__subcategory-section h3 {
   font-size: 1.5rem;
   color: #ffffff;
@@ -69,37 +82,81 @@
 /* Treatments list grid */
 .team-g__treatments-list {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 1rem;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 1.5rem;
 }
 
 /* Individual treatment card */
 .team-g__treatment-card {
-  background-color: #f7fafc;
-  border-radius: 0.5rem;
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+  background-color: transparent;
+  border: none;
   padding: 1rem;
-  transition: background-color 0.2s ease;
+  transition: background-color 0.2s ease, box-shadow 0.2s ease;
 }
+
+
+
 .team-g__treatment-card:hover {
-  background-color: #edf2f7;
+  background-color: #e2e8f0;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
+
 .team-g__treatment-card h4 {
   margin: 0;
   font-size: 1.125rem;
   color: #1a202c;
 }
+
 .team-g__treatment-card p {
   margin-top: 0.5rem;
   font-size: 0.9rem;
   color: #4a5568;
 }
+
 .team-g__treatment-card a {
   text-decoration: none;
   color: inherit;
 }
+
 .team-g__treatment-card a:hover h4 {
   text-decoration: underline;
+}
+
+
+/* Accordion-style toggle buttons */
+.team-g__subcategory-toggle {
+  background: none;
+  border: none;
+  text-align: left;
+  padding: 1rem 0;
+  width: 100%;
+  font-size: 1.2rem;
+  color: #ffffff;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.team-g__treatment-toggle {
+  background: #0079b4;
+  border: none;
+  text-align: center;
+  padding: 1rem 0;
+  width: 100%;
+  font-size: 1.2rem;
+  color: #ffffff;
+  cursor: pointer;
+  transition: background 0.2s ease;
+  border-radius: 1rem;
+}
+
+.team-g__subcategory-toggle:hover,
+.team-g__treatment-toggle:hover {
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+.team-g__treatment-toggle.open {
+  background-color: rgba(255, 255, 255, 0.1);
+  border-left: 4px solid #63b3ed;
 }
 
 /* Modal overlay */
@@ -137,6 +194,7 @@
   border-radius: 4px;
   cursor: pointer;
 }
+
 .team-g__modal-button:hover {
   background-color: #0062ff;
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
@@ -175,6 +233,11 @@
   font-size: 1.5rem;
 }
 
+/* Wrapper around each treatment */
+.team-g__treatment-wrapper {
+  display: flex;
+  flex-direction: column;
+}
 
 /* Default styles */
 .team-g__categories-container,
@@ -190,33 +253,38 @@
 
 /* Optional: Transparent overlay */
 .team-g__categories-container::before,
-.team-g__treatments-list::before{
+.team-g__treatments-list::before {
   content: "";
   position: absolute;
-  top: 0; left: 0; right: 0; bottom: 0;
-  background-color: rgba(255, 255, 255, 0.6); /* adjust for desired transparency */
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(255, 255, 255, 0.6);
+  /* adjust for desired transparency */
   z-index: 0;
 }
-.team-g__categories-container > *,
-.team-g__treatments-list > *{
+
+.team-g__categories-container>*,
+.team-g__treatments-list>* {
   position: relative;
   z-index: 1;
 }
 
 /* Small screens (phones) */
 @media (max-width: 600px) {
+
   .team-g__categories-container,
-  .team-g__treatments-list{
+  .team-g__treatments-list {
     grid-template-columns: 1fr;
   }
 }
 
 /* Medium screens (tablets and small laptops) */
 @media (min-width: 601px) and (max-width: 1024px) {
+
   .team-g__categories-container,
-  .team-g__treatments-list 
-  {
+  .team-g__treatments-list {
     grid-template-columns: 2fr 2fr;
   }
 }
-
