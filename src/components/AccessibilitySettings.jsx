@@ -41,9 +41,13 @@ export default function AccessibilitySettings() {
   const updateTempSetting = (name, value) =>
     setTempSettings((prev) => ({ ...prev, [name]: value }));
 
-  const applyChanges = () => {
+  const applyChanges = async () => {
+    const formerLang = i18n.language;
     updateSettings(tempSettings);
-    setMessage("Dine indstillinger er gemt!");
+    if (tempSettings.language !== formerLang) {
+      await i18n.changeLanguage(tempSettings.language);
+    }
+    setMessage(t("settingsSavedMessage"));
     setTimeout(() => setMessage(""), 3000);
   };
 
@@ -86,7 +90,7 @@ export default function AccessibilitySettings() {
                 className="accessibility__button"
                 onClick={() => updateTempSetting("fontSize", size)}
               >
-                {size[0]}
+                {t(`fontSizes.${size}`)}
               </button>
             ))}
           </div>
@@ -119,11 +123,11 @@ export default function AccessibilitySettings() {
               updateTempSetting("language", lang);
             }}
           >
-            <option value="en">English</option>
-            <option value="da">Danish</option>
-            <option value="de">German</option>
-            <option value="fr">French</option>
-            <option value="es">Spanish</option>
+            {["en", "da", "de", "fr", "es"].map((langCode) => (
+              <option key={langCode} value={langCode}>
+                {t(`languageOptions.${langCode}`)}
+              </option>
+            ))}
           </select>
         </div>
 
@@ -135,15 +139,18 @@ export default function AccessibilitySettings() {
             value={tempSettings.contrast}
             onChange={(e) => updateTempSetting("contrast", e.target.value)}
           >
-            <option>Normal</option>
-            <option>High</option>
+            {Object.keys(contrastStyles).map((contrast) => (
+              <option key={contrast} value={contrast}>
+                {t(`contrastOptions.${contrast}`)}
+              </option>
+            ))}
           </select>
         </div>
 
         {/* Screen Reader Toggle */}
         <div className="accessibility__section">
           <div className="accessibility__toggles">
-            <span className="accessibility__toggle-label">Screen Reader</span>
+            <span className="accessibility__toggle-label">{t("screenReader")}</span>
             <div
               className={`accessibility__toggle-switch ${
                 tempSettings.screenReader ? "enabled" : ""
@@ -160,7 +167,7 @@ export default function AccessibilitySettings() {
         {/* Voice Control Toggle */}
         <div className="accessibility__section">
           <div className="accessibility__toggles">
-            <span className="accessibility__toggle-label">Voice Control</span>
+            <span className="accessibility__toggle-label">{t("voiceControl")}</span>
             <div
               className={`accessibility__toggle-switch ${
                 tempSettings.voiceControl ? "enabled" : ""
