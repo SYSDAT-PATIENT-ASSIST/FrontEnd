@@ -40,6 +40,12 @@ export default function ExerciseCard({ video, progress, onProgressChange }) {
     };
   }, [containerId, video.videoId]);
 
+  useEffect(() => {
+    if (progress === 'completed') {
+      alert('Godt gået! Du har gennemført træningsvideoen 💪');
+    }
+  }, [progress]);
+
   return (
     <article className="exercises__card">
       <div className="exercises__thumbnail">
