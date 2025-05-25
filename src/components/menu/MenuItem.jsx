@@ -5,7 +5,7 @@ import { Eye, Edit, Trash2 } from 'lucide-react';
 const MenuItem = ({ item, onView, onEdit, onDelete }) => {
   return (
     <tr className='border-b hover:bg-gray-50'>
-      <td className='px-6 py-4 text-gray-800 text-base'>{item.title}</td>
+    <td className='px-6 py-4 text-gray-800 text-base'>{item.title || item.name}</td>
       <td className='px-6 py-4 text-gray-700 text-base'>{item.description}</td>
       <td className='px-6 py-4 flex space-x-4 justify-end'>
         <button
