@@ -1,0 +1,117 @@
+{
+  "mealTitle": "Måltid 10 - Kylling Biryani",
+  "mealDescription": "Lorem Ipsum er simpel fyldtekst fra tryk- og sætteriindustrien. Lorem Ipsum har været branchens standard fyldtekst siden 1500-tallet, da en ukendt trykker tog en skuffe med typer og blandede dem for at lave en prøvebog.",
+  "accessibilitySettings": "Tilgængelighedsindstillinger",
+  "fontSize": "Skriftstørrelse",
+  "fontType": "Skrifttype",
+  "language": "Sprog",
+  "contrast": "Farvekontrast",
+  "apply": "Anvend",
+  "revert": "Fortryd ændringer",
+
+  "screenReader": "Skærmlæser",
+  "voiceControl": "Stemmestyring",
+  "fontSizes": {
+    "Small": "Lille",
+    "Medium": "Mellem",
+    "Large": "Stor"
+  },
+  "contrastOptions": {
+    "Normal": "Normal",
+    "High": "Høj"
+  },
+  "languageOptions": {
+    "en": "Engelsk",
+    "da": "Dansk",
+    "de": "Tysk",
+    "fr": "Fransk",
+    "es": "Spansk"
+  },
+  "settingsSavedMessage": "Dine indstillinger er gemt!",
+   
+  "adminMealOrder": "Admin madbestilling",
+  "menuMealOrder": "Mad bestilling",
+  "menuExercises": "Øvelser",
+  "menuContact": "Kontakt",
+  "menuHospitalInfo": "Hospital info",
+  "menuEntertainment": "Underholdning",
+  "menuMySP": "Min SP",
+  "headerHospitalName": "Bornholms Hospital",
+  "headerLocationCode": "202-1",
+  "headerDepartmentName": "Kirurgisk afdeling",
+  "quit": "Afslut",
+  "settings": "Indstillinger",
+  "headerDay": "Mandag 10-03",
+  "headerTime": "15:00",
+  
+  "dishes": {
+    "grilledSalmon": "Grillet laks",
+    "pumpkinSoup": "Græskarsuppe",
+    "roastDuck": "Stegt and",
+    "vegetableStirFry": "Grøntsagswok",
+    "beefStroganoff": "Bøf Stroganoff",
+    "chickenCurry": "Kylling karry",
+    "pastaPrimavera": "Primavera pasta",
+    "caesarSalad": "Cæsarsalat"
+  },
+
+  "dishCalendarManagerTitle": "Retterkalenderadministrator",
+  "selectDateSubtitle": "Vælg en dato",
+  "dishesForDate": "Retter for {{dateKey}}",
+  "searchDishPlaceholder": "Søg efter en ret...",
+  "activateButton": "Aktiver",
+  "deactivateButton": "Deaktiver",
+  "weekdaySun": "Søn",
+  "weekdayMon": "Man",
+  "weekdayTue": "Tir",
+  "weekdayWed": "Ons",
+  "weekdayThu": "Tor",
+  "weekdayFri": "Fre",
+  "weekdaySat": "Lør",
+
+  "loginWelcome": "Velkommen til køkkenet",
+  "loginSubtitle": "Log ind for at administrere menuen og måltidsplaner",
+  "loginUsername": "Brugernavn",
+  "loginUsernamePlaceholder": "Indtast dit brugernavn",
+  "loginPassword": "Adgangskode",
+  "loginPasswordPlaceholder": "Indtast din adgangskode",
+  "loginButton": "Log ind",
+  "loginError": "Ugyldige loginoplysninger. Prøv igen.",
+
+  "calendarView": "Se kalender",
+  "calendarMonth": "måned",
+  "calendarWeek": "uge",
+  "calendarDay": "dag",
+  "calendarToday": "i dag",
+  "calendarAdmin": "administrer",
+
+  "calendarDays": ["Ma", "Ti", "On", "To", "Fr", "Lø", "Sø"],
+  "calendarNoEvents": "Ingen begivenheder for denne dag",
+  "back": "Tilbage",
+
+  "overviewExercises": "Alle Øvelser",
+
+  "categoryExercises": "Kategori",
+  "allExercises": "Alle",
+  "backExercises": "Ryg",
+  "armsExercises": "Arme",
+  "legsExercises": "Ben",
+
+  "sortByExercises": "Sorter efter",
+  "newestExercises": "Nyeste",
+  "alphabeticalExercises": "Alfabetisk",
+  "shortestExercises": "Korteste",
+
+  "showRandomExercise": "Vis tilfældig øvelse",
+
+  "categoryNames": {
+    "Back": "Ryg",
+    "Arms": "Arme",
+    "Legs": "Ben"
+  },
+  "secondsLabel": "sek",
+  "watchOnYoutube": "Se på YouTube",
+  "progressStarted": "Startet",
+  "progressCompleted": "Afsluttet"
+  
+}  

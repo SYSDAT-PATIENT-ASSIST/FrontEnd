@@ -1,8 +1,10 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router';
 import { ChefHat, User, Lock, LogIn } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 
 const LoginForm = () => {
+  const { t } = useTranslation();
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
     username: '',
@@ -63,11 +65,9 @@ const handleSubmit = async (e) => {
           <ChefHat className='w-12 h-12 text-blue-600' />
         </div>
         <h1 className='text-3xl font-bold text-gray-800 mb-2'>
-          Velkommen til køkkenet
+          {t('loginWelcome')}
         </h1>
-        <p className='text-gray-600'>
-          Log ind for at administrere menuen og måltidsplaner
-        </p>
+        <p className='text-gray-600'>{t('loginSubtitle')}</p>
       </div>
 
       {error && (
@@ -82,7 +82,7 @@ const handleSubmit = async (e) => {
             className='block text-gray-700 text-sm font-bold mb-2'
             htmlFor='username'
           >
-            Brugernavn
+            {t('loginUsername')}
           </label>
           <div className='relative'>
             <div className='absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none'>
@@ -95,7 +95,7 @@ const handleSubmit = async (e) => {
               value={formData.username}
               onChange={handleChange}
               className='block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md leading-5 bg-white text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500'
-              placeholder='Indtast dit brugernavn'
+              placeholder={t('loginUsernamePlaceholder')}
               required
             />
           </div>
@@ -106,7 +106,7 @@ const handleSubmit = async (e) => {
             className='block text-gray-700 text-sm font-bold mb-2'
             htmlFor='password'
           >
-            Adgangskode
+            {t('loginPassword')}
           </label>
           <div className='relative'>
             <div className='absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none'>
@@ -119,7 +119,7 @@ const handleSubmit = async (e) => {
               value={formData.password}
               onChange={handleChange}
               className='block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md leading-5 bg-white text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500'
-              placeholder='Indtast din adgangskode'
+              placeholder={t('loginPasswordPlaceholder')}
               required
             />
           </div>
@@ -137,7 +137,7 @@ const handleSubmit = async (e) => {
           ) : (
             <>
               <LogIn className='w-5 h-5 mr-2' />
-              Log ind
+              {t('loginButton')}
             </>
           )}
         </button>

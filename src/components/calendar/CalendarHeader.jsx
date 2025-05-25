@@ -2,11 +2,14 @@ import { Link, useNavigate, useLocation } from "react-router";
 import Logo from "../../assets/CapitalHTransBG.png";
 import Arrow from "../../assets/left_arrow.png";
 import "../../styles/calendar/CalendarHeader.css";
+import { useTranslation } from 'react-i18next'
 
 function CalendarHeader() {
   const navigate = useNavigate();
   const location = useLocation();
   const parentPath = location.pathname.split("/").slice(0, -1).join("/") || "/";
+
+  const { t } = useTranslation();
 
   return (
     <>
@@ -28,7 +31,7 @@ function CalendarHeader() {
             className="calendar-header__panel-right-back"
           >
             <img src={Arrow} alt="Return" />
-            <h1>Tilbage</h1>
+            <h1>{t("back")}</h1>
           </button>
         </div>
       </div>
