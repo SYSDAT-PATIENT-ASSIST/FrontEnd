@@ -4,12 +4,11 @@ import { Link } from "react-router";
 import MenuItem from "../components/menu/MenuItem";
 import MenuModal from "../components/menu/MenuModal";
 import Toast from "../components/ui/Toast";
-import { initialMenuItems } from "../data/menuItems";
 import "../styles/dialog.css";
 
 function MenuManagement() {
   const [menuItems, setMenuItems] = useState([]);
-  const [modalType, setModalType] = useState(null); // 'add', 'edit', 'view', 'delete'
+  const [modalType, setModalType] = useState(null);
   const [currentItem, setCurrentItem] = useState(null);
   const [formData, setFormData] = useState({
     title: "",
@@ -18,49 +17,34 @@ function MenuManagement() {
     protein: "",
     carbs: "",
     fat: "",
-    allergens: "",
+    allergens: [],
     ingredients: "",
     recipe: "",
   });
   const [errors, setErrors] = useState({});
-
   const [toast, setToast] = useState({
     visible: false,
     message: "",
-    type: "success", // can be 'success', 'error', etc.
+    type: "success",
   });
 
-  // Function to show toast notification
-  // This function sets the toast state to visible with a message and type
   const showToast = (message, type = "success") => {
-    setToast({
-      visible: true,
-      message,
-      type,
-    });
+    setToast({ visible: true, message, type });
   };
 
-  // Function to hide toast notification
   const hideToast = () => {
-    setToast((prev) => ({
-      ...prev,
-      visible: false,
-    }));
+    setToast((prev) => ({ ...prev, visible: false }));
   };
 
   useEffect(() => {
     const token = localStorage.getItem("token");
-
     fetch("http://localhost:7070/api/dishes", {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
+      headers: { Authorization: `Bearer ${token}` },
     })
-      .then((res) => {
-        if (!res.ok) throw new Error("Fejl ved indlæsning af menu");
-        return res.json();
-      })
-      .then((data) => setMenuItems(data))
+      .then((res) =>
+        res.ok ? res.json() : Promise.reject("Fejl ved indlæsning af menu")
+      )
+      .then(setMenuItems)
       .catch((err) => {
         console.error(err);
         showToast("Kunne ikke hente menuen", "error");
@@ -77,7 +61,7 @@ function MenuManagement() {
       protein: "",
       carbs: "",
       fat: "",
-      allergens: "",
+      allergens: [],
       ingredients: "",
       recipe: "",
     });
@@ -92,7 +76,6 @@ function MenuManagement() {
   const handleEditClick = (item) => {
     setModalType("edit");
     setCurrentItem(item);
-
     setFormData({
       title: item.title || item.name,
       description: item.description,
@@ -100,12 +83,11 @@ function MenuManagement() {
       protein: item.protein,
       carbs: item.carbohydrates,
       fat: item.fat,
-      allergens: item.allergens?.join(", ") || "",
+      allergens: item.allergens || [],
       ingredients:
         item.recipe?.ingredients?.map((i) => i.name).join("\n") || "",
       recipe: item.recipe?.instructions || "",
     });
-
     setErrors({});
   };
 
@@ -121,138 +103,103 @@ function MenuManagement() {
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    setFormData((prevFormData) => ({
-      ...prevFormData,
-      [name]: value,
-    }));
-    console.log("Field changed:", name, value);
+
+    // Special handling for allergens array
+    if (name === "allergens") {
+      setFormData((prev) => ({
+        ...prev,
+        [name]: Array.isArray(value) ? value : [],
+      }));
+    } else {
+      setFormData((prev) => ({ ...prev, [name]: value }));
+    }
   };
 
   const validateForm = () => {
     const newErrors = {};
-
-    if (!formData.title.trim()) {
-      newErrors.title = "Titel er påkrævet";
-    } else if (formData.title.length > 50) {
-      newErrors.title = "Titel må maksimalt være 50 tegn";
-    }
-
-    if (!formData.description.trim()) {
+    if (!formData.title.trim()) newErrors.title = "Titel er påkrævet";
+    if (!formData.description.trim())
       newErrors.description = "Beskrivelse er påkrævet";
-    } else if (formData.description.length > 500) {
-      newErrors.description = "Beskrivelse må maksimalt være 500 tegn";
-    }
-
-    if (!formData.calories || formData.calories <= 0) {
+    if (!formData.calories || formData.calories <= 0)
       newErrors.calories = "Kalorier er påkrævet";
-    }
-
-    if (!formData.protein || formData.protein <= 0) {
+    if (!formData.protein || formData.protein <= 0)
       newErrors.protein = "Protein er påkrævet";
-    }
-
-    if (!formData.carbs || formData.carbs <= 0) {
+    if (!formData.carbs || formData.carbs <= 0)
       newErrors.carbs = "Kulhydrater er påkrævet";
-    }
-
-    if (!formData.fat || formData.fat <= 0) {
-      newErrors.fat = "Fedt er påkrævet og skal være positivt";
-    }
-
-    if (!formData.allergens.trim()) {
+    if (!formData.fat || formData.fat <= 0) newErrors.fat = "Fedt er påkrævet";
+    if (!Array.isArray(formData.allergens) || formData.allergens.length === 0) {
       newErrors.allergens = "Allergener er påkrævet";
     }
-
-    if (!formData.ingredients.trim()) {
+    if (!formData.ingredients.trim())
       newErrors.ingredients = "Ingredienser er påkrævet";
-    }
-
-    if (!formData.recipe.trim()) {
-      newErrors.recipe = "Opskrift er påkrævet";
-    }
-
+    if (!formData.recipe.trim()) newErrors.recipe = "Opskrift er påkrævet";
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
 
   const handleSave = () => {
-    const isValid = validateForm();
-    console.log("Form valid:", isValid);
-    console.log("Form errors:", errors);
-    console.log("Form data:", formData);
-
-    if (!isValid) return;
-
+    if (!validateForm()) return;
     const token = localStorage.getItem("token");
     const id = currentItem?.id;
 
-    if (modalType === "add") {
-      const newDishPayload = {
-        name: formData.title,
-        description: formData.description,
-        kcal: Number(formData.calories),
-        protein: Number(formData.protein),
-        carbohydrates: Number(formData.carbs),
-        fat: Number(formData.fat),
-        status: "tilgængelig",
-        allergens: formData.allergens
-          .split(",")
-          .map((a) => a.trim().toUpperCase())
-          .filter(Boolean),
-        availableFrom: new Date().toISOString().split("T")[0],
-        availableUntil: "2025-12-31",
-        recipe: {
-          title: formData.title,
-          instructions: formData.recipe.trim(),
-          ingredients: formData.ingredients
-            .split("\n")
-            .map((i) => ({ name: i.trim() }))
-            .filter((i) => i.name),
-        },
-      };
+    const payload = {
+      name: formData.title,
+      description: formData.description,
+      kcal: Number(formData.calories),
+      protein: Number(formData.protein),
+      carbohydrates: Number(formData.carbs),
+      fat: Number(formData.fat),
+      status: "TILGÆNGELIG",
 
+      allergens: formData.allergens,
+      availableFrom: new Date().toISOString().split("T")[0],
+      availableUntil: "2025-12-31",
+      recipe: {
+        title: formData.title,
+        instructions: formData.recipe.trim(),
+        ingredients: formData.ingredients
+          .split("\n")
+          .map((i) => ({ name: i.trim() }))
+          .filter((i) => i.name),
+      },
+    };
+
+    if (modalType === "add") {
       fetch("http://localhost:7070/api/dishes/full", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
           Authorization: `Bearer ${token}`,
         },
-        body: JSON.stringify(newDishPayload),
+        body: JSON.stringify(payload),
       })
-        .then((res) => {
-          if (!res.ok) throw new Error("Kunne ikke tilføje ret");
-          return res.json();
-        })
-        .then(() => {
-          return fetch("http://localhost:7070/api/dishes", {
+        .then((res) =>
+          res.ok ? res.json() : Promise.reject("Kunne ikke tilføje ret")
+        )
+        .then(() =>
+          fetch("http://localhost:7070/api/dishes", {
             headers: { Authorization: `Bearer ${token}` },
-          });
-        })
+          })
+        )
         .then((res) => res.json())
-        .then((updatedMenu) => {
-          setMenuItems(updatedMenu);
+        .then((data) => {
+          setMenuItems(data);
           showToast(`${formData.title} er tilføjet!`);
-
-          // Close the modal after a short delay
-          setTimeout(() => {
-            handleCloseModal();
-          }, 500); // 500 ms pause
+          setTimeout(handleCloseModal, 500);
         })
-
         .catch((err) => {
           console.error(err);
-          showToast(err.message, "error");
+          showToast(err.toString(), "error");
         });
     } else if (modalType === "edit") {
       const patchField = (field, value) =>
         fetch(`http://localhost:7070/api/dishes/${id}/${field}`, {
           method: "PATCH",
           headers: {
-            "Content-Type": "application/json", 
+            "Content-Type": "application/json",
             Authorization: `Bearer ${token}`,
           },
           body: JSON.stringify(value),
-          //body: String(value), 
         });
 
       const putRecipe = () =>
@@ -263,18 +210,8 @@ function MenuManagement() {
             Authorization: `Bearer ${token}`,
           },
           body: JSON.stringify({
-            allergens: formData.allergens
-              .split(",")
-              .map((a) => a.trim().toUpperCase())
-              .filter(Boolean),
-            recipe: {
-              title: formData.title,
-              instructions: formData.recipe.trim(),
-              ingredients: formData.ingredients
-                .split("\n")
-                .map((i) => ({ name: i.trim() }))
-                .filter((i) => i.name),
-            },
+            allergens: formData.allergens,
+            recipe: payload.recipe,
           }),
         });
 
@@ -288,16 +225,18 @@ function MenuManagement() {
         putRecipe(),
       ])
         .then((responses) => {
-          const allOk = responses.every((res) => res.ok);
-          if (!allOk) throw new Error("Fejl ved opdatering");
-          showToast(`${formData.title} er blevet opdateret`);
-          return fetch("http://localhost:7070/api/dishes", {
-            headers: { Authorization: `Bearer ${token}` },
-          });
+          if (responses.every((res) => res.ok)) {
+            showToast(`${formData.title} er blevet opdateret`);
+            return fetch("http://localhost:7070/api/dishes", {
+              headers: { Authorization: `Bearer ${token}` },
+            });
+          } else {
+            throw new Error("Fejl ved opdatering");
+          }
         })
         .then((res) => res.json())
-        .then((updated) => {
-          setMenuItems(updated);
+        .then((data) => {
+          setMenuItems(data);
           handleCloseModal();
         })
         .catch((err) => {
@@ -309,14 +248,10 @@ function MenuManagement() {
 
   const handleDelete = () => {
     if (!currentItem) return;
-
     const token = localStorage.getItem("token");
-
     fetch(`http://localhost:7070/api/dishes/${currentItem.id}`, {
       method: "DELETE",
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
+      headers: { Authorization: `Bearer ${token}` },
     })
       .then((res) => {
         if (!res.ok) throw new Error("Kunne ikke slette retten");
@@ -334,14 +269,12 @@ function MenuManagement() {
 
   return (
     <div className="container mx-auto p-4">
-      {/* Toast notification */}
       <Toast
         message={toast.message}
         type={toast.type}
         visible={toast.visible}
         onClose={hideToast}
       />
-
       <div className="bg-white rounded-lg shadow p-6">
         <div className="flex justify-between items-center mb-6">
           <h1 className="text-3xl font-bold text-gray-800">Menustyring</h1>
@@ -403,8 +336,6 @@ function MenuManagement() {
           </table>
         </div>
       </div>
-
-      {/* Modal for add/edit/view/delete */}
       <MenuModal
         show={modalType !== null}
         type={modalType}
