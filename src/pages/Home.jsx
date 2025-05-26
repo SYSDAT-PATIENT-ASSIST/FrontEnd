@@ -17,7 +17,7 @@ function Home() {
           <Link to="/calendar"> <img src={Logo} /> <h1>{t('menuHospitalInfo')}</h1> </Link>
           <Link to="/calendar"> <img src={Logo} /> <h1>{t('menuEntertainment')}</h1> </Link>
           <Link to="/calendar"> <img src={Logo} /> <h1>{t('menuMySP')}</h1> </Link>
-          <Link to="/Link"> <img src={Logo} /> <h1>Min Sundhed</h1></Link>
+          <Link to="/exams"> <img src={Logo} /> <h1>Undersøgelse og behandling</h1> </Link>
         </div>
       </div>
     </>

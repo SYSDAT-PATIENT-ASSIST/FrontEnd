@@ -1,7 +1,7 @@
 import React from "react";
-import CalendarError from "./CalendarError";
+import DisplayError from "./ErrorComponent";
 
-export default class CalendarErrorBoundary extends React.Component {
+export default class ErrorComponentBoundary extends React.Component {
   constructor(props) {
     super(props);
     this.state = { hasError: false };
@@ -26,7 +26,7 @@ export default class CalendarErrorBoundary extends React.Component {
   render() {
     if (this.state.hasError) 
       {
-      return <CalendarError componentFailed={this.componentFailed} onRetry={this.handleRetry} />;
+      return <DisplayError componentFailed={this.componentFailed} onRetry={this.handleRetry} />;
     }
     return this.props.children;
   }

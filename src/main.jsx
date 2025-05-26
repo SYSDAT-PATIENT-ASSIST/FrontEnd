@@ -10,8 +10,8 @@ import OrderFood from "./pages/OrderFood.jsx";
 import MenuManagement from "./pages/MenuManagment.jsx";
 import KitchenDashboard from "./pages/KitchenDashboard.jsx";
 import LoginPage from "./pages/LoginPage.jsx";
-
 import Calendar from "./pages/Calendar.jsx";
+import ExamsAndTreatmentsRoutes from './pages/Exam.jsx';
 import DishCalendarPage from "./pages/DishCalenderPage.jsx";
 import CalendarLanding from "./components/calendar/CalendarLanding.jsx";
 import CalendarView from "./components/calendar/CalendarView.jsx";
@@ -35,6 +35,7 @@ createRoot(document.getElementById("root")).render(
             <Route path="orderfood" element={<OrderFood />} />
             <Route path="/exercises" element={<Exercises />} />
             <Route path="Link" element={<LinkToPatientWebsite />} />
+            <Route path="/exams/*" element={<ExamsAndTreatmentsRoutes />} />
           </Route>
           <Route path="/calendar" element={<Calendar />}>
             <Route index element={<CalendarLanding />} />
