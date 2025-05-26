@@ -52,9 +52,8 @@ function Header() {
         </div>
 
         <div className="header__panel-right">
-        <AdminButton />
+          <AdminButton />
           <div className="header__panel-right-actions">
-            <AdminButton />
 
             <Link to="/" className="header__panel-right-actions-quit">
               <img src={QuitIcon} className="logo" alt={t("quit")} />
