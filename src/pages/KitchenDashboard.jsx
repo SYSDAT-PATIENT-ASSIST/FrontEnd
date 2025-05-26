@@ -13,7 +13,7 @@ const KitchenDashboard = () => {
   useEffect(() => {
     const token = localStorage.getItem('token');
 
-    fetch('http://localhost:7070/api/dishes', {
+    fetch('http://localhost:9999/api/dishes', {
       headers: {
         Authorization: `Bearer ${token}`,
       },

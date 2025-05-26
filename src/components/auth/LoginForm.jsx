@@ -21,42 +21,43 @@ const LoginForm = () => {
     }));
   };
 
-const handleSubmit = async (e) => {
-  e.preventDefault();
-  setError('');
-  setIsLoading(true);
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setError('');
+    setIsLoading(true);
 
-  try {
-    const response = await fetch('http://localhost:7070/auth/login', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        username: formData.username,
-        password: formData.password,
-      }),
-    });
+    try {
+      const response = await fetch('http://localhost:9999/api/auth/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          username: formData.username,
+          email: formData.username,
+          password: formData.password,
+        }),
+      });
 
-    if (!response.ok) {
-      const errorData = await response.json();
-      throw new Error(errorData.message || 'Login mislykkedes');
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.message || 'Login mislykkedes');
+      }
+
+      const data = await response.json();
+
+      // Store token if returned
+      if (data.token) {
+        localStorage.setItem('token', data.token);
+      }
+
+      navigate('/kitchen');
+    } catch (err) {
+      setError(err.message || 'Ugyldige loginoplysninger. Prøv igen.');
+    } finally {
+      setIsLoading(false);
     }
-
-    const data = await response.json();
-
-    // Store token if returned
-    if (data.token) {
-      localStorage.setItem('token', data.token);
-    }
-
-    navigate('/kitchen');
-  } catch (err) {
-    setError(err.message || 'Ugyldige loginoplysninger. Prøv igen.');
-  } finally {
-    setIsLoading(false);
-  }
-};
+  };
 
   return (
     <div className='w-full max-w-md p-8 bg-white rounded-lg shadow-lg'>
@@ -128,9 +129,8 @@ const handleSubmit = async (e) => {
         <button
           type='submit'
           disabled={isLoading}
-          className={`w-full flex justify-center items-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 ${
-            isLoading ? 'opacity-75 cursor-not-allowed' : ''
-          }`}
+          className={`w-full flex justify-center items-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 ${isLoading ? 'opacity-75 cursor-not-allowed' : ''
+            }`}
         >
           {isLoading ? (
             <div className='w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin'></div>

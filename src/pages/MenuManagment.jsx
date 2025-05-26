@@ -38,7 +38,7 @@ function MenuManagement() {
 
   useEffect(() => {
     const token = localStorage.getItem("token");
-    fetch("http://localhost:7070/api/dishes", {
+    fetch("http://localhost:9999/api/dishes", {
       headers: { Authorization: `Bearer ${token}` },
     })
       .then((res) =>
@@ -165,7 +165,7 @@ function MenuManagement() {
     };
 
     if (modalType === "add") {
-      fetch("http://localhost:7070/api/dishes/full", {
+      fetch("http://localhost:9999/api/dishes/full", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -177,7 +177,7 @@ function MenuManagement() {
           res.ok ? res.json() : Promise.reject("Kunne ikke tilføje ret")
         )
         .then(() =>
-          fetch("http://localhost:7070/api/dishes", {
+          fetch("http://localhost:9999/api/dishes", {
             headers: { Authorization: `Bearer ${token}` },
           })
         )
@@ -193,7 +193,7 @@ function MenuManagement() {
         });
     } else if (modalType === "edit") {
       const patchField = (field, value) =>
-        fetch(`http://localhost:7070/api/dishes/${id}/${field}`, {
+        fetch(`http://localhost:9999/api/dishes/${id}/${field}`, {
           method: "PATCH",
           headers: {
             "Content-Type": "application/json",
@@ -203,7 +203,7 @@ function MenuManagement() {
         });
 
       const putRecipe = () =>
-        fetch(`http://localhost:7070/api/dishes/${id}/recipe`, {
+        fetch(`http://localhost:9999/api/dishes/${id}/recipe`, {
           method: "PUT",
           headers: {
             "Content-Type": "application/json",
@@ -227,7 +227,7 @@ function MenuManagement() {
         .then((responses) => {
           if (responses.every((res) => res.ok)) {
             showToast(`${formData.title} er blevet opdateret`);
-            return fetch("http://localhost:7070/api/dishes", {
+            return fetch("http://localhost:9999/api/dishes", {
               headers: { Authorization: `Bearer ${token}` },
             });
           } else {
@@ -249,7 +249,7 @@ function MenuManagement() {
   const handleDelete = () => {
     if (!currentItem) return;
     const token = localStorage.getItem("token");
-    fetch(`http://localhost:7070/api/dishes/${currentItem.id}`, {
+    fetch(`http://localhost:9999/api/dishes/${currentItem.id}`, {
       method: "DELETE",
       headers: { Authorization: `Bearer ${token}` },
     })

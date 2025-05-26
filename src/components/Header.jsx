@@ -21,13 +21,13 @@ function Header() {
   }, []);
 
   const weekdays = [
-    t("weekdaySunday"),
-    t("weekdayMonday"),
-    t("weekdayTuesday"),
-    t("weekdayWednesday"),
-    t("weekdayThursday"),
-    t("weekdayFriday"),
-    t("weekdaySaturday"),
+    t("weekdaySun"),
+    t("weekdayMon"),
+    t("weekdayTue"),
+    t("weekdayWed"),
+    t("weekdayThu"),
+    t("weekdayFri"),
+    t("weekdaySat"),
   ];
   const dayName = weekdays[now.getDay()];
   const day = now.getDate().toString().padStart(2, "0");
@@ -52,9 +52,8 @@ function Header() {
         </div>
 
         <div className="header__panel-right">
-        <AdminButton />
+          <AdminButton />
           <div className="header__panel-right-actions">
-            <AdminButton />
 
             <Link to="/" className="header__panel-right-actions-quit">
               <img src={QuitIcon} className="logo" alt={t("quit")} />
