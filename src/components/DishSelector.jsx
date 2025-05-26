@@ -1,21 +1,24 @@
 import React, { useEffect, useState } from "react";
 import { format } from "date-fns";
+import { useTranslation } from "react-i18next";
 
 export default function DishSelector({ selectedDate }) {
+  const { t } = useTranslation();
   const [dishes, setDishes] = useState([]);
   const [activeDishes, setActiveDishes] = useState({});
   const [searchTerm, setSearchTerm] = useState("");
 
   useEffect(() => {
+    // Brug dish keys frem for hardcoded navne
     setDishes([
-      { id: 1, name: "Grilled Salmon" },
-      { id: 2, name: "Pumpkin Soup" },
-      { id: 3, name: "Roast Duck" },
-      { id: 4, name: "Vegetable Stir Fry" },
-      { id: 5, name: "Beef Stroganoff" },
-      { id: 6, name: "Chicken Curry" },
-      { id: 7, name: "Pasta Primavera" },
-      { id: 8, name: "Caesar Salad" },
+      { id: 1, key: "grilledSalmon" },
+      { id: 2, key: "pumpkinSoup" },
+      { id: 3, key: "roastDuck" },
+      { id: 4, key: "vegetableStirFry" },
+      { id: 5, key: "beefStroganoff" },
+      { id: 6, key: "chickenCurry" },
+      { id: 7, key: "pastaPrimavera" },
+      { id: 8, key: "caesarSalad" }
     ]);
   }, []);
 
@@ -28,31 +31,31 @@ export default function DishSelector({ selectedDate }) {
         [dateKey]: {
           ...prev[dateKey],
           [dishId]: {
-            active: !currentStatus,
-          },
-        },
+            active: !currentStatus
+          }
+        }
       };
     });
   };
 
   const dateKey = format(selectedDate, "yyyy-MM-dd");
 
-  // Filter dishes based on search term
+  // Filtrér baseret på oversat navn
   const filteredDishes = dishes.filter((dish) =>
-    dish.name.toLowerCase().includes(searchTerm.toLowerCase())
+    t(`dishes.${dish.key}`).toLowerCase().includes(searchTerm.toLowerCase())
   );
 
   return (
     <div className="team-e__dish-selector">
-      <h2 className="team-e__subtitle">Dishes for {dateKey}</h2>
+      <h2 className="team-e__subtitle">{t("dishesForDate", { dateKey })}</h2>
 
       <div className="team-e__search-dishes">
         <input
           type="text"
-          placeholder="Search for a dish..."
+          placeholder={t("searchDishPlaceholder")}
           className="team-e__search-input"
           value={searchTerm}
-          onChange={(e) => setSearchTerm(e.target.value)} // Handle input change
+          onChange={(e) => setSearchTerm(e.target.value)}
         />
       </div>
 
@@ -60,12 +63,12 @@ export default function DishSelector({ selectedDate }) {
         const isActive = activeDishes[dateKey]?.[dish.id]?.active;
         return (
           <div key={dish.id} className="team-e__dish">
-            <span>{dish.name}</span>
+            <span>{t(`dishes.${dish.key}`)}</span>
             <button
               className={`team-e__toggle-button ${isActive ? "active" : "inactive"}`}
               onClick={() => toggleDish(dish.id)}
             >
-              {isActive ? "Deactivate" : "Activate"}
+              {isActive ? t("deactivateButton") : t("activateButton")}
             </button>
           </div>
         );
