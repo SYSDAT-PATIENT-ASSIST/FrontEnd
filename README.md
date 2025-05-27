@@ -9,10 +9,11 @@
   1. clone this repo, make sure you are on the `main` branch (this is the default)
   2. make sure, that the [backend](https://github.com/SYSDAT-PATIENT-ASSIST/BackEnd) project is up and running (instructions included in the `README.md`)
   3. run the following commands:
-```
-npm install
-npm run dev
-```
+  ```
+  npm install
+  npm run dev
+  ```
+  4. navigate to `localhost:5173` in your web browser (possibly another address will be used, if the port number is in use)
 
 # TEAM SECTIONS
 
