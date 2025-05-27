@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import CalendarView from "../components/CalendarView";
 import DishSelector from "../components/DishSelector";
 import ActiveDishes from "../components/ActiveDishes";
+import { useTranslation } from "react-i18next";
 import "../styles/DishCalenderPage.css";
 
 export default function DishCalendarPage() {

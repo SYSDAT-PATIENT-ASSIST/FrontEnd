@@ -1,0 +1,30 @@
+
+.orderfood_container {
+    backdrop-filter: blur(1px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;   
+    color: white;
+    -webkit-text-stroke: black 0.6px;
+    min-height: 100%;
+    width: 100%;
+}
+
+.h1_orderfood_custom {
+    font-size: 3rem;
+    text-align: center;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 1);
+}
+
+.h2_orderfood_custom {
+    font-size: 1.9rem;
+    text-align: center;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 1);
+}
+
+.p_orderfood_custom {
+    font-size: 3rem;
+    text-align: center;
+}
+
+

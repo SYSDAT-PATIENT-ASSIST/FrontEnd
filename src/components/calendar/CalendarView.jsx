@@ -7,10 +7,11 @@ import CalenderVisual from './CalenderVisual.jsx'
 
 function CalendarView() {
   return (
-    <>
+    <>    
+
       <div className="calendar-view__content">
         <h1>LANDING PAGE</h1>
-        <CalenderVisual />
+          <CalenderVisual />
         <h1>STUFF GOES HERE</h1>
       </div>
     </>

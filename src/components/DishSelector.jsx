@@ -64,7 +64,7 @@ export default function DishSelector({ selectedDate, activeDishes, setActiveDish
               <button
                 className={`team-e__toggle-button ${isActive ? "active" : "inactive"}`}
                 onClick={() => toggleDish(dish.id)}
-                >
+              >
                 {isActive ? "Deactivate" : "Activate"}
               </button>
             </div>

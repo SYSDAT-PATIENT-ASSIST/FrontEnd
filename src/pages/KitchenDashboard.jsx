@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router';
 import {
   UtensilsCrossed,
@@ -8,6 +8,27 @@ import {
 } from 'lucide-react';
 
 const KitchenDashboard = () => {
+  const [dishCount, setDishCount] = useState(0);
+
+  useEffect(() => {
+    const token = localStorage.getItem('token');
+
+    fetch('http://localhost:9999/api/dishes', {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
+      .then((res) => {
+        if (!res.ok) throw new Error('Kunne ikke hente retter');
+        return res.json();
+      })
+      .then((data) => setDishCount(data.length))
+      .catch((err) => {
+        console.error('Fejl ved hentning af retter:', err);
+        setDishCount(0);
+      });
+  }, []);
+
   return (
     <div className='container mx-auto p-4'>
       <div className='bg-white rounded-lg shadow p-6'>
@@ -84,7 +105,7 @@ const KitchenDashboard = () => {
           <div className='grid grid-cols-1 md:grid-cols-3 gap-4'>
             <div className='bg-white p-4 rounded-lg shadow-sm'>
               <p className='text-gray-600 text-sm'>Aktive retter</p>
-              <p className='text-2xl font-bold text-gray-800'>24</p>
+              <p className='text-2xl font-bold text-gray-800'>{dishCount}</p>
             </div>
 
             <div className='bg-white p-4 rounded-lg shadow-sm'>

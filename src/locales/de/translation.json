@@ -1,0 +1,117 @@
+{
+    "mealTitle": "Mahlzeit 10 - Hähnchen Biryani",
+    "mealDescription": "Lorem Ipsum ist einfache Fülltext aus der Druck- und Setzindustrie. Lorem Ipsum ist seit dem 16. Jahrhundert der Standardfülltext der Branche, als ein unbekannter Drucker eine Schublade mit Lettern nahm und sie mischte, um ein Probedruckbuch zu erstellen.",
+    "accessibilitySettings": "Barrierefreiheitseinstellungen",
+    "fontSize": "Schriftgröße",
+    "fontType": "Schriftart",
+    "language": "Sprache",
+    "contrast": "Farbenkontrast",
+    "apply": "Anwenden",
+    "revert": "Änderungen rückgängig machen",
+
+    "screenReader": "Screenreader",
+    "voiceControl": "Sprachsteuerung",
+    "fontSizes": {
+      "Small": "Klein",
+      "Medium": "Mittel",
+      "Large": "Groß"
+    },
+    "contrastOptions": {
+      "Normal": "Normal",
+      "High": "Hoher"
+    },
+    "languageOptions": {
+      "en": "Englisch",
+      "da": "Dänisch",
+      "de": "Deutsch",
+      "fr": "Französisch",
+      "es": "Spanisch"
+    },
+    "settingsSavedMessage": "Deine Einstellungen wurden gespeichert!",
+  
+    "adminMealOrder": "Admin Mahlzeitenbestellung",
+    "menuMealOrder": "Mahlzeitenbestellung",
+    "menuExercises": "Übungen",
+    "menuContact": "Kontakt",
+    "menuHospitalInfo": "Krankenhausinfos",
+    "menuEntertainment": "Unterhaltung",
+    "menuMySP": "Mein SP",
+    "headerHospitalName": "Bornholms Krankenhaus",
+    "headerLocationCode": "202-1",
+    "headerDepartmentName": "Chirurgische Abteilung",
+    "quit": "Beenden",
+    "settings": "Einstellungen",
+    "headerDay": "Montag 10-03",
+    "headerTime": "15:00",
+  
+    "dishes": {
+      "grilledSalmon": "Gegrillter Lachs",
+      "pumpkinSoup": "Kürbissuppe",
+      "roastDuck": "Gebratene Ente",
+      "vegetableStirFry": "Gemüsepfanne",
+      "beefStroganoff": "Rindergulasch Stroganoff",
+      "chickenCurry": "Hähnchen Curry",
+      "pastaPrimavera": "Pasta Primavera",
+      "caesarSalad": "Caesarsalat"
+    },
+  
+    "dishCalendarManagerTitle": "Gerichtekalender-Manager",
+    "selectDateSubtitle": "Wählen Sie ein Datum",
+    "dishesForDate": "Gerichte für {{dateKey}}",
+    "searchDishPlaceholder": "Nach einem Gericht suchen...",
+    "activateButton": "Aktivieren",
+    "deactivateButton": "Deaktivieren",
+    "weekdaySun": "So",
+    "weekdayMon": "Mo",
+    "weekdayTue": "Di",
+    "weekdayWed": "Mi",
+    "weekdayThu": "Do",
+    "weekdayFri": "Fr",
+    "weekdaySat": "Sa",
+  
+    "loginWelcome": "Willkommen in der Küche",
+    "loginSubtitle": "Melden Sie sich an, um das Menü und die Mahlzeitenpläne zu verwalten",
+    "loginUsername": "Benutzername",
+    "loginUsernamePlaceholder": "Geben Sie Ihren Benutzernamen ein",
+    "loginPassword": "Passwort",
+    "loginPasswordPlaceholder": "Geben Sie Ihr Passwort ein",
+    "loginButton": "Anmelden",
+    "loginError": "Ungültige Anmeldedaten. Bitte erneut versuchen.",
+  
+    "calendarView": "Kalender anzeigen",
+    "calendarMonth": "Monat",
+    "calendarWeek": "Woche",
+    "calendarDay": "Tag",
+    "calendarToday": "heute",
+    "calendarAdmin": "Verwalten",
+  
+    "calendarDays": ["Mo", "Di", "Mi", "Do", "Fr", "Sa", "So"],
+    "calendarNoEvents": "Keine Ereignisse für diesen Tag",
+    "back": "Zurück",
+
+    "overviewExercises": "Alle Übungen",
+
+    "categoryExercises": "Kategorie",
+    "allExercises": "Alle",
+    "backExercises": "Rücken",
+    "armsExercises": "Arme",
+    "legsExercises": "Beine",
+
+    "sortByExercises": "Sortieren nach",
+    "newestExercises": "Neueste",
+    "alphabeticalExercises": "Alphabetisch",
+    "shortestExercises": "Kürzeste",
+
+    "showRandomExercise": "Zufällige Übung anzeigen",
+
+    "categoryNames": {
+      "Back": "Rücken",
+      "Arms": "Arme",
+      "Legs": "Beine"
+    },
+    "secondsLabel": "Sek.",
+    "watchOnYoutube": "Auf YouTube ansehen",
+    "progressStarted": "Gestartet",
+    "progressCompleted": "Abgeschlossen"
+
+}  

@@ -1,0 +1,62 @@
+/* src/styles/Exercises.css */
+
+.exercises__wrapper {
+  padding: 0; /* removed the main’s padding since .home__container already centers it */
+}
+
+.exercises__grid {
+  /* maybe override to match your Home layout more precisely */
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  column-gap: 10vw; /* instead of whatever was there */
+  row-gap: 20px;
+}
+
+.exercises__container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  margin-top: 5vh;
+}
+
+.exercises__links {
+  display: grid;
+  grid-template-columns: repeat(2, auto);
+  grid-column-gap: 20vw;
+  grid-row-gap: 20px;
+  width: 100%;
+}
+
+.exercises__links a {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  color: blue;
+  background-color: white;
+  border-radius: 4px;
+  padding: 8px;
+  text-decoration: none;
+  animation-duration: 0.4s;
+  animation-fill-mode: both;
+  animation-timing-function: ease-in-out;
+}
+
+.exercises__links a:hover {
+  animation-name: bounce;
+}
+
+.exercises__links img {
+  width: 8vw;
+}
+
+.exercises__links h1 {
+  margin: 0;
+  font-size: 1rem;
+}
+
+@keyframes bounce {
+  50% {
+    transform: translateY(-3px);
+  }
+}

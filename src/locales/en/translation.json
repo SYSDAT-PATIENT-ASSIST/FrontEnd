@@ -1,0 +1,117 @@
+{
+  "mealTitle": "Meal 10 - Chicken Biryani",
+  "mealDescription": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
+  "accessibilitySettings": "Accessibility Settings",
+  "fontSize": "Font Size",
+  "fontType": "Font Type",
+  "language": "Language",
+  "contrast": "Color Contrast",
+  "apply": "Apply",
+  "revert": "Revert Changes",
+
+  "screenReader": "Screen Reader",
+  "voiceControl": "Voice Control",
+  "fontSizes": {
+    "Small": "Small",
+    "Medium": "Medium",
+    "Large": "Large"
+  },
+  "contrastOptions": {
+    "Normal": "Normal",
+    "High": "High"
+  },
+  "languageOptions": {
+    "en": "English",
+    "da": "Danish",
+    "de": "German",
+    "fr": "French",
+    "es": "Spanish"
+  },
+  "settingsSavedMessage": "Your settings have been saved!",
+    
+  "adminMealOrder": "Admin meal order",
+  "menuMealOrder": "Meal Order",
+  "menuExercises": "Exercises",
+  "menuContact": "Contact",
+  "menuHospitalInfo": "Hospital Info",
+  "menuEntertainment": "Entertainment",
+  "menuMySP": "My SP",
+  "headerHospitalName": "Bornholms Hospital",
+  "headerLocationCode": "202-1",
+  "headerDepartmentName": "Surgical Department",
+  "quit": "Quit",
+  "settings": "Settings",
+  "headerDay": "Monday 10-03",
+  "headerTime": "15:00",
+
+  "dishes": {
+    "grilledSalmon": "Grilled Salmon",
+    "pumpkinSoup": "Pumpkin Soup",
+    "roastDuck": "Roast Duck",
+    "vegetableStirFry": "Vegetable Stir Fry",
+    "beefStroganoff": "Beef Stroganoff",
+    "chickenCurry": "Chicken Curry",
+    "pastaPrimavera": "Pasta Primavera",
+    "caesarSalad": "Caesar Salad"
+  },
+
+  "dishCalendarManagerTitle": "Dish Calendar Manager",
+  "selectDateSubtitle": "Select a Date",
+  "dishesForDate": "Dishes for {{dateKey}}",
+  "searchDishPlaceholder": "Search for a dish...",
+  "activateButton": "Activate",
+  "deactivateButton": "Deactivate",
+  "weekdaySun": "Sun",
+  "weekdayMon": "Mon",
+  "weekdayTue": "Tue",
+  "weekdayWed": "Wed",
+  "weekdayThu": "Thu",
+  "weekdayFri": "Fri",
+  "weekdaySat": "Sat",
+
+  "loginWelcome": "Welcome to the kitchen",
+  "loginSubtitle": "Log in to manage the menu and meal plans",
+  "loginUsername": "Username",
+  "loginUsernamePlaceholder": "Enter your username",
+  "loginPassword": "Password",
+  "loginPasswordPlaceholder": "Enter your password",
+  "loginButton": "Log in",
+  "loginError": "Invalid login credentials. Please try again.",
+
+  "calendarView": "See calendar",
+  "calendarMonth": "month",
+  "calendarWeek": "week",
+  "calendarDay": "day",
+  "calendarToday": "today",
+  "calendarAdmin": "administer",
+    
+  "calendarDays": ["Mo", "Tu", "We", "Th", "Fr", "Sa", "Su"],
+  "calendarNoEvents": "No events for this day",
+  "back": "Back",
+
+  "overviewExercises": "All Exercises",
+  
+  "categoryExercises": "Category",
+  "allExercises": "All",
+  "backExercises": "Back",
+  "armsExercises": "Arms",
+  "legsExercises": "Legs",
+
+  "sortByExercises": "Sort By",
+  "newestExercises": "Newest",
+  "alphabeticalExercises": "Alphabetical",
+  "shortestExercises": "Shortest",
+
+  "showRandomExercise": "Show Random Exercise",
+
+  "categoryNames": {
+    "Back": "Back",
+    "Arms": "Arms",
+    "Legs": "Legs"
+  },
+  "secondsLabel": "sec",
+  "watchOnYoutube": "Watch on YouTube",
+  "progressStarted": "Started",
+  "progressCompleted": "Completed"
+
+}
