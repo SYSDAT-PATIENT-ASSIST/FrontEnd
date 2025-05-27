@@ -2,6 +2,8 @@
 
 # Links
 
+  - [backend project](https://github.com/SYSDAT-PATIENT-ASSIST/BackEnd)
+
 # How To
 
   1. clone this repo, make sure you are on the `main` branch (this is the default)
