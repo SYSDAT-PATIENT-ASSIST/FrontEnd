@@ -116,3 +116,54 @@ https://docs.google.com/document/d/1rrNmIAPk9XwUih-2_Fa2bioXGrGzXFPR/edit?usp=sh
 
 **Discord**  
 https://discord.gg/tEUDTE77
+
+
+---
+
+# Albertes sprintlog 1 (3. april – 29. april)
+
+| Dato | Hvad er der blevet lavet? | Hvad skal der laves? | Roadblocks |
+| --- | --- | --- | --- |
+| 3. april | Kontaktede tech ift. coding standarder og CSS. Begyndt på frontend UI af frontend | UI til frontend | Coding standarder |
+| 10. april | Kontaktede tech igen ift. CSS og har fået godkendt brugen af Tailwind. Lavede mockup. Fik rettelser fra PO. Kontaktet PO | Færdiggørelse af mockup. Begynde på frontend UI | Afventer svar fra PO |
+| 11. april | Lavede branch til frontend. Færdiggjort mockup. Skrevet med Team G ift. samarbejde af UI i US 5 | Begynde på frontend UI | Kunne ikke lave noget før svar kom sidst på dagen |
+| 15.-21. apr | Lavet frontend til US 5.1 | Lave frontend til US 11 | – |
+| 22. april | Begyndt på frontend til US 11 | Lave frontend færdigt til US 11 | – |
+| 23. april | Færdiggjort frontend til US 5.1 og US 11. Sendt billeder af frontend til PO. Møde med teamet | – | – |
+| 24. april | – | Manglende svar fra PO på frontend | – |
+| 25. april | Fået svar fra PO. Rettet i frontend | – | – |
+| 26. april | Rettet det sidste i frontend | – | – |
+| 27. april | Holdt møde i gruppe angående i morgen. Lavet FigJam med Felicia | Video over frontend kode | – |
+| 28. april | Sprint retrospective med team. SCM-møde. Lave video over frontendkoden der er blevet lavet i sprint 1 | Sætte tasks ind på Taiga for Sprint 2 | – |
+| 29. april | Møde med Kim og de andre SCM. Sat alle tasks op i en tabel. Undersøgt hvordan vi bedst bruger Taiga. Møde med Kamilla | Sætte Taiga op | – |
+
+# Albertes sprintlog 2 (30. april – 14. maj)
+
+| Dato | Hvad er der blevet lavet? | Hvad skal der laves? | Roadblocks |
+| --- | --- | --- | --- |
+| 30. april | Fået lavet en liste med alle tasks med estimater. Begyndt at opdatere tasks i Taiga. Opdateret FigJam Board | Færdiggøre Taiga-opsættelsen | Skulle starte forfra med opsætningen af Taiga |
+| 1. maj | Færdiggjort Taiga med tasks for sprint 2. Overført tasks fra sprint 1 til sprint 2 | Møde med SCM i morgen. SWOT-analysis | – |
+| 2. maj | Skulle have holdt møde med SCM | SWOT-analysis | Folk havde glemt SCM-møde |
+| 3. maj | Møde med Marcus angående Taiga. Møde med Felicia angående Taiga. Opdatere FigJam Board. Satte de sidste tasks ind på Taiga | Sætte Mads ind i Taiga | – |
+| 4. maj | Opdateret FigJam med Taiga-screenshots. Downloadet OBS til lydoptagelse af SCM-møde | SCM-møde i morgen. Lave skriv om opbygning af Taiga | – |
+| 5. maj | SCM-møde. Møde med gruppe. Begyndt på SWOT-analyse | Spørge Kim om SWOT-analysis | – |
+| 6. maj | Holdt møde med Kim. Holdt møde med Felicia omkring hvad hun har kodet | Færdiggøre SWOT-analysis med gruppe | – |
+| 7. maj | – | – | – |
+| 8. maj | “Tilkalde” til statusmøde | Internt statusmøde. SCM-møde i morgen | – |
+| 9. maj | Statusmøde med Mads og Marcus. Statusmøde med Felicia. Læst referat fra SCM-møde | Forberede til sprint review på mandag. Tage screenshots af Taiga. Opdatere FigJam med Taiga screenshots | Forhindret i at deltage i SCM-møde |
+| 10. maj | Tage screenshots af Taiga. Opdatere FigJam med Taiga screenshots | Rykke tasks fra sprint 2 til sprint 3 | – |
+| 11. maj | Begyndt at rykke tasks fra sprint 2 til sprint 3 | Sprint review i morgen | – |
+
+# Albertes sprintlog 3 (14. maj – 26. maj)
+
+| Dato | Hvad er der blevet lavet? | Hvad skal der laves? | Roadblocks |
+| --- | --- | --- | --- |
+| 14. maj | Retrospective. SCM-møde. Lavet acceptance criterias for US 15. Lavet tasks til US 15. Opdateret Taiga med tasks til US 15. Ryddet op i Taiga. Skrevet til Tech | Møde med Kim i morgen | – |
+| 15. maj | Møde med Kim. Skrevet ud til gruppen ang. US 15 for at høre om alt er til at forstå. Møde med Felicia ang. frontend/backend. Skrevet til tech | – | – |
+| 16. maj | Opdateret FigJam med nyt daily standup-skema. Skrevet til PO. Skrevet med Jeanette om Tailwind CSS | Hjælpe Jeanette med Tailwind CSS | – |
+| 17. maj | Hørt gruppen om der skulle videregives noget til SCM-møde i morgen | SCM-møde i morgen | – |
+| 18. maj | SCM-møde aflyst | – | – |
+| 19. maj | Skrevet ud til gruppen for at få en opdatering på US 15 og høre om noget skal videre til SCM-møde i morgen | SCM-møde i morgen | – |
+| 20. maj | SCM-møde. Hørt gruppen hvor langt de er. US 15 fravalgt – kun fokus på US 5.1 og 11. Skrevet til PO. Spurgt om noget skulle med til mødet med Kim | Opdatere Taiga<br>Møde med Kim i morgen | – |
+| 21. maj | Møde med Kim. Møde med Felicia. Skrevet til gruppen | Opdatere Taiga | – |
+| 22. maj | Opdateret Taiga | README-fil til GitHub | – |
