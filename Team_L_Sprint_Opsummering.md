@@ -18,7 +18,7 @@
 - Roller: Frontend Developer (Sprint 1), Scrum Master (Sprint 2 + 3)
 
 #### **Mads**
-- Email: _[indsæt email]_  
+- Email: _[cph-mr632@cphbusiness.dk](mailto:cph-mr632@cphbusiness.dk)
 - GitHub: [https://github.com/ScriptCodes](https://github.com/ScriptCodes)
 - Roller: Developer
 
@@ -47,7 +47,7 @@ Samtidig blev der i backend arbejdet med udformning af EER-diagrammer, opstart a
 
 | Navn     | Bidrag i sprint |
 |----------|-----------------|
-| Felicia  | Arbejdede med frontend, mockups og koordinering som SCRUM-master. |
+| Felicia  | Havde ansvar for opgaveorganisering i Taiga, deltog i diverse møder og koordinering som SCRUM-master. |
 | Alberte  | Arbejdede med mockups og frontendarbejde, og håndterede feedback fra PO. |
 | Mads     | Fokuserede på backendstruktur med database og login, inkl. samarbejde med andre teams. |
 | Marcus   | Påbegyndte backend-setup og deltog i pair programming om login. |
