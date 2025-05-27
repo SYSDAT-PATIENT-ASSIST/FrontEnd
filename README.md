@@ -1,4 +1,4 @@
-# SYSDAT F25 PROJEKT - Patient Assist
+# SYSF25 PROJEKT - Patient Assist
 
 # Links
 
