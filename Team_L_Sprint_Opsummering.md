@@ -48,7 +48,7 @@ Samtidig blev der i backend arbejdet med udformning af EER-diagrammer, opstart a
 | Navn     | Bidrag i sprint |
 |----------|-----------------|
 | Felicia  | Arbejdede med frontend, mockups og koordinering som SCRUM-master. |
-| Alberte  | Bidrog med mockups og frontendarbejde, og håndterede feedback fra PO. |
+| Alberte  | Arbejdede med mockups og frontendarbejde, og håndterede feedback fra PO. |
 | Mads     | Fokuserede på backendstruktur med database og login, inkl. samarbejde med andre teams. |
 | Marcus   | Påbegyndte backend-setup og deltog i pair programming om login. |
 
@@ -61,7 +61,7 @@ Frontend blev løbende koordineret og dokumenteret via opdateringer i FigJam og 
 | Navn     | Bidrag i sprint |
 |----------|-----------------|
 | Felicia  | Implementerede backendfunktioner og tests med BDD/TDD, og deltog aktivt i task-håndtering. |
-| Alberte  | Havde ansvar for opgaveorganisering i Taiga, SWOT-analyse og koordinering.|
+| Alberte  | Havde ansvar for opgaveorganisering i Taiga, deltog i diverse møder og koordinering som SCRUM-master.|
 | Mads     | Udvidede backend med tests, CRUD og error handling, samt forbedrede login-flow. |
 | Marcus   | Deltog i møder og feedbackrunder, og bidrog til loginfunktionalitet og cleanup. |
 
@@ -74,7 +74,7 @@ Derudover blev US 15 forsøgt initieret, men af ressourcemæssige og tekniske å
 | Navn     | Bidrag i sprint |
 |----------|-----------------|
 | Felicia  | Implementerede backendfunktioner og deltog aktivt i task-håndtering. |
-| Alberte  | Havde ansvar for opgaveorganisering i Taiga, SWOT-analyse og koordinering. |
+| Alberte  | Havde ansvar for opgaveorganisering i Taiga, deltog i diverse møder og koordinering som SCRUM-master. |
 | Mads     | Udvidede backend med tests, CRUD og error handling, samt forbedrede login-flow.|
 | Marcus   | Deltog i møder og feedbackrunder, og bidrog til loginfunktionalitet og cleanup. |
 
