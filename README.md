@@ -1,5 +1,17 @@
 # SYSDAT F25 PROJEKT - Patient Assist
 
+# Links
+
+# How To
+
+  1. clone this repo, make sure you are on the `main` branch (this is the default)
+  2. make sure, that the [backend](https://github.com/SYSDAT-PATIENT-ASSIST/BackEnd) project is up and running (instructions included in the `README.md`)
+  3. run the following commands:
+`
+     i
+npm run dev
+`
+
 # TEAM SECTIONS
 
 ## TEAM A
