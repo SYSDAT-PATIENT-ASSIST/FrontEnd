@@ -8,7 +8,7 @@
   2. make sure, that the [backend](https://github.com/SYSDAT-PATIENT-ASSIST/BackEnd) project is up and running (instructions included in the `README.md`)
   3. run the following commands:
 ```
-     i
+npm install
 npm run dev
 ```
 
