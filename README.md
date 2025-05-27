@@ -57,8 +57,6 @@
 ### Sprint 3
 
 ## TEAM L
-### Sprint 1
+### Link til Sprint opsummering 
+https://github.com/SYSDAT-PATIENT-ASSIST/FrontEnd/blob/main/Team_L_Sprint_Opsummering.md
 
-### Sprint 2
-
-### Sprint 3
