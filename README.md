@@ -50,7 +50,10 @@
 ### Sprint 3
 
 ## TEAM I
+Vi har valgt ikke at bruge BDD og TDD i frontend, da vi ikke har lært det og ikke ved, hvordan man gør
+
 ### Sprint 1
+
 
 ### Sprint 2
 
