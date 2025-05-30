@@ -1,4 +1,13 @@
-# SYSDAT F25 PROJEKT - Patient Assist
+# Team E - Contributors
+- Kevin Løvstad
+- Frederik Dupont
+- Marcus Rasmussen
+- Matthias Sigurdsson
+- Sander Christensen
+
+<br> 
+
+## SYSDAT F25 PROJEKT - Patient Assist
 Vi har udviklet en DishSelector der kan håndtere de forskellige retter på valgte datoer ved at sætte dem,
 som aktiv eller fjerne dem ved at deaktivere dem.
 
