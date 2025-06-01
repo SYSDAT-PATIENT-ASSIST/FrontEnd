@@ -41,13 +41,15 @@
 
 ## TEAM G
 
-### Sprint 1
+Vi har ikke brugt automatiserede tests til frontendudvikling, pga. manglende kendskab til de nødvendige redskaber.
 
-### Scrum master noter
+### Sprint 1
 
 ### Sprint 2
 
 ### Sprint 3
+
+  - [Oskar (SCM)]: Satte user story, acceptance criteria, samt tidsestimater op på vores Taiga scrum board i fællesskab med resten af teamet.
 
 ## TEAM I
 Vi har valgt ikke at bruge BDD og TDD i frontend, da vi ikke har lært det og ikke ved, hvordan man gør
